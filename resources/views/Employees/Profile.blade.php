@@ -22,7 +22,6 @@
                     <div class="mt-3">
                       <h4>{{ $Employee['FirstName'] }} {{ $Employee['LastName'] }}</h4>
                       <p class="text-secondary mb-1">Security Guard</p>
-                      <p class="text-secondary mb-1"><b>Branch:</b> {{ $Employee['Branch'] }}</p>
                       <p class="text-secondary mb-1"><b>Post:</b> {{ $Employee['Post'] }}</p><br>
                       <button type="button" class="btn btn-primary hidden-print"><span class="fa fa-print"></span> Print</button>
                       <button class="btn btn-info">Edit</button>

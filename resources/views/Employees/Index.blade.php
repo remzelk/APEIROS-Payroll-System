@@ -15,6 +15,11 @@
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1>List of Employees</h1><br>
+			<div class="form-inline my-2 my-lg-0"> 
+				<select class="form-control mb-4" name="Post" id="Post">
+					<option value="AllPosts" selected="selected">All Posts</option>
+				</select>
+			</div>
 			<div class="form-inline my-2 my-lg-0 right"> 
     			<input class="form-control mb-4 search" type="search" placeholder="Search Employee" aria-label="Search">
     			<button class="btn btn-outline-success mb-4" type="submit">Search</button>

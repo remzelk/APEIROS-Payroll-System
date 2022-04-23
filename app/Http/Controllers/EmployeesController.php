@@ -12,7 +12,6 @@ class EmployeesController extends Controller
             'FirstName' => 'Juan',
             'Birthday' => '2000/1/1',
             'Gender' => 'Male',
-            'Branch' => 'Bulacan',
             'Post' => 'Arzo Hotel',
             'Address' => 'Malolos, Bulacan',
             'Phone' => '+63 912 345 6789',
