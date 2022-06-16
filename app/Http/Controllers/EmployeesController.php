@@ -139,4 +139,8 @@ class EmployeesController extends Controller
         abort_if(!(isset($this->Employees[$id])), 404);
         return view('Employees.profile', ['Employee'=>$this->Employees[$id]]);
     }
+    public function template()
+    {
+        return view('Employees.template');
+    }
 }

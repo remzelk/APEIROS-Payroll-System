@@ -15,6 +15,7 @@ use App\Http\Controllers;
 
 
 Route::get('/', 'EmployeesController@login');
+Route::get('/template', 'EmployeesController@template');
 Route::get('/Employee/{id}/Profile', 'EmployeesController@profile');
 Route::resource('/Employees', EmployeesController::class);
 
