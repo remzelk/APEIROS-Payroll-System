@@ -6,31 +6,13 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function login()
     {
+        return view('Admin.login');
     }
 
-    public function create()
+    public function accountsettings()
     {
-    }
-
-    public function store(Request $request)
-    {
-    }
-
-    public function show($id)
-    {
-    }
-
-    public function edit($id)
-    {
-    }
-
-    public function update(Request $request, $id)
-    {
-    }
-
-    public function destroy($id)
-    {
+        return view('Admin.accountsettings');
     }
 }

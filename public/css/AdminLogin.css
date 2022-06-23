@@ -35,7 +35,7 @@ form {
 }
 
 .xyz {
-    background-image: url("https://media.discordapp.net/attachments/958687400203255808/978933554102812702/unknown.png?width=664&height=498");
+    background-image: url("https://media.discordapp.net/attachments/958687400203255808/989076268161069056/tyler-franta-iusJ25iYu1c-unsplash.jpg?width=701&height=468");
     background-size: cover;
     border-radius: 0px 25px 25px 0px;
     top: 50%;
@@ -93,11 +93,11 @@ h2.account-text {
 body  {
     background-image: 
     linear-gradient(
-        rgba(0, 0, 0, 0.5), 
-        rgba(0, 0, 0, 0.5)
+        rgba(125, 4, 4, 0.5), 
+        rgba(125, 4, 4, 0.5)
       ), 
-    url("https://wallpaperaccess.com/full/3724033.jpg");
-    background-size: auto;
+    url("https://media.discordapp.net/attachments/958687400203255808/988897770054254592/background.png?width=832&height=468");
+    background-size: cover;
     background-color: #cccccc;
   }
   .right {

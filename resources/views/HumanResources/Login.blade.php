@@ -4,16 +4,16 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/EmployeeLogin.css" >
+	<link rel="stylesheet" type="text/css" href="/css/HumanResourcesLogin.css" >
 @endsection
-@section('title', 'Employee Login')
+@section('title', 'Human Resources Login')
 @section('content')
 <div class="row">
     <div class="col-sm-4 abc">
         <!-- Default form login -->
         <form action="#!">
         <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="300" height="60">
-            <p class="h4 mb-4 text-left">Employee Portal</p>
+            <p class="h4 mb-4 text-left">Human Resources Portal</p>
             <p>Login to continue</p>
 			<input type="text" id="Email Address" class="form-control mb-4" placeholder="Enter Email Address"> 
 			<input type="password" id="Password" class="form-control mb-4" placeholder="Enter Password">

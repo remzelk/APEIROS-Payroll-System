@@ -14,8 +14,20 @@ use App\Http\Controllers;
 */
 
 
-Route::get('/', 'EmployeesController@login');
-Route::get('/template', 'EmployeesController@template');
+Route::get('/', 'HomeController@index');
+
+Route::get('/Admin/Login', 'AdminController@login');
+Route::get('/Admin/EmployeeList', 'AdminController@EmployeeList');
+Route::get('/Admin/AccountSettings', 'AdminController@accountsettings');
+
+Route::get('/HumanResources/Login', 'HumanResourcesController@login');
+Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings');
+
+Route::get('/Accounting/Login', 'AccountingController@login');
+Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings');
+
+Route::get('/Employee/Login', 'EmployeesController@login');
 Route::get('/Employee/{id}/Profile', 'EmployeesController@profile');
-Route::resource('/Employees', EmployeesController::class);
+Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings');
+
 

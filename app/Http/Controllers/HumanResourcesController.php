@@ -33,4 +33,13 @@ class HumanResourcesController extends Controller
     public function destroy($id)
     {
     }
+
+    public function login(){
+        return view('HumanResources.login');
+    }
+
+    public function accountsettings()
+    {
+        return view('HumanResources.accountsettings');
+    }
 }

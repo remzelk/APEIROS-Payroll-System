@@ -33,4 +33,13 @@ class AccountingController extends Controller
     public function destroy($id)
     {
     }
+
+    public function login(){
+        return view('Accounting.login');
+    }
+
+    public function accountsettings()
+    {
+        return view('Accounting.accountsettings');
+    }
 }
