@@ -66,4 +66,63 @@ document.addEventListener("DOMContentLoaded", function(){
   })
 }); 
 </script>
+
+<nav class="navbar navbar-light navbg">
+<button class="bt" onclick="openNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
+</nav>
+
+<div id="main">
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>Dela Cruz, Juan M.</h4>
+                                    <p class="text-secondary mb-1">02/23/2020</p>
+                                    <p class="text-secondary mb-1"><b>Position:</b> Security Personnel</p><br>
+                                    <button class="btn btn-info">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Birthday</h6>
+                            <span class="text-secondary">01/01/1995</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Gender</h6>
+                            <span class="text-secondary">Male</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Address</h6>
+                            <span class="text-secondary">Ayala, Makati City</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Phone</h6>
+                            <span class="text-secondary">9165756675</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Email</h6>
+                            <span class="text-secondary">juandelacruz@sample.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h3 class="mb-0 center">Additional Information Needed</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

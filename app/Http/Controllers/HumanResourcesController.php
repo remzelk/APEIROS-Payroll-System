@@ -228,6 +228,18 @@ class HumanResourcesController extends Controller
         return view('HumanResources.detachments', ['Detachments'=>$this->Detachments]);
     }
 
+    public function adddetachments()
+    {
+        
+        return view('HumanResources.adddetachments');
+    }
+
+    public function editdetachments()
+    {
+        
+        return view('HumanResources.editdetachments');
+    }
+
     public function accountsettings()
     {
         return view('HumanResources.accountsettings');

@@ -10,7 +10,8 @@ class AdminController extends Controller
         1 => [
             'LastName' => 'Dela Cruz',
             'FirstName' => 'Juan',
-            'Birthday' => '2000/1/1',
+            'MiddleName' => 'Miguel',
+            'Birthday' => '01/01/1995',
             'Gender' => 'Male',
             'Post' => 'Arzo Hotel',
             'Address' => 'Malolos, Bulacan',
@@ -44,6 +45,19 @@ class AdminController extends Controller
 
     private $EmployeeList = [
         1 => [
+            'LastName' => 'Ramirez Vidal',
+            'FirstName' => 'Eduardo Luis',
+            'MiddleInitial' => 'de Jesus',
+            'Birthday' => '01/01/1995',
+            'Gender' => 'Male',
+            'Phone' => 9165756675,
+            'Address' => 'Ayala, Makati City',
+            'Position' => 'Admin',
+            'DateJoined' => '02/23/2020',
+            'Email' => 'eldjrv@sample.com',
+            'Password' => 'gw6Dg2av'
+        ],
+        2 => [
             'LastName' => 'Dela Cruz',
             'FirstName' => 'Juan',
             'MiddleInitial' => 'M',
@@ -53,7 +67,7 @@ class AdminController extends Controller
             'Address' => 'Ayala, Makati City',
             'Position' => 'Security Personel',
             'DateJoined' => '02/23/2020',
-            'Email' => 'juandela.cruz@gmail.com',
+            'Email' => 'juan.delacruz@sample.com',
             'Password' => 'fSjsblEbkv'
         ]
     ];
@@ -274,7 +288,7 @@ class AdminController extends Controller
         return view('Admin.index');
     }
 
-    public function profile($id)
+    public function profile()
     {
         return view('Admin.profile', ['EmployeeList'=>$this->EmployeeList]);
     }
@@ -283,6 +297,18 @@ class AdminController extends Controller
     {
         
         return view('Admin.employeelist', ['EmployeeList'=>$this->EmployeeList]);
+    }
+
+    public function addemployee()
+    {
+        
+        return view('Admin.addemployee');
+    }
+
+    public function editemployee()
+    {
+        
+        return view('Admin.editemployee');
     }
 
     public function detachments()

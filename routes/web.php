@@ -21,6 +21,7 @@ Route::get('/Admin', 'AdminController@index');
 Route::get('/Admin/Profile', 'AdminController@profile');
 Route::get('/Admin/EmployeeList', 'AdminController@employeelist');
 Route::get('/Admin/EmployeeList/Add', 'AdminController@addemployee');
+Route::get('/Admin/EmployeeList/Edit', 'AdminController@editemployee');
 Route::get('/Admin/Detachments', 'AdminController@detachments');
 Route::get('/Admin/Detachments/Add', 'AdminController@adddetachments');
 Route::get('/Admin/Detachments/Edit', 'AdminController@editdetachments');
@@ -37,11 +38,12 @@ Route::get('/HumanResources/EmployeeList', 'HumanResourcesController@employeelis
 Route::get('/HumanResources/EmployeeList/Add', 'HumanResourcesController@addemployee');
 Route::get('/HumanResources/Detachments', 'HumanResourcesController@detachments');
 Route::get('/HumanResources/Detachments/Add', 'HumanResourcesController@adddetachments');
+Route::get('/HumanResources/Detachments/Edit', 'HumanResourcesController@editdetachments');
 Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings');
 
 Route::get('/Accounting/Login', 'AccountingController@login');
 Route::get('/Accounting', 'AccountingController@index');
-Route::get('/Accounting/Profile/{id}', 'AccountingController@profile');
+Route::get('/Accounting/Profile', 'AccountingController@profile');
 Route::get('/Accounting/EmployeePayroll', 'AccountingController@employeepayroll');
 Route::get('/Accounting/Wages', 'AccountingController@wages');
 Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings');

@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/humanresources.css" >
 @endsection
-@section('title', 'Employee List')
+@section('title', 'Detachments')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
@@ -18,7 +18,6 @@
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/Profile">Profile</a></li>
     <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/AddEmployee">Add Employee</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
 	<li class="nav-item"><a href="/HumanResources/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
@@ -111,10 +110,10 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $Detachments['Location'] }}
 					</td>
           <td class="align-middle">
-            <a href="#" class="btn btn-primary" onclick="return confirm('Edit detachment?')">Edit</a>
+            <a href="/HumanResources/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')">Edit</a>
           </td>
           <td class="align-middle">
-            <a href="#" class="btn btn-danger" onclick="return confirm('Delete detachment?')">Delete</a>
+            <button class="btn btn-danger" onclick="return confirm('Delete detachment: <?php echo $Detachments['Location'] ?>?')">Delete</button>
           </td>
 				</tr>
 			@empty

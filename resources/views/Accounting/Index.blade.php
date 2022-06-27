@@ -67,4 +67,16 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="bt" onclick="openNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Accounting Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
 </nav>
+
+<div  id="main">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+			<h1>Notifications:</h1><br>
+			Empty for now.
+        </div>
+    </div>
+  </div>
+<div>
 @endsection

@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				@forelse($EmployeeList as $key => $Employee)
 				<tr>
 					<td>
-						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }} {{ $Employee['MiddleInitial'] }}.
+						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }} {{ $Employee['MiddleInitial'] }}
 					</td>
 					<td>
 						{{ $Employee['Gender'] }}

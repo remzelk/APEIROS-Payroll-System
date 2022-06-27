@@ -18,7 +18,6 @@
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/Profile" class="active">Profile</a></li>
     <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/AddEmployee">Add Employee</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
 	<li class="nav-item"><a href="/HumanResources/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>

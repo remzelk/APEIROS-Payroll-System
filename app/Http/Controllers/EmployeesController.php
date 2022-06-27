@@ -10,7 +10,8 @@ class EmployeesController extends Controller
         1 => [
             'LastName' => 'Dela Cruz',
             'FirstName' => 'Juan',
-            'Birthday' => '2000/1/1',
+            'MiddleName' => 'Miguel',
+            'Birthday' => '01/01/1995',
             'Gender' => 'Male',
             'Post' => 'Arzo Hotel',
             'Address' => 'Malolos, Bulacan',
@@ -42,106 +43,288 @@ class EmployeesController extends Controller
         ]
     ];
 
-    public function index()
-    {
-        return view('Employees.index', ['Employees'=>$this->Employees]);
-    }
-    public function show($id)
-    {
-        abort_if(!(isset($this->Employees[$id])), 404);
-        return view('Employees.show', ['Employee'=>$this->Employees[$id]]);
-    }
-    public function create()
-    {
-        return view('Employees.create');
-    }
-    public function store(Request $request)
-    {
-        $LastName = Request()->input('LastName');
-        $FirstName = Request()->input('FirstName');
-        $Birthday = Request()->input('Birthday');
-        $Gender = Request()->input('Gender');
-        $DaysWorked = Request()->input('DaysWorked');
-        $RatePerDay = Request()->input('RatePerDay');
-        $GrossPay = $DaysWorked * $RatePerDay;
-        $OfficersAllowance = Request()->input('OfficersAllowance');
-        $NSDifferential = Request()->input('NSDifferential');
-        $NightDifferential = $NSDifferential * 42;
-        $SHDays = Request()->input('SHDays');
-        $SpecialHoliday = $SHDays * $RatePerDay * 0.3;
-        $LHDays = Request()->input('LHDays');
-        $LegalHoliday = $LHDays * $RatePerDay;
-        $OTAdj = Request()->input('OTAdj');
-        $FinalGrossPay = $GrossPay + $OfficersAllowance + $NightDifferential + $SpecialHoliday + $LegalHolidays + $OTAdj;
-        $PhilHealth = Request()->input('PhilHealth');
-        $HDMF = Request()->input('HDMF');
-        $HDMFLoan = Request()->input('HDMFLoan');
-        $FAMaintenance = Request()->input('$FAMaintenance');
-        $RadioMaintenance = Request()->input('RadioMaintenance');
-        $BankCharge = Request()->input('BankCharge');
-        $Insurance = Request()->input('Insurance');
-        $CashBond = Request()->input('CashBond');
-        $TotalDeduction = $PhilHealth + $HDMF + $HDMFLoan + $FAMaintenance + $RadioMaintenance + $Insurance + $CashBond;
-        $CA = Request()->input('CA');
-        $TotalNetPay = $FinalGrossPay - $TotalDeduction - $CA;
-        $Employees = [
-            $id => [
-                'LastName' => $LastName,
-                'FirstName' => $FirstName,
-                'Birthday' => $Birthday,
-                'Gender' => $Gender,
-                'DaysWorked' => $DaysWorked,
-                'RatePerDay' => $RatePerDay,
-                'GrossPay' => $GrossPay,
-                'OfficersAllowance' => $OfficersAllowance,
-                'NSDifferential' => $NSDifferential,
-                'NightDifferential' => $NightDifferential,
-                'SHDays' => $SHDays,
-                'SpecialHoliday' => $SpecialHoliday,
-                'LHDays' => $LHDays,
-                'LegalHoliday' => $LegalHoliday,
-                'OTAdj' => 0.00,
-                'FinalGrossPay' => $FinalGrossPay,
-                'PhilHealth' => $PhilHealth,
-                'HDMF' => $HDMF,
-                'HDMFLoan' => $HDMFLoan,
-                'FAMaintenance' => $FAMaintenance,
-                'RadioMaintenance' => $RadioMaintenance,
-                'BankCharge' => $BankCharge,
-                'Insurance' => $Insurance,
-                'CashBond' => $CashBond,
-                'TotalDeduction' => $TotalDeduction,
-                'CA' => $CA,
-                'TotalNetPay' => $TotalNetPay
-            ]
+    private $EmployeeList = [
+        1 => [
+            'LastName' => 'Ramirez Vidal',
+            'FirstName' => 'Eduardo Luis',
+            'MiddleInitial' => 'de Jesus',
+            'Birthday' => '01/01/1995',
+            'Gender' => 'Male',
+            'Phone' => 9165756675,
+            'Address' => 'Ayala, Makati City',
+            'Position' => 'Admin',
+            'DateJoined' => '02/23/2020',
+            'Email' => 'eldjrv@sample.com',
+            'Password' => 'gw6Dg2av'
+        ],
+        2 => [
+            'LastName' => 'Dela Cruz',
+            'FirstName' => 'Juan',
+            'MiddleInitial' => 'M',
+            'Birthday' => '01/01/1995',
+            'Gender' => 'Male',
+            'Phone' => 9165756675,
+            'Address' => 'Ayala, Makati City',
+            'Position' => 'Security Personel',
+            'DateJoined' => '02/23/2020',
+            'Email' => 'juan.delacruz@sample.com',
+            'Password' => 'fSjsblEbkv'
+        ]
+    ];
 
-        ];
-        return view('Employees.store', ['Employee'=>$this->EmployeeId[$id]]);
-    }
-    public function edit($id)
-    {
-        abort_if(!(isset($this->Employees[$id])), 404);
-        return view('Employees.edit', ['Employee'=>$this->Employees[$id]]);
-    }
-    public function update(Request $request, $id)
-    {
+    private $Detachments = [
+        1 => [
+            'Detachment' => 'Arlechino',
+            'Location' => 'Makati'
+        ],
+        2 => [
+            'Detachment' => 'Arzo Hotel',
+            'Location' => 'Manila'
+        ],
+        3 => [
+            'Detachment' => 'Autohub',
+            'Location' => 'Quezon'
+        ],
+        4 => [
+            'Detachment' => 'Autohub',
+            'Location' => 'Taguig'
+        ],
+        5 => [
+            'Detachment' => 'JIT',
+            'Location' => 'Parañaque'
+        ],
+        6 => [
+            'Detachment' => 'Bixby Knolls',
+            'Location' => 'Quezon'
+        ],
+        7 => [
+            'Detachment' => 'Bizzu',
+            'Location' => 'Makati'
+        ],
+        8 => [
+            'Detachment' => 'Care One',
+            'Location' => 'Cavite'
+        ],
+        9 => [
+            'Detachment' => 'Coastline Truck Center',
+            'Location' => 'Bulacan'
+        ],
+        10 => [
+            'Detachment' => 'Coastline Truck Center',
+            'Location' => 'Quezon'
+        ],
+        11 => [
+            'Detachment' => 'Dr. Ching',
+            'Location' => 'Makati'
+        ],
+        12 => [
+            'Detachment' => 'Felina',
+            'Location' => 'Quezon'
+        ],
+        13 => [
+            'Detachment' => 'FFGMI',
+            'Location' => 'Batangas'
+        ],
+        14 => [
+            'Detachment' => 'Filipino Mall',
+            'Location' => 'Pasay'
+        ],
+        15 => [
+            'Detachment' => 'Five West',
+            'Location' => 'Manila'
+        ],
+        16 => [
+            'Detachment' => 'Good Heart',
+            'Location' => 'Quezon'
+        ],
+        17 => [
+            'Detachment' => 'H-CHEM',
+            'Location' => 'Pasig'
+        ],
+        18 => [
+            'Detachment' => 'KDDI - CYBER BETA',
+            'Location' => 'Makati'
+        ],
+        19 => [
+            'Detachment' => 'KDDI',
+            'Location' => 'Batangas'
+        ],
+        20 => [
+            'Detachment' => 'KDDI',
+            'Location' => 'Quezon'
+        ],
+        21 => [
+            'Detachment' => 'Libra Agro',
+            'Location' => 'Quezon'
+        ],
+        22 => [
+            'Detachment' => 'Mega East',
+            'Location' => 'Bataan'
+        ],
+        23 => [
+            'Detachment' => 'Mega East',
+            'Location' => 'Tarlac'
+        ],
+        24 => [
+            'Detachment' => 'MultiSys',
+            'Location' => 'Parañaque'
+        ],
+        25 => [
+            'Detachment' => 'Norvic',
+            'Location' => 'Makati'
+        ],
+        26 => [
+            'Detachment' => 'Ohana',
+            'Location' => 'Quezon'
+        ],
+        27 => [
+            'Detachment' => 'Ohana - Frozen',
+            'Location' => 'Quezon'
+        ],
+        28 => [
+            'Detachment' => 'Palm Coast',
+            'Location' => 'Pasay'
+        ],
+        29 => [
+            'Detachment' => 'Penhurst',
+            'Location' => 'Taguig'
+        ],
+        30 => [
+            'Detachment' => 'Pest Science',
+            'Location' => 'Makati'
+        ],
+        31 => [
+            'Detachment' => 'Rayner Lorenzo',
+            'Location' => 'Manila'
+        ],
+        32 => [
+            'Detachment' => 'RCW & Golvious',
+            'Location' => 'Quezon'
+        ],
+        33 => [
+            'Detachment' => 'RCW & Golvious',
+            'Location' => 'Rizal'
+        ],
+        34 => [
+            'Detachment' => 'San Antonio',
+            'Location' => 'Batangas'
+        ],
+        35 => [
+            'Detachment' => 'Therosa',
+            'Location' => 'Manila'
+        ]
+    ];
 
-    }
-    public function destroy($id)
-    {
-    }
+    private $Wages = [
+        1 => [
+            'Location' => 'Bulacan',
+            'Region' => 'III',
+            'Wage' => '420.00'
+        ],
+        2 => [
+            'Location' => 'Bataan',
+            'Region' => 'III',
+            'Wage' => '420.00'
+        ],
+        3 => [
+            'Location' => 'Batangas',
+            'Region' => 'IV-A',
+            'Wage' => '400.00'
+        ],
+        4 => [
+            'Location' => 'Cavite',
+            'Region' => 'IV-A',
+            'Wage' => '400.00'
+        ],
+        5 => [
+            'Location' => 'Makati',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        6 => [
+            'Location' => 'Manila',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        7 => [
+            'Location' => 'Parañaque',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        8 => [
+            'Location' => 'Pasay',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        9 => [
+            'Location' => 'Pasig',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        10 => [
+            'Location' => 'Quezon',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        11 => [
+            'Location' => 'Taguig',
+            'Region' => 'NCR',
+            'Wage' => '537.00'
+        ],
+        12 => [
+            'Location' => 'Tarlac',
+            'Region' => 'III',
+            'Wage' => '420.00'
+        ]
+    ];
+
     public function login()
     {
-        return view('Employees.login');
-    }
-    public function profile($id)
-    {
-        abort_if(!(isset($this->Employees[$id])), 404);
-        return view('Employees.profile', ['Employee'=>$this->Employees[$id]]);
-    }
-    public function accountsettings()
-    {
-        return view('Employees.accountsettings');
+        return view('Employee.login');
     }
 
+    public function index()
+    {
+        return view('Employee.index');
+    }
+
+    public function profile()
+    {
+        return view('Employee.profile', ['EmployeeList'=>$this->EmployeeList]);
+    }
+
+    public function payslips()
+    {
+        
+        return view('Employee.payslips');
+    }
+
+    public function schedule()
+    {
+        
+        return view('Employee.schedule');
+    }
+
+    public function attendance()
+    {
+        
+        return view('Employee.attendance');
+    }
+
+    public function leaverequest()
+    {
+        
+        return view('Employee.leave');
+    }
+
+    public function bir()
+    {
+        
+        return view('Employee.birform');
+    }
+
+    public function accountsettings()
+    {
+        return view('Employee.accountsettings');
+    }
 }
