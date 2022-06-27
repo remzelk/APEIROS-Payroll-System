@@ -16,7 +16,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Admin">Home</a></li>
-    <li class="nav-item"><a href="/Admin/Profile" class="active">Profile</a></li>
+    <li class="nav-item"><a href="/Admin/Profile/<?php $key?>" class="active">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
@@ -70,5 +70,55 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
 </nav>
 
-
+<div  id="main">
+<div class="container">
+    <div class="main-body">
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4>{{ $EmployeeList['LastName'] }}, {{ $EmployeeList['FirstName'] }} {{ $EmployeeList['MiddleName'] }}.</h4>
+                      <p class="text-secondary mb-1">{{ $EmployeeList['DateJoined'] }}</p>
+                      <p class="text-secondary mb-1"><b>Position:</b> {{ $EmployeeList['Position'] }}</p><br>
+                      <button type="button" class="btn btn-primary hidden-print"><span class="fa fa-print"></span> Print</button>
+                      <button class="btn btn-info">Edit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Birthday</h6>
+                    <span class="text-secondary">{{ $EmployeeList['Birthday'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Gender</h6>
+                    <span class="text-secondary">{{ $EmployeeList['Gender'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Address</h6>
+                    <span class="text-secondary">{{ $EmployeeList['Address'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Phone</h6>
+                    <span class="text-secondary">{{ $EmployeeList['Phone'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Email</h6>
+                    <span class="text-secondary">{{ $EmployeeList['Email'] }}</span>
+                  </li>
+               
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>    
+            </div>
+          </div>
+        </div>
+    </div>
 @endsection
