@@ -6,21 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class Employees extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        //
+        Schema::create('Employees', function (Blueprint $table) {
+            $table->id('Id');
+            $table->text('LastName');
+            $table->text('FirstName');
+            $table->text('Gender');
+            $table->text('Position');
+            
+        });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         //

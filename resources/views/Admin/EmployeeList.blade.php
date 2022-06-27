@@ -15,12 +15,13 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="#">Home</a></li>
-    <li class="nav-item"><a href="#">Profile</a></li>
-    <li class="nav-item"><a href="/Employees">Employee List</a></li>
-    <li class="nav-item"><a href="/Employees/create">Add Employee</a></li>
-    <li class="nav-item"><a href="#">Add Detachments</a></li>
-    <li class="nav-item"><a href="#" class="active">Account Settings</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li>
+    <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeeList" class="active">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
+    <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Admin/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
@@ -76,118 +77,54 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
 			<h1>List of Employees</h1><br>
 			<div class="form-inline my-2 my-lg-0"> 
-				<select class="form-control mb-4" name="Post" id="Post">
-					<option value="AllPosts" selected="selected">All Posts</option>
+                <label class="mb-4">Sort by:</label>&nbsp;
+				<select class="form-control mb-4" name="Sort" id="Sort">
+					<option value="All" selected="selected">All</option>
+                    <option value="NameAZ">Name (A to Z)</option>
+                    <option value="NameZA">Name (Z to A)</option>
+                    <option value="DateA">Date Joined (Ascending)</option>
+                    <option value="DateD">Date Joined (Descending)</option>
 				</select>
 			</div>
-			<div class="form-inline my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" placeholder="Search Employee" aria-label="Search">
+			<div class="form-inline">
+                <a href="/Admin/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<div class="my-2 my-lg-0 right"> 
+    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
     			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
 			</div>
+            </div>
 			<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th class="align-middle">Employee Name</th>
-						<th class="align-middle">No. of Days</th>
-						<th class="align-middle">Rate Per Day</th>
-						<th class="align-middle">Gross Pay</th>
-						<th class="align-middle">Officer's Allowance</th>
-						<th class="align-middle">Night Shift Differential</th>
-						<th class="align-middle">Night Differential</th>
-						<th class="align-middle">No. of Days</th>
-						<th class="align-middle">Special Holiday</th>
-						<th class="align-middle">No. of Days</th>
-						<th class="align-middle">Legal Holiday</th>
-						<th class="align-middle">OT/Adj.</th>
-						<th class="align-middle">Gross Pay</th>
-						<th class="align-middle">PhilHealth</th>
-						<th class="align-middle">HDMF</th>
-						<th class="align-middle">HDMF Loan</th>
-						<th class="align-middle">F/A MNTNZ</th>
-						<th class="align-middle">Radio MNTANANZ</th>
-						<th class="align-middle">Bank Charge</th>
-						<th class="align-middle">Insurance</th>
-						<th class="align-middle">Cash Bond</th>
-						<th class="align-middle">Total Deduction</th>
-						<th class="align-middle">CA</th>
-						<th class="align-middle">Total Net Pay</th>
+						<th class="align-middle">Gender</th>
+                        <th class="align-middle">Date Joined</th>
+						<th class="align-middle">Position</th>
+						<th class="align-middle">Email</th>
+						<th class="align-middle">Password</th>
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($Employees as $key => $Employee)
+				@forelse($EmployeeList as $key => $Employee)
 				<tr>
 					<td>
-						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }}
+						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }} {{ $Employee['MiddleInitial'] }}.
 					</td>
 					<td>
-						{{ $Employee['DaysWorked'] }}
+						{{ $Employee['Gender'] }}
+					</td>
+                    <td>
+						{{ $Employee['DateJoined'] }}
 					</td>
 					<td>
-						{{ $Employee['RatePerDay'] }}
+						{{ $Employee['Position'] }}
 					</td>
 					<td>
-						{{ $Employee['GrossPay'] }}
+						{{ $Employee['Email'] }}
 					</td>
 					<td>
-						{{ $Employee['OfficersAllowance'] }}
-					</td>
-					<td>
-						{{ $Employee['NSDifferential'] }}
-					</td>
-					<td>
-						{{ $Employee['NightDifferential'] }}
-					</td>
-					<td>
-						{{ $Employee['SHDays'] }}
-					</td>
-					<td>
-						{{ $Employee['SpecialHoliday'] }}
-					</td>
-					<td>
-						{{ $Employee['LHDays'] }}
-					</td>
-					<td>
-						{{ $Employee['LegalHoliday'] }}
-					</td>
-					<td>
-						{{ $Employee['OTAdj'] }}
-					</td>
-					<td>
-						{{ $Employee['FinalGrossPay'] }}
-					</td>
-					<td>
-						{{ $Employee['PhilHealth'] }}
-					</td>
-					<td>
-						{{ $Employee['HDMF'] }}
-					</td>
-					<td>
-						{{ $Employee['HDMFLoan'] }}
-					</td>
-					<td>
-						{{ $Employee['FAMaintenance'] }}
-					</td>
-					<td>
-						{{ $Employee['RadioMaintenance'] }}
-					</td>	
-					<td>
-						{{ $Employee['BankCharge'] }}
-					</td>
-					<td>
-						{{ $Employee['Insurance'] }}
-					</td>
-					<td>
-						{{ $Employee['CashBond'] }}
-					</td>
-					<td>
-						{{ $Employee['TotalDeduction'] }}
-					</td>
-					<td>
-						{{ $Employee['CashAdvance'] }}
-					</td>
-					<td>
-						{{ $Employee['TotalNetPay'] }}
+						{{ $Employee['Password'] }}
 					</td>
 				</tr>
 			@empty

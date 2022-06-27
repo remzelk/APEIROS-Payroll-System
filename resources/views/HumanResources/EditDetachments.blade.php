@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/humanresources.css" >
 @endsection
-@section('title', 'Edit Employee')
+@section('title', 'Edit Detachment')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
@@ -17,8 +17,9 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/HumanResources/EmployeeList" class="active">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/HumanResources/AddEmployee">Add Employee</a></li>
+    <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
 	<li class="nav-item"><a href="/HumanResources/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>

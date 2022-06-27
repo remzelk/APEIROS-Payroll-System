@@ -71,60 +71,38 @@ document.addEventListener("DOMContentLoaded", function(){
 </nav>
 
 <div  id="main">
-  <div class="container-fluid h-100">
+  <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>List of Detatchments</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-                <label class="mb-4">Sort by:</label>&nbsp;
-				<select class="form-control mb-4" name="Sort" id="Sort">
-					<option value="AllPosts" selected="selected">All</option>
-                    <option value="DAZ">Detachments (A to Z)</option>
-                    <option value="DZA">Detachments (Z to A)</option>
-                    <option value="LAZ">Location (A to Z)</option>
-                    <option value="LZA">Location (Z to A)</option>
-				</select>
-			</div>
-      <div class="form-inline">
-      <a href="/Admin/Detachments/Add" class="mb-4">+Add Detachment</a>&emsp;&emsp;
-			<div class="my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
-			</div>
-    </div>
-			<div class="scroll">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th class="align-middle">Detachment</th>
-						<th class="align-middle">Location</th>
-					</tr>
-				</thead>
-			<div class="scroll">
-				@forelse($Detachments as $key => $Detachments)
-				<tr>
-					<td>
-						{{ $Detachments['Detachment'] }}
-					</td>
-					<td>
-						{{ $Detachments['Location'] }}
-					</td>
-          <td class="align-middle">
-            <a href="#" class="btn btn-primary" onclick="return confirm('Edit detachment?')">Edit</a>
-          </td>
-          <td class="align-middle">
-            <a href="#" class="btn btn-danger" onclick="return confirm('Delete detachment?')">Delete</a>
-          </td>
-				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
-			</div>
-			</table>
-			</div>
+          <a href="/Admin/Detachments" onclick="return confirm('Are sure you want to exit? Any unsaved changes will be lost.')">< <u>Detachments</u></a><br><br>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Detachment</h3>
+            <form>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Detachment</label>
+                    <input type="text" id="FirstName" class="form-control mb-4" placeholder="Enter Detachment"> 
+                </div>
+                <div class="col-md-6">
+                    <label>Location</label>
+                    <input type="text" id="LastName" class="form-control mb-4" placeholder="Enter Location"> 
+                </div>
+            </div>
+              <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 <div>
+<script>
+    window.onbeforeunload = function(){
+  return 'Are you sure you want to leave?';
+};
+</script>
 @endsection
