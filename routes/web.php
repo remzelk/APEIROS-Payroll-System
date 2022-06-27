@@ -41,7 +41,7 @@ Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accounts
 
 Route::get('/Accounting/Login', 'AccountingController@login');
 Route::get('/Accounting', 'AccountingController@index');
-Route::get('/Accounting/Profile', 'AccountingController@profile');
+Route::get('/Accounting/Profile/{id}', 'AccountingController@profile');
 Route::get('/Accounting/EmployeePayroll', 'AccountingController@employeepayroll');
 Route::get('/Accounting/Wages', 'AccountingController@wages');
 Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings');

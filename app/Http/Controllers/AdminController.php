@@ -274,7 +274,7 @@ class AdminController extends Controller
         return view('Admin.index');
     }
 
-    public function profile()
+    public function profile($id)
     {
         return view('Admin.profile', ['EmployeeList'=>$this->EmployeeList]);
     }

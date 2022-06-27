@@ -15,14 +15,15 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="#" class="active">Home</a></li>
-    <li class="nav-item"><a href="#">Profile</a></li>
-    <li class="nav-item"><a href="#">Payslips</a></li>
-    <li class="nav-item"><a href="#">Schedule</a></li>
-    <li class="nav-item"><a href="#">Attendance</a></li>
-    <li class="nav-item"><a href="#">Leave Request</a></li>
-    <li class="nav-item"><a href="#">BIR Form 2316</a></li>
-    <li class="nav-item"><a href="#">Account Settings</a></li>
+    <li class="nav-item"><a href="/Employee" class="active">Home</a></li>
+    <li class="nav-item"><a href="/Employee/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
+    <li class="nav-item"><a href="/Employee/Schedule">Schedule</a></li>
+    <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Employee/BIRForm">BIR Form 2316</a></li>
+    <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Employee/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>

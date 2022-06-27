@@ -6,7 +6,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/AccountingLogin.css" >
 @endsection
-@section('title', 'Accounting Login')
+@section('title', 'Login')
 @section('content')
 <div class="row">
     <div class="col-sm-4 abc">

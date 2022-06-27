@@ -1,180 +1,69 @@
 @extends('layouts.mainlayout')
 @section('head')
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/Main.css" >
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/employee.css" >
 @endsection
 @section('title', 'Profile')
 @section('content')
-@include('partials.navbar')
-<div  id="main">
-<div class="container">
-    <div class="main-body">
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                    <div class="mt-3">
-                      <h4>{{ $Employee['FirstName'] }} {{ $Employee['LastName'] }}</h4>
-                      <p class="text-secondary mb-1">Security Guard</p>
-                      <p class="text-secondary mb-1"><b>Post:</b> {{ $Employee['Post'] }}</p><br>
-                      <button type="button" class="btn btn-primary hidden-print"><span class="fa fa-print"></span> Print</button>
-                      <button class="btn btn-info">Edit</button>
-                      <button class="btn btn-danger">Delete</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-3">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Birthday</h6>
-                    <span class="text-secondary">{{ $Employee['Birthday'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Gender</h6>
-                    <span class="text-secondary">{{ $Employee['Gender'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Address</h6>
-                    <span class="text-secondary">{{ $Employee['Address'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Phone</h6>
-                    <span class="text-secondary">{{ $Employee['Phone'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Email</h6>
-                    <span class="text-secondary">{{ $Employee['Email'] }}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <h3 class="mb-0 center">15 Day Report</h3>
-                </div>
-              </div>
+<nav id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
+  <div class="d-flex justify-content-center align-items-center px-3 py-4">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  </div>
+  <ul class="nav flex-column" id="nav_accordion">
+    <li class="nav-item"><a href="/Employee">Home</a></li>
+    <li class="nav-item"><a href="/Employee/Profile" class="active">Profile</a></li>
+    <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
+    <li class="nav-item"><a href="/Employee/Schedule">Schedule</a></li>
+    <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Employee/BIRForm">BIR Form 2316</a></li>
+    <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Employee/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+  </ul>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
 
-              <div class="row">
-                <div class="col-sm-6 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0">No. of Days</h6>
-                    <span class="text-secondary">{{ $Employee['DaysWorked'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0">Rate Per Day</h6>
-                    <span class="text-secondary">{{ number_format($Employee['RatePerDay'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Gross Pay</h6>
-                    <span class="text-secondary">{{ number_format($Employee['GrossPay'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0">Officers Allowance</h6>
-                    <span class="text-secondary">{{ number_format($Employee['OfficersAllowance'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Night Shift Days</h6>
-                    <span class="text-secondary">{{ $Employee['NSDifferential'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Night Differential</h6>
-                    <span class="text-secondary">{{ number_format($Employee['NightDifferential'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Special Holiday Days</h6>
-                    <span class="text-secondary">{{ $Employee['SHDays'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Special Holiday</h6>
-                    <span class="text-secondary">{{ number_format($Employee['SpecialHoliday'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Legal Holiday Days</h6>
-                    <span class="text-secondary">{{ $Employee['LHDays'] }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Legal Holiday</h6>
-                    <span class="text-secondary">{{ number_format($Employee['LegalHoliday'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Overtime</h6>
-                    <span class="text-secondary">{{ number_format($Employee['OTAdj'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Final Gross Pay</h6>
-                    <span class="text-secondary"><b>{{ number_format($Employee['FinalGrossPay'], 2) }}</b></span>
-                  </li>
-                </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-6 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0">PhilHealth</h6>
-                    <span class="text-secondary">{{ number_format($Employee['PhilHealth'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">HDMF</h6>
-                    <span class="text-secondary">{{ number_format($Employee['HDMF'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0">HDMF Loan</h6>
-                    <span class="text-secondary">{{ number_format($Employee['HDMFLoan'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Fire Arms Maintenance</h6>
-                    <span class="text-secondary">{{ number_format($Employee['FAMaintenance'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Radio Maintenance</h6>
-                    <span class="text-secondary">{{ number_format($Employee['RadioMaintenance'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Bank Charge</h6>
-                    <span class="text-secondary">{{ number_format($Employee['BankCharge'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Insurance</h6>
-                    <span class="text-secondary">{{ number_format($Employee['Insurance'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Cash Bond</h6>
-                    <span class="text-secondary">{{ number_format($Employee['CashBond'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Total Deduction</h6>
-                    <span class="text-secondary">{{ number_format($Employee['TotalDeduction'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Cash Advance</h6>
-                    <span class="text-secondary">{{ number_format($Employee['CashAdvance'], 2) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Total Net Pay</h6>
-                    <span class="text-secondary"><b>{{ number_format($Employee['TotalNetPay'], 2) }}</b></span>
-                  </li>
-                </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>    
-            </div>
-          </div>
-        </div>
-    </div>
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll('.sidenav .nav-link').forEach(function(element){
+    
+    element.addEventListener('click', function (e) {
+
+      let nextEl = element.nextElementSibling;
+      let parentEl  = element.parentElement;	
+
+        if(nextEl) {
+            e.preventDefault();	
+            let mycollapse = new bootstrap.Collapse(nextEl);
+            
+            if(nextEl.classList.contains('show')){
+              mycollapse.hide();
+            } else {
+                mycollapse.show();
+                // find other submenus with class=show
+                var opened_submenu = parentEl.parentElement.querySelector('.submenu.show');
+                // if it exists, then close all of them
+                if(opened_submenu){
+                  new bootstrap.Collapse(opened_submenu);
+                }
+            }
+        }
+    });
+  })
+}); 
+</script>
 @endsection
