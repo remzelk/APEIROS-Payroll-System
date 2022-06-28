@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Accounting">Home</a></li>
     <li class="nav-item"><a href="/Accounting/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Accounting/EmployeePayroll" class="active">Employee Payroll</a></li>
+	<li class="nav-item"><a href="/Accounting/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Accounting/AccountSettings">Account Settings</a></li>
 	<li class="nav-item"><a href="/Accounting/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>

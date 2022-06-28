@@ -110,10 +110,10 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $Detachments['Location'] }}
 					</td>
           <td class="align-middle">
-            <a href="/HumanResources/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')">Edit</a>
+            <a href="/HumanResources/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
           <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Delete detachment: <?php echo $Detachments['Location'] ?>?')">Delete</button>
+            <button class="btn btn-danger" onclick="return confirm('Delete detachment: <?php echo $Detachments['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
 				</tr>
 			@empty

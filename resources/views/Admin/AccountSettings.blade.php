@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings" class="active">Account Settings</a></li>

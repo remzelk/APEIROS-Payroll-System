@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
@@ -83,11 +84,11 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="row">
                 <div class="col-md-6">
                     <label>Detachment</label>
-                    <input type="text" id="FirstName" class="form-control mb-4" placeholder="Enter Detachment"> 
+                    <input type="text" id="Detachment" class="form-control mb-4" placeholder="Enter Detachment"> 
                 </div>
                 <div class="col-md-6">
                     <label>Location</label>
-                    <input type="text" id="LastName" class="form-control mb-4" placeholder="Enter Location"> 
+                    <input type="text" id="Location" class="form-control mb-4" placeholder="Enter Location"> 
                 </div>
             </div>
               <div class="mt-4 pt-2">

@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
@@ -99,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th class="align-middle">Detachment</th>
 						<th class="align-middle">Location</th>
+            <th></th>
+            <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
@@ -111,10 +114,10 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $Detachments['Location'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')">Edit</a>
+            <a href="/Admin/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
           <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Delete detachment?')">Delete</button>
+            <button class="btn btn-danger" onclick="return confirm('Delete detachment?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
 				</tr>
 			@empty

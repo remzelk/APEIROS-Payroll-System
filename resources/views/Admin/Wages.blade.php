@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages" class="active">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
@@ -118,10 +119,10 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $Wages['Wage'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Wages/Edit" class="btn btn-primary" onclick="return confirm('Edit wage: <?php echo $Wages['Location'] ?>?')">Edit</a>
+            <a href="/Admin/Wages/Edit" class="btn btn-primary" onclick="return confirm('Edit wage: <?php echo $Wages['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
           <td class="align-middle">
-            <a href="#" class="btn btn-danger" onclick="return confirm('Delete wage: <?php echo $Wages['Location'] ?>?')">Delete</a>
+            <a href="#" class="btn btn-danger" onclick="return confirm('Delete wage: <?php echo $Wages['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
           </td>
 				</tr>
 			@empty

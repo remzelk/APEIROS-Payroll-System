@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile" class="active">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
@@ -78,12 +79,13 @@ document.addEventListener("DOMContentLoaded", function(){
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://media.discordapp.net/attachments/958687400203255808/991042023681302609/received_411066807363612.jpeg?width=468&height=468" alt="Admin" class="rounded-circle" width="150">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>Ramirez Vidal, Eduardo Luis de Jesus</h4>
                                     <p class="text-secondary mb-1"><b>Date Joined:</b> 02/23/2020</p>
                                     <p class="text-secondary mb-1"><b>Position:</b> Admin</p><br>
-                                    <button class="btn btn-info">Edit</button>
+                                    <button class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                    <button class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0">Address</h6>
-                            <span class="text-secondary">Dominican Republic</span>
+                            <span class="text-secondary">Ayala, Makati</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0">Phone</h6>

@@ -311,6 +311,12 @@ class AdminController extends Controller
         return view('Admin.editemployee');
     }
 
+    public function employeepayroll()
+    {
+        
+        return view('Admin.employeepayroll', ['Employees'=>$this->Employees]);
+    }
+
     public function detachments()
     {
         

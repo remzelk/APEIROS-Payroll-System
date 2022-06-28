@@ -21,10 +21,11 @@
     <li class="nav-item"><a href="/Employee/Schedule" class="active">Schedule</a></li>
     <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
-    <li class="nav-item"><a href="/Employee/BIRForm">BIR Form 2316</a></li>
+    <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="/Employee/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
+</nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <script>
 function openNav() {
@@ -70,4 +71,16 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="bt" onclick="openNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Employee Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
 </nav>
+
+<div id="main">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+			<h1>Schedule:</h1><br>
+			Empty for now.
+        </div>
+    </div>
+  </div>
+<div>
 @endsection

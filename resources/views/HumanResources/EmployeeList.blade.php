@@ -68,4 +68,80 @@ document.addEventListener("DOMContentLoaded", function(){
 <button class="bt" onclick="openNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Human Resources Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
 </nav>
+
+<div  id="main">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+			<h1>List of Employees</h1><br>
+			<div class="form-inline my-2 my-lg-0"> 
+                <label class="mb-4">Sort by:</label>&nbsp;
+				<select class="form-control mb-4" name="Sort" id="Sort">
+					<option value="All" selected="selected">All</option>
+                    <option value="NameAZ">Name (A to Z)</option>
+                    <option value="NameZA">Name (Z to A)</option>
+                    <option value="DateA">Date Joined (Ascending)</option>
+                    <option value="DateD">Date Joined (Descending)</option>
+				</select>
+			</div>
+			<div class="form-inline">
+                <a href="/HumanResources/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+			<div class="my-2 my-lg-0 right"> 
+    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
+    			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
+			</div>
+            </div>
+			<div class="scroll">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="align-middle">Employee Name</th>
+						<th class="align-middle">Gender</th>
+                        <th class="align-middle">Date Joined</th>
+						<th class="align-middle">Position</th>
+						<th class="align-middle">Email</th>
+						<th class="align-middle">Password</th>
+                        <th></th>
+                        <th></th>
+					</tr>
+				</thead>
+			<div class="scroll">
+				@forelse($EmployeeList as $key => $Employee)
+				<tr>
+					<td>
+						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }} {{ $Employee['MiddleInitial'] }}
+					</td>
+					<td>
+						{{ $Employee['Gender'] }}
+					</td>
+                    <td>
+						{{ $Employee['DateJoined'] }}
+					</td>
+					<td>
+						{{ $Employee['Position'] }}
+					</td>
+					<td>
+						{{ $Employee['Email'] }}
+					</td>
+					<td>
+						{{ $Employee['Password'] }}
+					</td>
+                    <td class="align-middle">
+                        <a href="/HumanResources/EmployeeList/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="align-middle">
+                        <button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
+				</tr>
+			@empty
+    		<h1>No Data!</h1>
+			@endforelse
+			</div>
+			</table>
+			</div>
+        </div>
+    </div>
+  </div>
+<div>
 @endsection

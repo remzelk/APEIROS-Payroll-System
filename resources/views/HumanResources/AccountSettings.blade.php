@@ -76,15 +76,21 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
 			<h1>Account Settings</h1><br>
             <p>Change Password:</p>
-			<div class="my-2 my-lg-0"> 
-    			<input class="form-control mb-4" type="password" placeholder="Old Password">
+			      <div class="my-2 my-lg-0"> 
+    			    <input class="form-control mb-4" type="password" placeholder="Old Password">
             </div>
             <div class="my-2 my-lg-0">
-                <input class="form-control mb-4" type="password" placeholder="New Password">
-			</div>
+              <input class="form-control mb-4" type="password" placeholder="New Password">
+		  	    </div>
+            <div class="my-2 my-lg-0">
+              <input class="form-control mb-4" type="password" placeholder="Confirm New Password">
+		  	    </div>
             <button class="btn btn-info" type="submit" style="background-image: url(https://i.imgur.com/6YuRxJA.png)">Change Password</button>
 			
         </div>
+    </div>
+  </div>
+<div>
     </div>
   </div>
 <div>

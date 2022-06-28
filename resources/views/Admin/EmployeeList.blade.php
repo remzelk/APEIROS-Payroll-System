@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList" class="active">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
@@ -87,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				</select>
 			</div>
 			<div class="form-inline">
-                <a href="/Admin/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <a href="/Admin/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 			<div class="my-2 my-lg-0 right"> 
     			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
     			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
@@ -103,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Position</th>
 						<th class="align-middle">Email</th>
 						<th class="align-middle">Password</th>
+                        <th></th>
+                        <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
@@ -126,6 +129,12 @@ document.addEventListener("DOMContentLoaded", function(){
 					<td>
 						{{ $Employee['Password'] }}
 					</td>
+                    <td class="align-middle">
+                        <a href="/Admin/EmployeeList/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="align-middle">
+                        <button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </td>
 				</tr>
 			@empty
     		<h1>No Data!</h1>

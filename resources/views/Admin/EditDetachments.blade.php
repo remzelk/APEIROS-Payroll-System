@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
@@ -83,15 +84,15 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="row">
                 <div class="col-md-6">
                     <label>Detachment</label>
-                    <input type="text" id="FirstName" class="form-control mb-4" placeholder="Enter Detachment"> 
+                    <input type="text" id="Detachment" class="form-control mb-4" placeholder="Enter Detachment"> 
                 </div>
                 <div class="col-md-6">
                     <label>Location</label>
-                    <input type="text" id="LastName" class="form-control mb-4" placeholder="Enter Location"> 
+                    <input type="text" id="Location" class="form-control mb-4" placeholder="Enter Location"> 
                 </div>
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit"/>
               </div>
             </form>
           </div>
@@ -101,8 +102,16 @@ document.addEventListener("DOMContentLoaded", function(){
   </div>
 <div>
 <script>
-    window.onbeforeunload = function(){
-  return 'Are you sure you want to leave?';
-};
+ // Warning
+$(window).on('beforeunload', function(){
+    return "Any changes will be lost";
+});
+
+// Form Submit
+$(document).on("submit", "form", function(event){
+    // disable unload warning
+    $(window).off('beforeunload');
+});
+    
 </script>
 @endsection

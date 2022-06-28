@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/employee.css" >
 @endsection
-@section('title', 'Account Settings')
+@section('title', 'Leave Request')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
@@ -20,9 +20,9 @@
     <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
     <li class="nav-item"><a href="/Employee/Schedule">Schedule</a></li>
     <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
-    <li class="nav-item"><a href="/Employee/BIRForm">BIR Form 2316</a></li>
-    <li class="nav-item"><a href="/Employee/AccountSettings" class="active">Account Settings</a></li>
+    <li class="nav-item"><a href="/Employee/LeaveRequest" class="active">Leave Request</a></li>
+    <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
+    <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="/Employee/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
 </nav>
@@ -72,21 +72,13 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
 </nav>
 
-<div  id="main">
+<div id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Account Settings</h1><br>
-            <p>Change Password:</p>
-			<div class="my-2 my-lg-0"> 
-    			<input class="form-control mb-4" type="password" placeholder="Old Password">
-            </div>
-            <div class="my-2 my-lg-0">
-                <input class="form-control mb-4" type="password" placeholder="New Password">
-			</div>
-            <button class="btn btn-info" type="submit" style="background-image: url(https://i.imgur.com/6YuRxJA.png)">Change Password</button>
-			
+			<h1>Leave:</h1><br>
+			Empty for now.
         </div>
     </div>
   </div>

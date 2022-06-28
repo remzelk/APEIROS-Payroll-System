@@ -18,6 +18,7 @@
     <li class="nav-item"><a href="/Accounting">Home</a></li>
     <li class="nav-item"><a href="/Accounting/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Accounting/EmployeePayroll">Employee Payroll</a></li>
+    <li class="nav-item"><a href="/Accounting/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Accounting/AccountSettings" class="active">Account Settings</a></li>
 	<li class="nav-item"><a href="/Accounting/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
@@ -75,12 +76,15 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
 			<h1>Account Settings</h1><br>
             <p>Change Password:</p>
-			<div class="my-2 my-lg-0"> 
-    			<input class="form-control mb-4" type="password" placeholder="Old Password">
+			      <div class="my-2 my-lg-0"> 
+    			    <input class="form-control mb-4" type="password" placeholder="Old Password">
             </div>
             <div class="my-2 my-lg-0">
-                <input class="form-control mb-4" type="password" placeholder="New Password">
-			</div>
+              <input class="form-control mb-4" type="password" placeholder="New Password">
+		  	    </div>
+            <div class="my-2 my-lg-0">
+              <input class="form-control mb-4" type="password" placeholder="Confirm New Password">
+		  	    </div>
             <button class="btn btn-info" type="submit" style="background-image: url(https://i.imgur.com/6YuRxJA.png)">Change Password</button>
 			
         </div>
