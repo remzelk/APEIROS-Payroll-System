@@ -48,6 +48,8 @@ Route::get('/Accounting', 'AccountingController@index');
 Route::get('/Accounting/Profile', 'AccountingController@profile');
 Route::get('/Accounting/EmployeePayroll', 'AccountingController@employeepayroll');
 Route::get('/Accounting/Wages', 'AccountingController@wages');
+Route::get('/Accounting/Wages/Add', 'AccountingController@addwages');
+Route::get('/Accounting/Wages/Edit', 'AccountingController@editwages');
 Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings');
 
 Route::get('/Employee/Login', 'EmployeesController@login');

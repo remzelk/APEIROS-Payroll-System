@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function(){
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <a href="/Admin/Detachments">< <u>Detachments</u></a><br><br>
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment</h3>
+          <a href="/Admin/Wages">< <u>Wages</u></a><br><br>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Wage</h3>
             <form>
 
             <div class="row">

@@ -289,7 +289,7 @@ class AccountingController extends Controller
     public function addwages()
     {
         
-        return view('Accountingaddwage');
+        return view('Accounting.addwage');
     }
     
     public function editwages()

@@ -147,3 +147,6 @@ th, td {
   background-image: linear-gradient(15deg, #3df2ff 0%, #48fff6 100%);
 }
 
+.fx {
+  position:fixed;
+}
