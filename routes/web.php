@@ -46,7 +46,6 @@ Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accounts
 Route::get('/Accounting/Login', 'AccountingController@login');
 Route::get('/Accounting', 'AccountingController@index');
 Route::get('/Accounting/Profile', 'AccountingController@profile');
-Route::get('/Accounting/EmployeePayroll', 'AccountingController@employeepayroll');
 Route::get('/Accounting/Wages', 'AccountingController@wages');
 Route::get('/Accounting/Wages/Add', 'AccountingController@addwages');
 Route::get('/Accounting/Wages/Edit', 'AccountingController@editwages');
@@ -62,4 +61,6 @@ Route::get('/Employee/LeaveRequest', 'EmployeesController@leaverequest');
 Route::get('/Employee/BIRForm2316', 'EmployeesController@bir');
 Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings');
 
+Route::resource('/Accounting/EmployeePayroll', AccountingEmployeePayrollController::class);
+Route::resource('/Admin/EmployeePayroll', AdminEmployeePayrollController::class);
 

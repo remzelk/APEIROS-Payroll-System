@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/admin.css" >
 @endsection
-@section('title', 'Wages')
+@section('title', 'Employee Payroll')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a><br>
@@ -20,7 +20,7 @@
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/EmployeePayroll" class="active">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
-    <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
+    <li class="nav-item"><a href="/Admin/Wages">Detachments and Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="/Admin/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
@@ -77,20 +77,20 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1>Employee Payroll</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-				<select class="form-control mb-4" name="Post" id="Post">
-					<option value="AllPosts" selected="selected">All Posts</option>
-				</select>
-			</div>
+			<a href="/Admin/EmployeePayroll/create">+Add Employee</a>
 			<div class="form-inline my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
+				<form action="" method="get">
+					<input class="form-control mb-4 search" type="search" name="search" value="{{ $search }}" placeholder="Name/Detach./Loc.">
+					<button class="btn btn-outline-success mb-4" type="submit">Search</button>
+				</form>
 			</div>
 
 			<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th></th>
+						<th></th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
 						<th class="align-middle">Rate Per Day</th>
@@ -118,84 +118,100 @@ document.addEventListener("DOMContentLoaded", function(){
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($Employees as $key => $Employee)
+				@forelse($payroll as $key => $Payroll)
 				<tr>
-					<td>
-						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }}
+					<td class="align-middle">
+						<a href="/Admin/EmployeePayroll/{{ $Payroll['Id'] }}/Edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					</td>
+					<td class="align-middle">
+						<form action="/Admin/EmployeePayroll/{{ $Payroll['Id'] }}" method="POST">
+							@csrf
+							@method('Delete')
+                            <input type="hidden" name="name" value= <?php echo $key ?>>
+							<button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-trash" aria-hidden="true" value="Delete"></i></button>
+						</form>
 					</td>
 					<td>
-						{{ $Employee['DaysWorked'] }}
+						{{ $Payroll['Name'] }}
 					</td>
 					<td>
-						{{ $Employee['RatePerDay'] }}
+						{{ $Payroll['DaysWorked'] }}
 					</td>
 					<td>
-						{{ $Employee['GrossPay'] }}
+						{{ $Payroll['RatePerDay'] }}
 					</td>
 					<td>
-						{{ $Employee['OfficersAllowance'] }}
+						{{ $Payroll['GrossPay'] }}
 					</td>
 					<td>
-						{{ $Employee['NSDifferential'] }}
+						{{ $Payroll['OfficersAllowance'] }}
 					</td>
 					<td>
-						{{ $Employee['NightDifferential'] }}
+						{{ $Payroll['NSDifferential'] }}
 					</td>
 					<td>
-						{{ $Employee['SHDays'] }}
+						{{ $Payroll['NightDifferential'] }}
 					</td>
 					<td>
-						{{ $Employee['SpecialHoliday'] }}
+						{{ $Payroll['SHDays'] }}
 					</td>
 					<td>
-						{{ $Employee['LHDays'] }}
+						{{ $Payroll['SpecialHoliday'] }}
 					</td>
 					<td>
-						{{ $Employee['LegalHoliday'] }}
+						{{ $Payroll['LHDays'] }}
 					</td>
 					<td>
-						{{ $Employee['OTAdj'] }}
+						{{ $Payroll['LegalHoliday'] }}
 					</td>
 					<td>
-						{{ $Employee['FinalGrossPay'] }}
+						{{ $Payroll['OTAdj'] }}
 					</td>
 					<td>
-						{{ $Employee['PhilHealth'] }}
+						{{ $Payroll['FinalGrossPay'] }}
 					</td>
 					<td>
-						{{ $Employee['HDMF'] }}
+						{{ $Payroll['PhilHealth'] }}
 					</td>
 					<td>
-						{{ $Employee['HDMFLoan'] }}
+						{{ $Payroll['HDMF'] }}
 					</td>
 					<td>
-						{{ $Employee['FAMaintenance'] }}
+						{{ $Payroll['HDMFLoan'] }}
 					</td>
 					<td>
-						{{ $Employee['RadioMaintenance'] }}
+						{{ $Payroll['FAMaintenance'] }}
+					</td>
+					<td>
+						{{ $Payroll['RadioMaintenance'] }}
 					</td>	
 					<td>
-						{{ $Employee['BankCharge'] }}
+						{{ $Payroll['BankCharge'] }}
 					</td>
 					<td>
-						{{ $Employee['Insurance'] }}
+						{{ $Payroll['Insurance'] }}
 					</td>
 					<td>
-						{{ $Employee['CashBond'] }}
+						{{ $Payroll['CashBond'] }}
 					</td>
 					<td>
-						{{ $Employee['TotalDeduction'] }}
+						{{ $Payroll['TotalDeduction'] }}
 					</td>
 					<td>
-						{{ $Employee['CashAdvance'] }}
+						{{ $Payroll['CashAdvance'] }}
 					</td>
 					<td>
-						{{ $Employee['TotalNetPay'] }}
+						{{ $Payroll['TotalNetPay'] }}
 					</td>
 				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
+				@empty
+				<tr>
+					<td colspan="24">
+						<h1>No Data!</h1>
+					</td>
+    			
+				</tr>
+				@endforelse
 			</div>
 			</table>
 			</div>

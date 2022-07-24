@@ -6,14 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 class Detachments extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        //
+        Schema::create('Detachments', function (Blueprint $table) {
+            $table->id('Id');
+            $table->text('Detachment');
+            $table->text('Location');
+            $table->text('Region');
+            $table->decimal('Wage');
+        });
     }
 
     /**

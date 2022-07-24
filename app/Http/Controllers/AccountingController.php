@@ -298,12 +298,6 @@ class AccountingController extends Controller
         return view('Accounting.editwage');
     }
 
-    
-    public function employeepayroll()
-    {
-        return view('Accounting.employeepayroll', ['Employees'=>$this->Employees]);
-    }
-
     public function accountsettings()
     {
         return view('Accounting.accountsettings');
