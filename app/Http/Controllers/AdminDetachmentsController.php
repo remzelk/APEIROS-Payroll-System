@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Detachments;
 
-class HumanResourcesDetachmentController extends Controller
+class AdminDetachmentsController extends Controller
 {
     public function index()
     {
