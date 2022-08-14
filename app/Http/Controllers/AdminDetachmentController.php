@@ -3,82 +3,68 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Detachments;
 
 class AdminDetachmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request['search'] ?? "";
+        if ($search != ""){
+            $detachment = Detachments::where('Detachment', 'LIKE', "%$search%")
+            ->orwhere('Region', 'LIKE', "%$search%")
+            ->orwhere('Location', 'LIKE', "%$search%")
+            ->get();
+        }
+        else{
+            $detachment = Detachments::all();
+        }
+        $data = compact('detachment', 'search');
+        return view('Admin.detachments')->with($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('Admin.adddetachments');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $detachment = new Detachments();
+        $detachment->Detachment = request('Detachment');
+        $detachment->Location = request('Location');
+        $detachment->Region = request('Region');
+        $detachment->Wage = (0);
+        $detachment->save();
+        return redirect('/Admin/Detachments');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $detachment = Detachments::findorfail($id);
+        return view('Admin.editdetachments')->with('detachment', $detachment);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $Id)
     {
-        //
+        $detachment = Detachments::findorfail($Id);
+        $detachment->Detachment = $request->input('Detachment');
+        $detachment->Location = $request->input('Location');
+        $detachment->Region = $request->input('Region');
+        $detachment->Wage = $request->input('Wage');
+        $detachment->update();
+        return redirect('/Admin/Detachments');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $detachment = Detachments::findorfail($id);
+        $detachment->delete();
+        return redirect('/Admin/Detachments');
     }
 }

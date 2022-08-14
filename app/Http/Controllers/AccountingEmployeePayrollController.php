@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payroll;
+use App\Models\Detachments;
 
 class AccountingEmployeePayrollController extends Controller
 {
@@ -24,7 +25,8 @@ class AccountingEmployeePayrollController extends Controller
 
     public function create()
     {
-        return view('Admin.addpayroll');
+        $detachment = Detachment::all();
+        return view('Admin.addpayroll')->with('detachment', $detachment);
     }
 
     public function store(Request $request)

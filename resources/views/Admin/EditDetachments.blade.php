@@ -79,20 +79,26 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Detachments">< <u>Detachments</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment</h3>
-            <form>
-
+            <form action="/Admin/Detachments/{{ $detachment['Id'] }}" method="POST">
+              @csrf
+              @method('Put')
             <div class="row">
                 <div class="col-md-6">
                     <label>Detachment</label>
-                    <input type="text" id="Detachment" class="form-control mb-4" placeholder="Enter Detachment"> 
+                    <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" value="{{ $detachment['Detachment'] }}"> 
                 </div>
                 <div class="col-md-6">
                     <label>Location</label>
-                    <input type="text" id="Location" class="form-control mb-4" placeholder="Enter Location"> 
+                    <input type="text" id="Location" name="Location" class="form-control mb-4" value="{{ $detachment['Location'] }}"> 
                 </div>
+                <div class="col-md-6">
+                    <label>Region</label>
+                    <input type="text" id="Region" name="Region" class="form-control mb-4" value="{{ $detachment['Region'] }}"> 
+                </div>
+                <input type="hidden" id="Wage" name="Wage" value="{{ $detachment['Region'] }}">
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit"/>
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
               </div>
             </form>
           </div>
@@ -101,17 +107,4 @@ document.addEventListener("DOMContentLoaded", function(){
     </div>
   </div>
 <div>
-<script>
- // Warning
-$(window).on('beforeunload', function(){
-    return "Any changes will be lost";
-});
-
-// Form Submit
-$(document).on("submit", "form", function(event){
-    // disable unload warning
-    $(window).off('beforeunload');
-});
-    
-</script>
 @endsection

@@ -75,19 +75,7 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1>List of Wages</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-                <label class="mb-4">Sort by:</label>&nbsp;
-				<select class="form-control mb-4" name="Sort" id="Sort">
-					<option value="AllPosts" selected="selected">All</option>
-                    <option value="LAZ">Location (A to Z)</option>
-                    <option value="LZA">Location (Z to A)</option>
-                    <option value="Region">Region</option>
-                    <option value="WA">Wages (Ascending)</option>
-                    <option value="WD">Wages (Descending)</option>
-				</select>
-			</div>
       <div class="form-inline">
-    <a href="/Accounting/Wages/Add" class="float-left mb-4">+Add Wage</a>&emsp;&emsp;&emsp;
 	<div class="my-2 my-lg-0 float-right"> 
     	<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
     	<button class="btn btn-outline-success mb-4" type="submit">Search</button>

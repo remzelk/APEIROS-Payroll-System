@@ -79,20 +79,32 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Wages">< <u>Wages</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Wage</h3>
-            <form>
-
+            <form action="/Admin/Wages/{{ $wage['Id'] }}" method="POST">
+              @csrf
+              @method('Put')
             <div class="row">
                 <div class="col-md-6">
+                    <label>Detachment</label>
+                    <input type="hidden" id="Detachment" name="Detachment" class="form-control mb-4" value="{{ $wage['Detachment'] }}"> 
+                    <p><b>{{ $wage['Detachment'] }}</b></p>
+                </div>
+                <div class="col-md-6">
                     <label>Location</label>
-                    <input type="text" id="FirstName" class="form-control mb-4" placeholder="Enter Location"> 
+                    <input type="hidden" id="Location" name="Location" class="form-control mb-4" value="{{ $wage['Location'] }}"> 
+                    <p><b>{{ $wage['Location'] }}</b></p>
+                </div>
+                <div class="col-md-6">
+                    <label>Region</label>
+                    <input type="hidden" id="Region" name="Region" class="form-control mb-4" value="{{ $wage['Region'] }}"> 
+                    <p><b>{{ $wage['Region'] }}</b></p>
                 </div>
                 <div class="col-md-6">
                     <label>Wage</label>
-                    <input type="text" id="LastName" class="form-control mb-4" placeholder="Enter Wage"> 
+                    <input type="number" id="Wage" name="Wage" min="0" onchange="(function(el){el.value=parseFloat(el.value).toFixed(2);})(this)" class="form-control mb-4" value="{{ $wage['Wage'] }}"> 
                 </div>
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
               </div>
             </form>
           </div>
@@ -101,9 +113,4 @@ document.addEventListener("DOMContentLoaded", function(){
     </div>
   </div>
 <div>
-<script>
-    window.onbeforeunload = function(){
-  return 'Are you sure you want to leave?';
-};
-</script>
 @endsection

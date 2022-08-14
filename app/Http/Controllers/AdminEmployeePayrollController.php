@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Payroll;
+use App\Models\Detachments;
 
 class AdminEmployeePayrollController extends Controller
 {
@@ -24,7 +25,8 @@ class AdminEmployeePayrollController extends Controller
 
     public function create()
     {
-        return view('Admin.addpayroll');
+        $detachment = Detachments::all();
+        return view('Admin.addpayroll')->with('detachment', $detachment);
     }
 
     public function store(Request $request)
@@ -88,7 +90,7 @@ class AdminEmployeePayrollController extends Controller
         $payroll->LHDays = $request->input('LHDays');
         $payroll->LegalHoliday = ($payroll->LHDays * $payroll->RatePerDay);
         $payroll->OTAdj = $request->input('OTAdj');
-        $payroll->FinalGrossPay = ($payroll->GrossPay + $payroll->OfficersAllowance + $payroll->NightDifferential + $payroll->SpecialHoliday + $payroll->LegalHolidays + $payroll->OTAdj);
+        $payroll->FinalGrossPay = ($payroll->GrossPay + $payroll->OfficersAllowance + $payroll->NightDifferential + $payroll->SpecialHoliday + $payroll->LegalHoliday + $payroll->OTAdj);
         $payroll->PhilHealth = $request->input('PhilHealth');
         $payroll->HDMF = $request->input('HDMF');
         $payroll->HDMFLoan = $request->input('HDMFLoan');

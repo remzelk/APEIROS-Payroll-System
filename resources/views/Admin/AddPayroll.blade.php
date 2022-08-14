@@ -88,7 +88,11 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                   <label>Detachment</label>
-                  <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" placeholder="Enter Detachment"> 
+                  <select id="Detachment" name="Detachment" class="form-control mb-4">
+                    @foreach ($detachment as $detachment)
+                      <option id="RatePerDay" name="RatePerDay" value="{{ $detachment['Detachment'] }}">{{ $detachment['Detachment'] }}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-md-6">
                   <label>Location</label>
@@ -97,10 +101,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 <div class="col-md-6">
                   <label>No. of Days</label>
                   <input type="number" step="1" max="31" min="0" value="0" id="DaysWorked" name="DaysWorked" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>Rate Per Day</label>
-                  <input type="number" step="1" min="0" value="0.00" id="RatePerDay" name="RatePerDay" class="form-control mb-4">
                 </div>
                 <div class="col-md-6">
                   <label>Officer's Allowance</label>

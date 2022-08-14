@@ -76,23 +76,15 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>List of Detatchments</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-                <label class="mb-4">Sort by:</label>&nbsp;
-				<select class="form-control mb-4" name="Sort" id="Sort">
-					<option value="AllPosts" selected="selected">All</option>
-                    <option value="DAZ">Detachments (A to Z)</option>
-                    <option value="DZA">Detachments (Z to A)</option>
-                    <option value="LAZ">Location (A to Z)</option>
-                    <option value="LZA">Location (Z to A)</option>
-				</select>
-			</div>
+			<h1>List of Detachments</h1><br>
       <div class="form-inline">
-      <a href="/Admin/Detachments/Add" class="mb-4">+Add Detachment</a>&emsp;&emsp;
-			<div class="my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
-			</div>
+      <a href="/Admin/Detachments/create" class="mb-4">+Add Detachment</a>&emsp;&emsp;
+      <form action="" method="get">
+        <div class="my-2 my-lg-0 right"> 
+            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+        </div>
+      </form>
     </div>
 			<div class="scroll">
 			<table class="table table-striped">
@@ -100,29 +92,39 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th class="align-middle">Detachment</th>
 						<th class="align-middle">Location</th>
+            <th class="align-middle">Region</th>
             <th></th>
             <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($Detachments as $key => $Detachments)
+				@forelse($detachment as $key => $detachment)
 				<tr>
 					<td>
-						{{ $Detachments['Detachment'] }}
+						{{ $detachment['Detachment'] }}
 					</td>
 					<td>
-						{{ $Detachments['Location'] }}
+						{{ $detachment['Location'] }}
+					</td>
+          <td>
+						{{ $detachment['Region'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/Admin/Detachments/{{ $detachment['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $detachment['Detachment'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
+          <form action="/Admin/Detachments/{{ $detachment['Id'] }}" method="POST">
+          @csrf
+          @method('Delete')
           <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Delete detachment?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button class="btn btn-danger" onclick="return confirm('Delete detachment?: <?php echo $detachment['Detachment'] ?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
+          </form>
+        @empty
+    		  <td colspan="5">
+            <h1>No Data!</h1>
+          </td>
+			  @endforelse
 				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
 			</div>
 			</table>
 			</div>

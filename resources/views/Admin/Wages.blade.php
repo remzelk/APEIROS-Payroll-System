@@ -77,57 +77,46 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1>List of Wages</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-                <label class="mb-4">Sort by:</label>&nbsp;
-				<select class="form-control mb-4" name="Sort" id="Sort">
-					<option value="AllPosts" selected="selected">All</option>
-                    <option value="LAZ">Location (A to Z)</option>
-                    <option value="LZA">Location (Z to A)</option>
-                    <option value="Region">Region</option>
-                    <option value="WA">Wages (Ascending)</option>
-                    <option value="WD">Wages (Descending)</option>
-				</select>
-			</div>
-      <div class="form-inline">
-    <a href="/Admin/Wages/Add" class="float-left mb-4">+Add Wage</a>&emsp;&emsp;&emsp;
-	<div class="my-2 my-lg-0 float-right"> 
-    	<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    	<button class="btn btn-outline-success mb-4" type="submit">Search</button>
-	</div>
-    </div>
+        <div class="form-inline my-2 my-lg-0 right"> 
+            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+        </div>
+      </form>
 			<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th class="align-middle">Detachment</th>
 						<th class="align-middle">Location</th>
-						<th class="align-middle">Region</th>
-                        <th class="align-middle">Wage</th>
-                        <th class="align-middle"></th>
-                        <th class="align-middle"></th>
+            <th class="align-middle">Region</th>
+            <th class="align-middle">Wage</th>
+            <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($Wages as $key => $Wages)
+				@forelse($wage as $key => $wage)
 				<tr>
 					<td>
-						{{ $Wages['Location'] }}
+						{{ $wage['Detachment'] }}
 					</td>
 					<td>
-						{{ $Wages['Region'] }}
+						{{ $wage['Location'] }}
 					</td>
-                    <td>
-						{{ $Wages['Wage'] }}
+          <td>
+						{{ $wage['Region'] }}
+					</td>
+          <td>
+						{{ $wage['Wage'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Wages/Edit" class="btn btn-primary" onclick="return confirm('Edit wage: <?php echo $Wages['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/Admin/Wages/{{ $wage['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit wage: <?php echo $wage['Detachment'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
-          <td class="align-middle">
-            <a href="#" class="btn btn-danger" onclick="return confirm('Delete wage: <?php echo $Wages['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+        @empty
+    		  <td colspan="6">
+            <h1>No Data!</h1>
           </td>
+			  @endforelse
 				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
 			</div>
 			</table>
 			</div>

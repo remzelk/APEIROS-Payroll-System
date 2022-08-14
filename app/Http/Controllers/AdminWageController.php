@@ -3,82 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Detachments;
 
 class AdminWageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request['search'] ?? "";
+        if ($search != ""){
+            $wage = Detachments::where('Detachment', 'LIKE', "%$search%")
+            ->orwhere('Region', 'LIKE', "%$search%")
+            ->orwhere('Location', 'LIKE', "%$search%")
+            ->get();
+        }
+        else{
+            $wage = Detachments::all();
+        }
+        $data = compact('wage', 'search');
+        return view('Admin.wages')->with($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $wage = Detachments::findorfail($id);
+        return view('Admin.editwage')->with('wage', $wage);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, $Id)
     {
-        //
+        $wage = Detachments::findorfail($Id);
+        $wage->Detachment = $request->input('Detachment');
+        $wage->Location = $request->input('Location');
+        $wage->Region = $request->input('Region');
+        $wage->Wage = $request->input('Wage');
+        $wage->update();
+        return redirect('/Admin/Wages');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $wage = Detachments::findorfail($id);
+        $wage->delete();
+        return redirect('/Admin/Wages');
     }
 }

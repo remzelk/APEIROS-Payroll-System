@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function(){
 }); 
 </script>
 
+
 <nav class="navbar navbar-light navbg">
 <button class="bt" onclick="openNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
