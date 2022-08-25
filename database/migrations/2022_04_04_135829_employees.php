@@ -10,7 +10,6 @@ class Employees extends Migration
     {
         Schema::create('Employees', function (Blueprint $table) {
             $table->id('Id');
-            $table->bigIncrements('EmployeeNo');
             $table->text('LastName');
             $table->text('FirstName');
             $table->text('MiddleName');
