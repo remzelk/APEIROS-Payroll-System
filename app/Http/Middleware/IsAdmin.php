@@ -23,8 +23,14 @@ class IsAdmin
             return $redirect()->route('HumanResources');
         }
 
-        
+        if (Auth::user()->position == 'Accounting')
+        {
+            return $redirect()->route('Accounting');
+        }
 
-        return redirect('Admin.login')->with('error', "Access denied.");
+        if (Auth::user()->position == 'Employee')
+        {
+            return $redirect()->route('Employee');
+        }
     }
 }
