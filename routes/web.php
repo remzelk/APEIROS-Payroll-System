@@ -1,21 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
 
 Route::get('/', 'HomeController@index');
-
+Route::get('/contact', 'HomeController@contact');
 Route::get('/Admin/Login', 'AdminController@login');
 Route::get('/Admin', 'AdminController@index');
 Route::get('/Admin/Profile', 'AdminController@profile');
@@ -45,11 +39,10 @@ Route::resource('/Admin/AdminCredentials', AdminCredentialsController::class);
 Route::resource('/Admin/HumanResourcesCredentials', AdminCredentialsController::class);
 Route::resource('/Admin/AccountingCredentials', AdminCredentialsController::class);
 Route::resource('/Admin/EmployeeCredentials', AdminCredentialsController::class);
-Route::resource('/Admin/EmployeeList', AdminEmployeeListController::class);
-Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeListController::class);
+Route::resource('/Admin/EmployeeList', AdminEmployeeController::class);
+Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class);
 Route::resource('/Admin/EmployeePayroll', AdminEmployeePayrollController::class);
 Route::resource('/Accounting/EmployeePayroll', AccountingEmployeePayrollController::class);
-Route::resource('/Admin/Detachments', AdminDetachmentController::class);
+Route::resource('/Admin/DetachmentsWages', AdminDetachmentController::class);
 Route::resource('/HumanResources/Detachments', AdminEmployeePayrollController::class);
-Route::resource('/Admin/Wages', AdminWageController::class);
 Route::resource('/Accounting/Wages', AccountingWageController::class);

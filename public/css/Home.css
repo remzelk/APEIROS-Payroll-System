@@ -1,18 +1,13 @@
 body  {
     background-image: 
-    linear-gradient(
-        rgba(0, 0, 0, 0.5), 
-        rgba(0, 0, 0, 0.5)
-      ), 
-    url("https://media.discordapp.net/attachments/958687400203255808/988898560995098704/background.png?width=832&height=468");
+    url("https://media.discordapp.net/attachments/958687400203255808/1014057702869184532/Untitled157_20220830142029.png?width=1920&height=1080");
     background-size:cover;
-    background-color: #cccccc;
   }
 
 .c{
     top: 50%;
-    -ms-transform: translate(0%, 50%);
-    transform: translate(0%, 50%);
+    -ms-transform: translate(0%, 75%);
+    transform: translate(0%, 75%);
 }
 
 a {
@@ -41,7 +36,11 @@ a {
   -webkit-text-fill-color: transparent;
   animation: textclip 2s linear infinite;
   display: inline-block;
-      font-size: 190px;
+  text-align: left
+}
+
+.left {
+  text-align: left;
 }
 
 @keyframes textclip {

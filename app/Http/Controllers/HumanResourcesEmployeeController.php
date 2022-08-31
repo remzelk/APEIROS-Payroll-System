@@ -7,72 +7,47 @@ use App\Models\Employees;
 
 class HumanResourcesEmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        
+        $search = $request['search'] ?? "";
+        if ($search != ""){
+            $employee = Employees::where('Detachment', 'LIKE', "%$search%")
+            ->orwhere('FirstName', 'LIKE', "%$search%")
+            ->orwhere('LastName', 'LIKE', "%$search%")
+            ->get();
+        }
+        else{
+            $employee = Employees::all();
+        }
+        $data = compact('employee', 'search');
+        return view('HumanResources.employeelist')->with($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('HumanResources.addemployee');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

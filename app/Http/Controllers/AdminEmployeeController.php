@@ -7,8 +7,9 @@ use App\Models\Employees;
 
 class AdminEmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request['search'] ?? "";
         if ($search != ""){
             $employee = Employees::where('Detachment', 'LIKE', "%$search%")
             ->orwhere('FirstName', 'LIKE', "%$search%")
@@ -18,7 +19,7 @@ class AdminEmployeeController extends Controller
         else{
             $employee = Employees::all();
         }
-        $data = compact('Employee', 'search');
+        $data = compact('employee', 'search');
         return view('Admin.employeelist')->with($data);
     }
 

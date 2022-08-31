@@ -8,18 +8,22 @@
 @endsection
 @section('title', 'Home')
 @section('content')
-<div class="container c">
-    <div class="col-md-12 text-center">
-      <h3 class="animate-charcter">APEIROS</h3>
-    </div>
-    <div class="col text-center c">
-        <div class="btn-group">
-        <a href="/Admin/Login" class="btn btn-danger btn-lg">Admin</a>
-        <a href="/HumanResources/Login" class="btn btn-warning btn-lg" style="color:white">Human Resources</a>
-        <a href="/Accounting/Login" class="btn btn-success btn-lg">Accounting</a>
-        <a href="/Employee/Login" class="btn btn-primary btn-lg">Employee</a>
-        </div>
-  </div>
-</div>
+<header class="c">
+  <div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center">
+      <div class="col-lg-8 col-xl-7 col-xxl-6">
+        <div class="my-5 text-center text-xl-start">
+            <h1 class="display-5 fw-bolder animate-charcter mb-2">Pinnacle of reliability... &emsp;&emsp;</h1>
+              <p class="lead fw-normal text-white-50 mb-4 left">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/login">Login</a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="/contact">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"></div>
+                    </div>
+                </div>
+            </header>
 
 @endsection

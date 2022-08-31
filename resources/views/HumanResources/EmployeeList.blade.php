@@ -25,14 +25,11 @@
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
+function toggleNav() {
+	var sidenav = document.getElementById("mySidenav"),
+    main = document.getElementById("main");
+    sidenav.style.width = sidenav.style.width == "250px" ? '0' : '250px';
+    main.style.marginLeft = main.style.marginLeft === "250px" ? '0' : '250px';
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -65,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <nav class="navbar navbar-light navbg">
-<button class="bt" onclick="openNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Human Resources Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Apeiros Security Solutions & Investigation Agency, Inc.</a>
+<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Human Resources Portal</a></button> 
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, User!</a>
 </nav>
 
 <div  id="main">
@@ -86,10 +83,10 @@ document.addEventListener("DOMContentLoaded", function(){
 				</select>
 			</div>
 			<div class="form-inline">
-                <a href="/HumanResources/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <a href="/Admin/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 			<div class="my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
+    			<input class="form-control mb-4 search" type="search" name="search" id="search" value="{{$search}}" placeholder="Search" aria-label="Search">
+    			<button class="btn btn-outline-success mb-4" type="submit" >Search</button>
 			</div>
             </div>
 			<div class="scroll">
@@ -107,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($EmployeeList as $key => $Employee)
+				@forelse($employee as $key => $Employee)
 				<tr>
 					<td>
 						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }} {{ $Employee['MiddleInitial'] }}
@@ -127,16 +124,18 @@ document.addEventListener("DOMContentLoaded", function(){
 					<td>
 						{{ $Employee['Password'] }}
 					</td>
-                    <td class="align-middle">
-                        <a href="/HumanResources/EmployeeList/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    </td>
-                    <td class="align-middle">
-                        <button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    </td>
+          <td class="align-middle">
+            <a href="/Admin/EmployeeList/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+          </td>
+          <td class="align-middle">
+            <button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          </td>
+          @empty
+    		  <td colspan="8">
+            <h1>No Data!</h1>
+          </td>
+			  @endforelse
 				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
 			</div>
 			</table>
 			</div>

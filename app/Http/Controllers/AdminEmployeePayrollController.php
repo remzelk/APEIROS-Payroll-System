@@ -20,13 +20,13 @@ class AdminEmployeePayrollController extends Controller
             $payroll = Payroll::all();
         }
         $data = compact('payroll', 'search');
-        return view('Admin.employeepayroll')->with($data);
+        return view('Admin.Payroll.index')->with($data);
     }
 
     public function create()
     {
         $detachment = Detachments::all();
-        return view('Admin.addpayroll')->with('detachment', $detachment);
+        return view('Admin.Payroll.add')->with('detachment', $detachment);
     }
 
     public function store(Request $request)
@@ -70,7 +70,7 @@ class AdminEmployeePayrollController extends Controller
     public function edit($id)
     {
         $payroll = Payroll::findorfail($id);
-        return view('Admin.editpayroll')->with('payroll', $payroll);   
+        return view('Admin.Payroll.edit')->with('payroll', $payroll);   
     }
 
     public function update(Request $request, $Id)
