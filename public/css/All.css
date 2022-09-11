@@ -40,6 +40,7 @@
     transition: 0.5s;
     padding-top: 60px;
     border: none;
+    overflow: hidden;
 }
 
 .sidenav a, .dropdown-btn {
@@ -48,7 +49,8 @@
     display: block;
     padding: 8px;
     font-size: 18px;
-	  text-align: center;
+	  text-align: left;
+    padding-left: 2rem;
     background-color: #484f8f;
     color: #ffffff;
     display: block;
@@ -69,20 +71,10 @@
   background-color: #555;
   color: white;
 }
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
 
 .sidenav li .submenu{ 
 	list-style: none; 
-	margin: 0; 
-	padding: 0; 
-	padding-left: 1rem; 
-	padding-right: 1rem;
+  text-align: right;
 }
 
 .bt{

@@ -17,7 +17,7 @@
               <p class="lead fw-normal text-white-50 mb-4 left">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/login">Login</a>
-                                    <a class="btn btn-outline-light btn-lg px-4" href="/contact">Contact Us</a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="/Contact">Contact Us</a>
                                 </div>
                             </div>
                         </div>

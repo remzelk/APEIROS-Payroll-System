@@ -11,7 +11,7 @@
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
@@ -19,7 +19,7 @@
     <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
-	<li class="nav-item"><a href="/HumanResources/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+	<li class="nav-item"><a href="/login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
@@ -97,19 +97,19 @@ document.addEventListener("DOMContentLoaded", function(){
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($Detachments as $key => $Detachments)
+				@forelse($detachment as $key => $Detachment)
 				<tr>
 					<td>
-						{{ $Detachments['Detachment'] }}
+						{{ $Detachment['Detachment'] }}
 					</td>
 					<td>
-						{{ $Detachments['Location'] }}
+						{{ $Detachment['Location'] }}
 					</td>
           <td class="align-middle">
-            <a href="/HumanResources/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachments['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/HumanResources/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachment['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
           <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Delete detachment: <?php echo $Detachments['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button class="btn btn-danger" onclick="return confirm('Delete detachment: <?php echo $Detachment['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
 				</tr>
 			@empty

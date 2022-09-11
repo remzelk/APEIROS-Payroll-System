@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 
 class AccountingController extends Controller
 {
-    public function login()
-    {
-        return view('Accounting.login');
-    }
-
     public function index()
     {
         return view('Accounting.index');

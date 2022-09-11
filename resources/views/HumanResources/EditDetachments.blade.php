@@ -11,7 +11,7 @@
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
@@ -20,19 +20,16 @@
     <li class="nav-item"><a href="/HumanResources/AddEmployee">Add Employee</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
-	<li class="nav-item"><a href="/HumanResources/login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+	<li class="nav-item"><a href="/login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
   </ul>
 </nav>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
+function toggleNav() {
+	var sidenav = document.getElementById("mySidenav"),
+    main = document.getElementById("main");
+    sidenav.style.width = sidenav.style.width == "250px" ? '0' : '250px';
+    main.style.marginLeft = main.style.marginLeft === "250px" ? '0' : '250px';
 }
 
 document.addEventListener("DOMContentLoaded", function(){

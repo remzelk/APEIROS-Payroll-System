@@ -11,12 +11,18 @@
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee">Home</a></li>
     <li class="nav-item"><a href="/Employee/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
+    <li  class="nav-item has-submenu">
+      <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
+        <ul class="submenu collapse">
+          <li><a class="nav-item" href="/Employee/Payslips-Current">Current Payslip</a></li>
+          <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
+      </ul>
+    </li>
     <li class="nav-item"><a href="/Employee/Schedule">Schedule</a></li>
     <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
@@ -61,6 +67,10 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   })
 }); 
+
+function printpayslip() {
+  window.print();
+}
 </script>
 
 <nav class="navbar navbar-light navbg">
@@ -74,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1>BIR Form 2316:</h1><br>
-			Empty for now.
+			<a href="https://www.bir.gov.ph/images/bir_files/taxpayers_service_programs_and_monitoring_1/2316%20Sep%202021%20ENCS_Final_corrected.pdf"  target="_blank" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Print BIR Form 2316</a>
         </div>
     </div>
   </div>

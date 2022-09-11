@@ -293,10 +293,16 @@ class EmployeesController extends Controller
         return view('Employee.profile', ['EmployeeList'=>$this->EmployeeList]);
     }
 
-    public function payslips()
+    public function payslipscurrent()
     {
         
-        return view('Employee.payslips');
+        return view('Employee.Payslips.current');
+    }
+
+    public function payslipsarchive()
+    {
+        
+        return view('Employee.Payslips.archive');
     }
 
     public function schedule()

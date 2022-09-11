@@ -47,7 +47,7 @@ class HumanResourcesDetachmentController extends Controller
     public function edit($id)
     {
         $detachment = Detachments::findorfail($id);
-        return view('Human.editdetachment')->with('detachment', $detachment);
+        return view('HumanResources.editdetachment')->with('detachment', $detachment);
     }
 
     public function update(Request $request, $Id)

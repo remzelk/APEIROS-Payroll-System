@@ -1,3 +1,4 @@
+
 @extends('layouts.mainlayout')
 @section('head')
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -7,7 +8,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Detachments and Wages (Edit)')
+@section('title', 'Register')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -19,7 +20,6 @@
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/DetachmentsWages" class="active">Detachments & Wages</a></li>
-    <li class="nav-item"><a href="/Admin/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="/Login" onclick="return confirm('Are you sure you want to logout?')">Logout</a></li>
   </ul>
@@ -73,35 +73,46 @@ document.addEventListener("DOMContentLoaded", function(){
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <a href="/Admin/Detachments">< <u>Detachments</u></a><br><br>
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment and Wage</h3>
-            <form action="/Admin/Detachments/{{ $detachment['Id'] }}" method="POST">
-              @csrf
-              @method('Put')
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <form method="POST" action="/Admin/Credentials/Register">
+            @csrf
             <div class="row">
                 <div class="col-md-6">
-                    <label>Detachment</label>
-                    <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" value="{{ $detachment['Detachment'] }}"> 
+                    <label>Name</label>
+                    <x-input id="name" class="form-control mb-4" type="text" name="name" :value="old('name')" required autofocus />
                 </div>
                 <div class="col-md-6">
-                    <label>Location</label>
-                    <input type="text" id="Location" name="Location" class="form-control mb-4" value="{{ $detachment['Location'] }}"> 
+                    <label>Email</label>
+                    <x-input id="email" class="form-control mb-4" type="email" name="email" :value="old('email')" required />
                 </div>
                 <div class="col-md-6">
-                    <label>Region</label>
-                    <input type="text" id="Region" name="Region" class="form-control mb-4" value="{{ $detachment['Region'] }}"> 
+                    <label>Password</label>
+                    <x-input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" />
                 </div>
                 <div class="col-md-6">
-                    <label>Wage</label>
-                    <input type="text" id="Wage" name="Wage" class="form-control mb-4" value="{{ $detachment['Region'] }}"> 
+                    <label>Confirm Password</label>
+                    <x-input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required />
                 </div>
-                <input type="hidden" id="Wage" name="Wage" value="{{ $detachment['Region'] }}">
+                <div class="col-md-6">
+                    <label>Position</label>
+                    <select class="form-control mb-4" name="position" id="position">
+                        <option value="Admin">Admin</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Employee" selected>Employee</option>
+                    </select>
+                </div>
             </div>
-              <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
-              </div>
-            </form>
-          </div>
+            <div class="flex items-center justify-end mt-4">
+                <button class="btn btn-primary btn-lg bton">
+                    {{ __('Register') }}
+                </button>
+            </div>
+        </form>
+        </div>
         </div>
       </div>
     </div>

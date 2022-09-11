@@ -7,17 +7,17 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Employee Payroll')
+@section('title', 'Payroll')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
-    <li class="nav-item"><a href="/Admin/EmployeePayroll" class="active">Employee Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="/Admin/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Employee Payroll</h1><br>
-			<a href="/Admin/EmployeePayroll/create">+Add Employee</a>
+			<h1>Payroll</h1><br>
+			<a href="/Admin/Payroll/create">+Add Employee</a>
 			<div class="form-inline my-2 my-lg-0 right"> 
 				<form action="" method="get">
 					<input class="form-control mb-4 search" type="search" name="search" value="{{ $search }}" placeholder="Name/Detach./Loc.">
@@ -116,10 +116,10 @@ document.addEventListener("DOMContentLoaded", function(){
 				@forelse($payroll as $key => $Payroll)
 				<tr>
 					<td class="align-middle">
-						<a href="/Admin/EmployeePayroll/{{ $Payroll['Id'] }}/Edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a href="/Admin/Payroll/{{ $Payroll['Id'] }}/Edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					</td>
 					<td class="align-middle">
-						<form action="/Admin/EmployeePayroll/{{ $Payroll['Id'] }}" method="POST">
+						<form action="/Admin/Payroll/{{ $Payroll['Id'] }}" method="POST">
 							@csrf
 							@method('Delete')
                             <input type="hidden" name="name" value= <?php echo $key ?>>

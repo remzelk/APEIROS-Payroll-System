@@ -11,7 +11,7 @@
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Accounting">Home</a></li>
@@ -110,85 +110,101 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Total Net Pay</th>
 					</tr>
 				</thead>
-			<div class="scroll">
-				@forelse($Employees as $key => $Employee)
+				<div class="scroll">
+				@forelse($payroll as $key => $Payroll)
 				<tr>
-					<td>
-						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }}
+					<td class="align-middle">
+						<a href="/Admin/EmployeePayroll/{{ $Payroll['Id'] }}/Edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					</td>
+					<td class="align-middle">
+						<form action="/Admin/EmployeePayroll/{{ $Payroll['Id'] }}" method="POST">
+							@csrf
+							@method('Delete')
+                            <input type="hidden" name="name" value= <?php echo $key ?>>
+							<button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-trash" aria-hidden="true" value="Delete"></i></button>
+						</form>
 					</td>
 					<td>
-						{{ $Employee['DaysWorked'] }}
+						{{ $Payroll['Name'] }}
 					</td>
 					<td>
-						{{ $Employee['RatePerDay'] }}
+						{{ $Payroll['DaysWorked'] }}
 					</td>
 					<td>
-						{{ $Employee['GrossPay'] }}
+						{{ $Payroll['RatePerDay'] }}
 					</td>
 					<td>
-						{{ $Employee['OfficersAllowance'] }}
+						{{ $Payroll['GrossPay'] }}
 					</td>
 					<td>
-						{{ $Employee['NSDifferential'] }}
+						{{ $Payroll['OfficersAllowance'] }}
 					</td>
 					<td>
-						{{ $Employee['NightDifferential'] }}
+						{{ $Payroll['NSDifferential'] }}
 					</td>
 					<td>
-						{{ $Employee['SHDays'] }}
+						{{ $Payroll['NightDifferential'] }}
 					</td>
 					<td>
-						{{ $Employee['SpecialHoliday'] }}
+						{{ $Payroll['SHDays'] }}
 					</td>
 					<td>
-						{{ $Employee['LHDays'] }}
+						{{ $Payroll['SpecialHoliday'] }}
 					</td>
 					<td>
-						{{ $Employee['LegalHoliday'] }}
+						{{ $Payroll['LHDays'] }}
 					</td>
 					<td>
-						{{ $Employee['OTAdj'] }}
+						{{ $Payroll['LegalHoliday'] }}
 					</td>
 					<td>
-						{{ $Employee['FinalGrossPay'] }}
+						{{ $Payroll['OTAdj'] }}
 					</td>
 					<td>
-						{{ $Employee['PhilHealth'] }}
+						{{ $Payroll['FinalGrossPay'] }}
 					</td>
 					<td>
-						{{ $Employee['HDMF'] }}
+						{{ $Payroll['PhilHealth'] }}
 					</td>
 					<td>
-						{{ $Employee['HDMFLoan'] }}
+						{{ $Payroll['HDMF'] }}
 					</td>
 					<td>
-						{{ $Employee['FAMaintenance'] }}
+						{{ $Payroll['HDMFLoan'] }}
 					</td>
 					<td>
-						{{ $Employee['RadioMaintenance'] }}
+						{{ $Payroll['FAMaintenance'] }}
+					</td>
+					<td>
+						{{ $Payroll['RadioMaintenance'] }}
 					</td>	
 					<td>
-						{{ $Employee['BankCharge'] }}
+						{{ $Payroll['BankCharge'] }}
 					</td>
 					<td>
-						{{ $Employee['Insurance'] }}
+						{{ $Payroll['Insurance'] }}
 					</td>
 					<td>
-						{{ $Employee['CashBond'] }}
+						{{ $Payroll['CashBond'] }}
 					</td>
 					<td>
-						{{ $Employee['TotalDeduction'] }}
+						{{ $Payroll['TotalDeduction'] }}
 					</td>
 					<td>
-						{{ $Employee['CashAdvance'] }}
+						{{ $Payroll['CashAdvance'] }}
 					</td>
 					<td>
-						{{ $Employee['TotalNetPay'] }}
+						{{ $Payroll['TotalNetPay'] }}
 					</td>
 				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
+				@empty
+				<tr>
+					<td colspan="24">
+						<h1>No Data!</h1>
+					</td>
+    			
+				</tr>
+				@endforelse
 			</div>
 			</table>
 			</div>

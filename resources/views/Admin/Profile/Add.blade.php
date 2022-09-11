@@ -17,7 +17,7 @@
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Admin/EmployeeList" class="active">Employee List</a></li>
-    <li class="nav-item"><a href="/Admin/EmployeePayroll">Employee Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="/Admin/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>

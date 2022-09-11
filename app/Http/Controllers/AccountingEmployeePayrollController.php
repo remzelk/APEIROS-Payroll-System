@@ -20,13 +20,13 @@ class AccountingEmployeePayrollController extends Controller
             $payroll = Payroll::all();
         }
         $data = compact('payroll', 'search');
-        return view('Admin.employeepayroll')->with($data);
+        return view('Accounting.Payroll.index')->with($data);
     }
 
     public function create()
     {
-        $detachment = Detachment::all();
-        return view('Admin.addpayroll')->with('detachment', $detachment);
+        $detachment = Detachments::all();
+        return view('Accounting.Payroll.add')->with('detachment', $detachment);
     }
 
     public function store(Request $request)
@@ -59,7 +59,7 @@ class AccountingEmployeePayrollController extends Controller
         $payroll->CashAdvance = request('CashAdvance');
         $payroll->TotalNetPay = ($payroll->FinalGrossPay - $payroll->TotalDeduction - $payroll->CashAdvance);
         $payroll->save();
-        return redirect('/Admin/EmployeePayroll');
+        return redirect('/Accounting/EmployeePayroll');
     }
 
     public function show($id)
@@ -70,7 +70,7 @@ class AccountingEmployeePayrollController extends Controller
     public function edit($id)
     {
         $payroll = Payroll::findorfail($id);
-        return view('Admin.editpayroll')->with('payroll', $payroll);   
+        return view('Accounting.Payroll.edit')->with('payroll', $payroll);   
     }
 
     public function update(Request $request, $Id)
@@ -90,7 +90,7 @@ class AccountingEmployeePayrollController extends Controller
         $payroll->LHDays = $request->input('LHDays');
         $payroll->LegalHoliday = ($payroll->LHDays * $payroll->RatePerDay);
         $payroll->OTAdj = $request->input('OTAdj');
-        $payroll->FinalGrossPay = ($payroll->GrossPay + $payroll->OfficersAllowance + $payroll->NightDifferential + $payroll->SpecialHoliday + $payroll->LegalHolidays + $payroll->OTAdj);
+        $payroll->FinalGrossPay = ($payroll->GrossPay + $payroll->OfficersAllowance + $payroll->NightDifferential + $payroll->SpecialHoliday + $payroll->LegalHoliday + $payroll->OTAdj);
         $payroll->PhilHealth = $request->input('PhilHealth');
         $payroll->HDMF = $request->input('HDMF');
         $payroll->HDMFLoan = $request->input('HDMFLoan');
@@ -103,13 +103,13 @@ class AccountingEmployeePayrollController extends Controller
         $payroll->CashAdvance = $request->input('CashAdvance');
         $payroll->TotalNetPay = ($payroll->FinalGrossPay - $payroll->TotalDeduction - $payroll->CashAdvance);
         $payroll->update();
-        return redirect('/Admin/EmployeePayroll');
+        return redirect('/Accounting/EmployeePayroll');
     }
 
     public function destroy($id)
     {
         $payroll = Payroll::findorfail($id);
         $payroll->delete();
-        return redirect('/Admin/EmployeePayroll');
+        return redirect('/Accounting/EmployeePayroll');
     }
 }
