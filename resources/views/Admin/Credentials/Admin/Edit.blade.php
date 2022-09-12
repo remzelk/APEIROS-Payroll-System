@@ -86,8 +86,9 @@ document.addEventListener("DOMContentLoaded", function(){
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="/Admin/Credentials/Register">
-            @csrf
+        <form action="/Admin/Credentials/Admin/{{ $user['id'] }}" method="POST" >
+          @csrf
+          @method('Put')
             <div class="row">
                 <div class="col-md-6">
                     <label>Name</label>
@@ -115,11 +116,9 @@ document.addEventListener("DOMContentLoaded", function(){
                     </select>
                 </div>
             </div>
-            <div class="flex items-center justify-end mt-4">
-                <button class="btn btn-primary btn-lg bton">
-                    Edit
-                </button>
-            </div>
+            <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
+              </div>
         </form>
         </div>
         </div>

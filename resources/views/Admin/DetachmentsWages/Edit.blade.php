@@ -16,6 +16,16 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
+    <li class="nav-item has-submenu">
+    <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
+        <ul class="submenu collapse">
+          <li><a class="nav-item" href="/Admin/Credentials/Admin">Admin</a></li>
+          <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
+        </ul>
+    </li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/DetachmentsWages" class="active">Detachments & Wages</a></li>
@@ -73,9 +83,9 @@ document.addEventListener("DOMContentLoaded", function(){
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <a href="/Admin/Detachments">< <u>Detachments</u></a><br><br>
+          <a href="/Admin/DetachmentsWages">< <u>Detachments</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment and Wage</h3>
-            <form action="/Admin/Detachments/{{ $detachment['Id'] }}" method="POST">
+            <form action="/Admin/DetachmentsWages/{{ $detachment['Id'] }}" method="POST">
               @csrf
               @method('Put')
             <div class="row">
@@ -93,9 +103,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                     <label>Wage</label>
-                    <input type="text" id="Wage" name="Wage" class="form-control mb-4" value="{{ $detachment['Region'] }}"> 
+                    <input type="number" id="Wage" name="Wage" class="form-control mb-4" value="{{ $detachment['Wage'] }}"> 
                 </div>
-                <input type="hidden" id="Wage" name="Wage" value="{{ $detachment['Region'] }}">
             </div>
               <div class="mt-4 pt-2">
                 <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">

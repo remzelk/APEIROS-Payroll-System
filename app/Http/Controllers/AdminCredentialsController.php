@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -50,28 +52,27 @@ class AdminCredentialsController extends Controller
         return view('Admin.Credentials.Admin.edit')->with('user', $user);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $Id)
     {
         
-        $user = User::findorfail($id);
+        $user = User::findorfail($Id);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'exists:users'],
             'position' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->position = $request->input('position');
-        $user->password = Hash::make($request->input('password'));
-        $user->update();
+        User::whereIn('id', $id)->update([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'position' => $request->input('position'),
+        ]);
         return redirect('/Admin/Credentials/Admin');
     }
 
-    public function destroy($id)
+    public function destroy($Id)
     {
-        $user = User::findorfail($id);
-        $user->delete();
+        $user = User::findorfail($Id);
+        $user->forceDelete();
         return redirect('/Admin/Credentials/Admin');
     }
 }

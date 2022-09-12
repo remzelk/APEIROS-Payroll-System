@@ -18,15 +18,15 @@ class EmployeeCredentialsController extends Controller
         $search = $request['search'] ?? "";
         if ($search != ""){
             $user = User::where('Name', 'LIKE', "%$search%")
-            ->where('Position', 'LIKE', "Accounting")
+            ->where('Position', 'LIKE', "Employee")
             ->get();
         }
         else{
-            $user = User::where('Position', 'LIKE', "Accounting")
+            $user = User::where('Position', 'LIKE', "Employee")
             ->get();
         }
         $data = compact('user', 'search');
-        return view('Admin.Credentials.Accounting.index')->with($data);
+        return view('Admin.Credentials.Employees.index')->with($data);
     }
 
     public function create()
@@ -47,7 +47,7 @@ class EmployeeCredentialsController extends Controller
     public function edit($id)
     {
         $user = User::findorfail($id);
-        return view('Admin.Credentials.Employee.edit')->with('user', $user);
+        return view('Admin.Credentials.Employees.edit')->with('user', $user);
     }
 
     public function update(Request $request, $id)

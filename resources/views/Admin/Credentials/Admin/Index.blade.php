@@ -97,23 +97,18 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th class="align-middle">Name</th>
 						<th class="align-middle">Email</th>
-                        <th class="align-middle">Password</th>
-                        <th></th>
-                        <th></th>
+            <th></th>
+            <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 			@forelse($user as $key => $user)
-            @if($user['position'] == 'Admin')
 				<tr>
 					<td>
 						{{ $user['name'] }}
 					</td>
 					<td>
 						{{ $user['email'] }}
-					</td>
-                    <td>
-						{{ $user['password'] }}
 					</td>
           <td class="align-middle">
             <a href="/Admin/Credentials/Admin/{{ $user['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -125,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function(){
             <button class="btn btn-danger" onclick="return confirm('Delete user?: <?php echo $user['name'] ?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
           </form>
-          @endif
         @empty
     		  <td colspan="5">
             <h1>No Data!</h1>

@@ -16,6 +16,16 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Admin">Home</a></li>
     <li class="nav-item"><a href="/Admin/Profile" class="active">Profile</a></li>
+    <li class="nav-item has-submenu">
+    <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
+        <ul class="submenu collapse">
+          <li><a class="nav-item" href="/Admin/Credentials/Admin">Admin</a></li>
+          <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
+        </ul>
+    </li>
     <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">DetachmentsWages</a></li>

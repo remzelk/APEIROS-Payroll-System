@@ -36,7 +36,7 @@ class AdminDetachmentController extends Controller
         $detachment->Region = request('Region');
         $detachment->Wage = request('Wage');
         $detachment->save();
-        return redirect('/Admin/Detachments');
+        return redirect('/Admin/DetachmentsWages');
     }
 
     public function show($id)
@@ -58,13 +58,13 @@ class AdminDetachmentController extends Controller
         $detachment->Region = $request->input('Region');
         $detachment->Wage = $request->input('Wage');
         $detachment->update();
-        return redirect('/Admin/Detachments');
+        return redirect('/Admin/DetachmentsWages');
     }
 
     public function destroy($id)
     {
         $detachment = Detachments::findorfail($id);
         $detachment->delete();
-        return redirect('/Admin/Detachments');
+        return redirect('/Admin/DetachmentsWages');
     }
 }

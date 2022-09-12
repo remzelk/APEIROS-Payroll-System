@@ -36,13 +36,13 @@ Route::get('/Employee/BIRForm2316', 'EmployeesController@bir');
 Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings');
 
 Route::resource('/Admin/Credentials/Admin', AdminCredentialsController::class);
-Route::resource('/Admin/Credentials/HumanResources', AdminCredentialsController::class);
-Route::resource('/Admin/Credentials/Accounting', AdminCredentialsController::class);
-Route::resource('/Admin/Credentials/Employee', AdminCredentialsController::class);
+Route::resource('/Admin/Credentials/HumanResources', HumanResourcesCredentialsController::class);
+Route::resource('/Admin/Credentials/Accounting', AccountingCredentialsController::class);
+Route::resource('/Admin/Credentials/Employee', EmployeeCredentialsController::class);
 Route::resource('/Admin/EmployeeList', AdminEmployeeController::class);
 Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class);
-Route::resource('/Admin/Payroll', AdminPayrollController::class);
-Route::resource('/Accounting/Payroll', AccountingPayrollController::class);
+Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class);
+Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class);
 Route::resource('/Admin/DetachmentsWages', AdminDetachmentController::class);
 Route::resource('/HumanResources/Detachments', HumanResourcesDetachmentController::class);
 Route::resource('/Accounting/Wages', AccountingWageController::class);
