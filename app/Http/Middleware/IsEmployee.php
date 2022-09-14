@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 use Illuminate\Http\Request;
 
 class IsEmployee
@@ -13,22 +14,22 @@ class IsEmployee
             return redirect()->route('login');
         }
 
-        if (Auth::user()->position == 'Employee')
+        if (Auth::user()->position == 4)
         {
             return $next($request);
         }
         
-        if (Auth::user()->position == 'Admin')
+        if (Auth::user()->position == 1)
         {
             return $redirect()->route('Admin');
         }
 
-        if (Auth::user()->position == 'Human Resources')
+        if (Auth::user()->position == 2)
         {
             return $redirect()->route('HumanResources');
         }
 
-        if (Auth::user()->position == 'Accounting')
+        if (Auth::user()->position == 3)
         {
             return $redirect()->route('Accounting');
         }

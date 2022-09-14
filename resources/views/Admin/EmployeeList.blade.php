@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <nav class="navbar navbar-light navbg">
 <button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, User!</a>
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div  id="main">

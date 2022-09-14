@@ -18,11 +18,11 @@ class AccountingCredentialsController extends Controller
         $search = $request['search'] ?? "";
         if ($search != ""){
             $user = User::where('Name', 'LIKE', "%$search%")
-            ->where('Position', 'LIKE', "Accounting")
+            ->where('Position', 'LIKE', "3")
             ->get();
         }
         else{
-            $user = User::where('Position', 'LIKE', "Accounting")
+            $user = User::where('Position', 'LIKE', "3")
             ->get();
         }
         $data = compact('user', 'search');

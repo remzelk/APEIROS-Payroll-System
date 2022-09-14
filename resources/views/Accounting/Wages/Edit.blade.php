@@ -19,9 +19,12 @@
     <li class="nav-item"><a href="/Accounting/EmployeePayroll">Employee Payroll</a></li>
     <li class="nav-item"><a href="/Accounting/Wages" class="active">Wages</a></li>
     <li class="nav-item"><a href="/Accounting/AccountSettings">Account Settings</a></li>
-	<li class="nav-item"><a href="/Accounting/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+    <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+  @csrf
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <script>
 function toggleNav() {

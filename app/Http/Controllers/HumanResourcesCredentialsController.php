@@ -19,11 +19,11 @@ class HumanResourcesCredentialsController extends Controller
         $search = $request['search'] ?? "";
         if ($search != ""){
             $user = User::where('Name', 'LIKE', "%$search%")
-            ->where('Position', 'LIKE', "Human Resources")
+            ->where('Position', 'LIKE', "2")
             ->get();
         }
         else{
-            $user = User::where('Position', 'LIKE', "Human Resources")
+            $user = User::where('Position', 'LIKE', "2")
             ->get();
         }
         $data = compact('user', 'search');

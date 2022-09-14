@@ -11,21 +11,21 @@ class CreateUsersSeeder extends Seeder
     {
         $user = [
             [
-                'name'=>'Admin',
-                'email'=>'admin@apeiros.com',
-                'position'=>'Admin',
+                'name'=>'Apeiros',
+                'email'=>'apeiros@apeiros.com',
+                'position'=>'1',
                 'password'=>bcrypt('admin'),
             ],
             [
                 'name'=>'Human Resources',
                 'email'=>'humanresources@apeiros.com',
-                'position'=>'Human Resources',
+                'position'=>'2',
                 'password'=>bcrypt('humanresources'),
             ],
             [
                 'name'=>'Accounting',
                 'email'=>'accounting@apeiros.com',
-                'position'=>'Accounting',
+                'position'=>'3',
                 'password'=>bcrypt('accounting'),
             ],
         ];

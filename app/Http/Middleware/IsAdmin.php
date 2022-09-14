@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 use Illuminate\Http\Request;
 
 class IsAdmin
@@ -13,24 +14,24 @@ class IsAdmin
             return redirect()->route('login');
         }
 
-        if (Auth::user()->position == 'Admin')
+        if (Auth::user()->position == 1)
         {
             return $next($request);
         }
 
-        if (Auth::user()->position == 'Human Resources')
+        if (Auth::user()->position == 2)
         {
-            return $redirect()->route('HumanResources');
+            return $redirect()->route('HumanResources.index');
         }
 
-        if (Auth::user()->position == 'Accounting')
+        if (Auth::user()->position == 3)
         {
-            return $redirect()->route('Accounting');
+            return $redirect()->route('Accounting.index');
         }
 
-        if (Auth::user()->position == 'Employee')
+        if (Auth::user()->position == 4)
         {
-            return $redirect()->route('Employee');
+            return $redirect()->route('Employee.index');
         }
     }
 }

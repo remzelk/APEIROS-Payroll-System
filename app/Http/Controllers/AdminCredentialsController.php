@@ -20,11 +20,11 @@ class AdminCredentialsController extends Controller
         $search = $request['search'] ?? "";
         if ($search != ""){
             $user = User::where('Name', 'LIKE', "%$search%")
-            ->where('Position', 'LIKE', "Admin")
+            ->where('Position', 'LIKE', "1")
             ->get();
         }
         else{
-            $user = User::where('Position', 'LIKE', "Admin")
+            $user = User::where('Position', 'LIKE', "1")
             ->get();
         }
         $data = compact('user', 'search');

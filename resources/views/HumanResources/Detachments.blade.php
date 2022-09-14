@@ -19,9 +19,12 @@
     <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
-	<li class="nav-item"><a href="/login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+    <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+  @csrf
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <script>
 function toggleNav() {
@@ -62,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <nav class="navbar navbar-light navbg">
 <button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Human Resources Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, User!</a>
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div  id="main">

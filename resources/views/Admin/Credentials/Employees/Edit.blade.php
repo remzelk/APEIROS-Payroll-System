@@ -30,9 +30,12 @@
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
-    <li class="nav-item"><a href="/Admin/Login" onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+    <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+  @csrf
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
 <script>
 function toggleNav() {
@@ -73,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <nav class="navbar navbar-light navbg">
 <button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, User!</a>
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div  id="main">
@@ -83,27 +86,26 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
           <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Credentials</h3>
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="/Admin/Credentials/Register">
+        <form method="POST" action="/Admin/Credentials/Employee/{{ $user['id'] }}">
             @csrf
+            @method('Put')
             <div class="row">
                 <div class="col-md-6">
                     <label>Name</label>
-                    <x-input id="name" class="form-control mb-4" type="text" name="name" value="{{ $user['name'] }}" required autofocus />
+                    <input id="name" class="form-control mb-4" type="text" name="name" value="{{ $user['name'] }}" required autofocus />
                 </div>
                 <div class="col-md-6">
                     <label>Email</label>
-                    <x-input id="email" class="form-control mb-4" type="email" name="email" value="{{ $user['email'] }}" required />
+                    <input id="email" class="form-control mb-4" type="email" name="email" value="{{ $user['email'] }}" required />
                 </div>
                 <div class="col-md-6">
                     <label>Password</label>
-                    <x-input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" />
+                    <input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" />
                 </div>
                 <div class="col-md-6">
                     <label>Confirm Password</label>
-                    <x-input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required />
+                    <input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required />
                 </div>
                 <div class="col-md-6">
                     <label>Position</label>
