@@ -20,25 +20,25 @@ Route::resource('/Admin/DetachmentsWages', AdminDetachmentController::class)->mi
 
 
 Route::get('/HumanResources', 'HumanResourcesController@index')->name('HumanResources.index')->middleware('IsHumanResources');
-Route::get('/HumanResources/Profile', 'HumanResourcesController@profile');
-Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings');
-Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class);
-Route::resource('/HumanResources/Detachments', HumanResourcesDetachmentController::class);
+Route::get('/HumanResources/Profile', 'HumanResourcesController@profile')->middleware('IsHumanResources');
+Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings')->middleware('IsHumanResources');
+Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class)->middleware('IsHumanResources');
+Route::resource('/HumanResources/Detachments', HumanResourcesDetachmentController::class)->middleware('IsHumanResources');
 
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
-Route::get('/Accounting/Profile', 'AccountingController@profile');
-Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings');
-Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class);
-Route::resource('/Accounting/Wages', AccountingWageController::class);
+Route::get('/Accounting/Profile', 'AccountingController@profile')->middleware('IsAccounting');
+Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings')->middleware('IsAccounting');
+Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class)->middleware('IsAccounting');
+Route::resource('/Accounting/Wages', AccountingWageController::class)->middleware('IsAccounting');
 
 Route::get('/Employee', 'EmployeesController@index')->name('Employee.index')->middleware('IsEmployee');
-Route::get('/Employee/Profile', 'EmployeesController@profile');
-Route::get('/Employee/Payslips-Current', 'EmployeesController@payslipscurrent');
-Route::get('/Employee/Payslips-Archive', 'EmployeesController@payslipsarchive');
-Route::get('/Employee/Schedule', 'EmployeesController@schedule');
-Route::get('/Employee/Attendance', 'EmployeesController@attendance');
-Route::get('/Employee/LeaveRequest', 'EmployeesController@leaverequest');
-Route::get('/Employee/BIRForm2316', 'EmployeesController@bir');
-Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings');
+Route::get('/Employee/Payslips-Current', 'EmployeesController@payslipscurrent')->middleware('IsEmployee');
+Route::get('/Employee/Payslips-Archive', 'EmployeesController@payslipsarchive')->middleware('IsEmployee');
+Route::get('/Employee/Schedule', 'EmployeesController@schedule')->middleware('IsEmployee');
+Route::get('/Employee/Attendance', 'EmployeesController@attendance')->middleware('IsEmployee');
+Route::get('/Employee/LeaveRequest', 'EmployeesController@leaverequest')->middleware('IsEmployee');
+Route::get('/Employee/BIRForm2316', 'EmployeesController@bir')->middleware('IsEmployee');
+Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings')->middleware('IsEmployee');
+Route::resource('/Employee/Profile', EmployeeProfileController::class)->middleware('IsEmployee');
 
 Route::get('redirects', [App\Http\Controllers\HomeController::class, 'index']);

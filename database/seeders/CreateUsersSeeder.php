@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Profile;
 
 class CreateUsersSeeder extends Seeder
 {
@@ -11,23 +12,11 @@ class CreateUsersSeeder extends Seeder
     {
         $user = [
             [
-                'name'=>'Apeiros',
-                'email'=>'apeiros@apeiros.com',
+                'name'=>'Admin',
+                'email'=>'admin@apeiros.com',
                 'position'=>'1',
-                'password'=>bcrypt('admin'),
-            ],
-            [
-                'name'=>'Human Resources',
-                'email'=>'humanresources@apeiros.com',
-                'position'=>'2',
-                'password'=>bcrypt('humanresources'),
-            ],
-            [
-                'name'=>'Accounting',
-                'email'=>'accounting@apeiros.com',
-                'position'=>'3',
-                'password'=>bcrypt('accounting'),
-            ],
+                'password'=>bcrypt('admin123'),
+            ]
         ];
 
         foreach ($user as $key => $value) {

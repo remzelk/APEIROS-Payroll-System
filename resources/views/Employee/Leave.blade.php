@@ -23,7 +23,6 @@
           <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
       </ul>
     </li>
-    <li class="nav-item"><a href="/Employee/Schedule">Schedule</a></li>
     <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Employee/LeaveRequest" class="active">Leave Request</a></li>
     <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>

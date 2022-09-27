@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -72,7 +73,8 @@ class AdminCredentialsController extends Controller
     public function destroy($Id)
     {
         $user = User::findorfail($Id);
-        $user->forceDelete();
+        $user->delete();
+        $profile=Profile::where('userID', $id)->delete();
         return redirect('/Admin/Credentials/Admin');
     }
 }

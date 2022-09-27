@@ -11,9 +11,11 @@ class LoginController extends Controller
 {
 
     use AuthenticatesUsers;
+    protected $maxAttempts = 5;
+    protected $decayMinutes = 2;
 
     protected $redirectTo;
-    
+
     public function redirectTo() 
     {
         switch (Auth::user()->position)

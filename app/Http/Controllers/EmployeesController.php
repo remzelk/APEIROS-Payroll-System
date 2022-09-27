@@ -305,12 +305,6 @@ class EmployeesController extends Controller
         return view('Employee.Payslips.archive');
     }
 
-    public function schedule()
-    {
-        
-        return view('Employee.schedule');
-    }
-
     public function attendance()
     {
         

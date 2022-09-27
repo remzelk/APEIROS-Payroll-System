@@ -6,7 +6,7 @@ use Closure;
 use Auth;
 use Illuminate\Http\Request;
 
-class IsEmployee
+class IsHumanResources
 {
     public function handle(Request $request, Closure $next)
     {

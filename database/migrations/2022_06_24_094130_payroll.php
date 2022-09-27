@@ -10,6 +10,8 @@ class Payroll extends Migration
     {
         Schema::create('Payroll', function (Blueprint $table) {
             $table->id('Id');
+            $table->date('Start');
+            $table->date('End');
             $table->text('Name');
             $table->text('Detachment');
             $table->text('Location');
@@ -41,6 +43,6 @@ class Payroll extends Migration
 
     public function down()
     {
-        //
+        Schema::dropIfExists('payroll');
     }
 }

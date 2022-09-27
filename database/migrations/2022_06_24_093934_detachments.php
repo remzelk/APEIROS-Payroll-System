@@ -24,6 +24,6 @@ class Detachments extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('detachments');
     }
 }
