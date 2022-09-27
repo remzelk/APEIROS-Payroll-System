@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee">Home</a></li>
-    <li class="nav-item"><a href="/Employee/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Employee/Profile/{{ Auth::user()->id }}">Profile</a></li>
     <li  class="nav-item has-submenu">
       <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
