@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Payroll;
+use App\Models\User;
 use App\Models\Detachments;
 
 class AdminEmployeePayrollController extends Controller
 {
     public function index(Request $request)
     {
+        $currenttime = Carbon::today();
         $search = $request['search'] ?? "";
         if ($search != ""){
             $payroll = Payroll::where('Name', 'LIKE', "%$search%")
@@ -26,15 +29,21 @@ class AdminEmployeePayrollController extends Controller
     public function create()
     {
         $detachment = Detachments::all();
-        return view('Admin.Payroll.add')->with('detachment', $detachment);
+        $user = User::orderBy('Name', 'ASC')->get();
+        $data = compact('user', 'detachment');
+        return view('Admin.Payroll.add')->with($data);
     }
 
     public function store(Request $request)
     {
         $payroll = new Payroll();
+        $payroll->Start = request('Start');
+        $payroll->End = request('End');
+        $payroll->EmployeeNo = request('EmployeeNo')
         $payroll->Name = request('Name');
-        $payroll->Detachment = request('Detachment');
-        $payroll->Location = request('Location');
+        $DetachmentID = request('DetachmentID');
+        $d = Detachments::where('Id', request('DetachmentID'))->firstOrFail();
+        $payroll->Detachment = $d->Detachment . ': ' . $d->Location; 
         $payroll->DaysWorked = request('DaysWorked');
         $payroll->RatePerDay = request('RatePerDay');
         $payroll->GrossPay = ($payroll->DaysWorked * $payroll->RatePerDay);
@@ -59,7 +68,7 @@ class AdminEmployeePayrollController extends Controller
         $payroll->CashAdvance = request('CashAdvance');
         $payroll->TotalNetPay = ($payroll->FinalGrossPay - $payroll->TotalDeduction - $payroll->CashAdvance);
         $payroll->save();
-        return redirect('/Admin/EmployeePayroll');
+        return redirect('/Admin/Payroll');
     }
 
     public function show($id)
@@ -70,17 +79,23 @@ class AdminEmployeePayrollController extends Controller
     public function edit($id)
     {
         $payroll = Payroll::findorfail($id);
-        return view('Admin.Payroll.edit')->with('payroll', $payroll);   
+        $detachment = Detachments::all();
+        $user = User::orderBy('Name', 'ASC')->get();
+        $data = compact('user', 'detachment', 'payroll');
+        return view('Admin.Payroll.edit')->with($data);   
     }
 
     public function update(Request $request, $Id)
     {
         $payroll = Payroll::findorfail($Id);
+        $payroll->Start = $request->input('Start');
+        $payroll->End = $request->input('End');
         $payroll->Name = $request->input('Name');
-        $payroll->Detachment = $request->input('Detachment');
-        $payroll->Location = $request->input('Location');
-        $payroll->DaysWorked = $request->input('DaysWorked');
-        $payroll->RatePerDay = $request->input('RatePerDay');
+        $DetachmentID = $request->input('DetachmentID');
+        $d = Detachments::where('Id', request('DetachmentID'))->firstOrFail();
+        $payroll->Detachment = $d->Detachment . ': ' . $d->Location; 
+        $payroll->DaysWorked = request->input('DaysWorked');
+        $payroll->RatePerDay = $d->Wage;
         $payroll->GrossPay = ($payroll->DaysWorked * $payroll->RatePerDay);
         $payroll->OfficersAllowance = $request->input('OfficersAllowance');
         $payroll->NSDifferential = $request->input('NSDifferential');

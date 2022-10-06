@@ -10,11 +10,11 @@ class Payroll extends Migration
     {
         Schema::create('Payroll', function (Blueprint $table) {
             $table->id('Id');
+            $table->integer('UserNo');
             $table->date('Start');
             $table->date('End');
             $table->text('Name');
             $table->text('Detachment');
-            $table->text('Location');
             $table->integer('DaysWorked')->default(0);
             $table->decimal('RatePerDay');
             $table->decimal('GrossPay');
