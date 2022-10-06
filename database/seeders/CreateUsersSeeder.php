@@ -15,6 +15,7 @@ class CreateUsersSeeder extends Seeder
                 'name'=>'Admin',
                 'email'=>'admin@apeiros.com',
                 'position'=>'1',
+                'userno'=>'22100601',
                 'password'=>bcrypt('admin123'),
             ]
         ];

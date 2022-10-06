@@ -147,3 +147,11 @@ th, td {
 .navbg {
   background-image: linear-gradient(15deg, #484f8f 0%, #484f8f 100%);
 }
+
+.profile-name {
+  text-decoration: none;
+  color: black;
+}
+.profile-name:hover {
+  color: grey;
+}

@@ -14,8 +14,7 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Admin">Home</a></li>
-    <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
 	<li class="nav-item has-submenu">
     <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -26,9 +25,9 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -85,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Payroll</h1><br>
+			<h1 class="mb-3">Payroll</h1>
+			<h3 class="mb-3">October 1 - 15</h3>
 			<a href="/Admin/Payroll/create">+Add Employee</a>
 			<div class="form-inline my-2 my-lg-0 right"> 
 				<form action="" method="get">
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				@forelse($payroll as $key => $Payroll)
 				<tr>
 					<td class="align-middle">
-						<a href="/Admin/Payroll/{{ $Payroll['Id'] }}/Edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a href="/Admin/Payroll/{{ $Payroll['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					</td>
 					<td class="align-middle">
 						<form action="/Admin/Payroll/{{ $Payroll['Id'] }}" method="POST">
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				</tr>
 				@empty
 				<tr>
-					<td colspan="24">
+					<td colspan="26">
 						<h1>No Data!</h1>
 					</td>
     			

@@ -33,5 +33,10 @@ class IsEmployee
         {
             return $redirect()->route('Accounting');
         }
+
+        if (Auth::user()->position == 5)
+        {
+            return $redirect()->route('Chief');
+        }
     }
 }

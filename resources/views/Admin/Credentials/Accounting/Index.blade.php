@@ -14,8 +14,7 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Admin">Home</a></li>
-    <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
     <li class="nav-item has-submenu">
     <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -26,9 +25,9 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/ApplicationList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -98,29 +97,29 @@ document.addEventListener("DOMContentLoaded", function(){
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th class="align-middle">User No.</th>
 						<th class="align-middle">Name</th>
 						<th class="align-middle">Email</th>
-                        <th class="align-middle">Password</th>
-                        <th></th>
-                        <th></th>
+            <th></th>
+            <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 			@forelse($user as $key => $user)
 				<tr>
+          <td>
+						{{ $user['userno'] }}
+					</td>
 					<td>
 						{{ $user['name'] }}
 					</td>
 					<td>
 						{{ $user['email'] }}
 					</td>
-                    <td>
-						{{ $user['password'] }}
-					</td>
           <td class="align-middle">
-            <a href="/Admin/Credentials/Accounting/{{ $user['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/Admin/Credentials/Accounting/{{ $user['id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
-          <form action="/Admin/Credentials/Accounting/{{ $user['Id'] }}" method="POST">
+          <form action="/Admin/Credentials/Accounting/{{ $user['id'] }}" method="POST">
           @csrf
           @method('Delete')
           <td class="align-middle">

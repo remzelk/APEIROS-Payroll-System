@@ -5,8 +5,7 @@ Route::get('/Contact', 'HomeController@contact');
 
 Auth:: routes();
 
-Route::get('/Admin', 'AdminController@index')->name('Admin.index')->middleware('IsAdmin');
-Route::get('/Admin/Profile', 'AdminController@profile')->name('Admin.profile')->middleware('IsAdmin');
+
 Route::get('/Admin/AccountSettings', 'AdminController@accountsettings')->middleware('IsAdmin');
 Route::get('/Admin/Credentials/Register', 'RegisterController@create')->middleware('IsAdmin');
 Route::post('/Admin/Credentials/Register', 'RegisterController@store')->middleware('IsAdmin');
@@ -14,9 +13,11 @@ Route::resource('/Admin/Credentials/Admin', AdminCredentialsController::class)->
 Route::resource('/Admin/Credentials/HumanResources', HumanResourcesCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Accounting', AccountingCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Employee', EmployeeCredentialsController::class)->middleware('IsAdmin');
-Route::resource('/Admin/EmployeeList', AdminEmployeeController::class)->middleware('IsAdmin');
+Route::resource('/Admin/Credentials/Chief', ChiefCredentialsController::class)->middleware('IsAdmin');
+Route::resource('/Admin/ApplicationList', AdminApplicationController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
-Route::resource('/Admin/DetachmentsWages', AdminDetachmentController::class)->middleware('IsAdmin');
+Route::resource('/Admin/Detachments', AdminDetachmentController::class)->middleware('IsAdmin');
+Route::resource('/Admin', AdminAnnouncementController::class)->middleware('IsAdmin');
 
 
 Route::get('/HumanResources', 'HumanResourcesController@index')->name('HumanResources.index')->middleware('IsHumanResources');
@@ -40,5 +41,15 @@ Route::get('/Employee/LeaveRequest', 'EmployeesController@leaverequest')->middle
 Route::get('/Employee/BIRForm2316', 'EmployeesController@bir')->middleware('IsEmployee');
 Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings')->middleware('IsEmployee');
 Route::resource('/Employee/Profile', EmployeeProfileController::class)->middleware('IsEmployee');
+
+Route::get('/Chief', 'ChiefController@index')->name('Chief.index')->middleware('IsChief');
+Route::get('/Chief/Payslips-Current', 'ChiefController@payslipscurrent')->middleware('IsChief');
+Route::get('/Chief/Payslips-Archive', 'ChiefController@payslipsarchive')->middleware('IsChief');
+Route::get('/Chief/Schedule', 'ChiefController@schedule')->middleware('IsChief');
+Route::get('/Chief/LeaveRequest', 'ChiefController@leaverequest')->middleware('IsChief');
+Route::get('/Chief/BIRForm2316', 'ChiefController@bir')->middleware('IsChief');
+Route::get('/Chief/AccountSettings', 'ChiefController@accountsettings')->middleware('IsChief');
+Route::resource('/Chief/Attendance', ChiefAttendanceController::class)->middleware('IsChief');;
+Route::resource('/Chief/Profile', ChiefProfileController::class)->middleware('IsChief');
 
 Route::get('redirects', [App\Http\Controllers\HomeController::class, 'index']);

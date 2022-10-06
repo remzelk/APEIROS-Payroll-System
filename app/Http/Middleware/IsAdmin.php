@@ -33,5 +33,10 @@ class IsAdmin
         {
             return $redirect()->route('Employee.index');
         }
+
+        if (Auth::user()->position == 5)
+        {
+            return $redirect()->route('Chief.index');
+        }
     }
 }

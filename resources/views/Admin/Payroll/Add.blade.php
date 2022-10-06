@@ -14,8 +14,7 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Admin">Home</a></li>
-    <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
     <li class="nav-item has-submenu">
     <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -26,9 +25,9 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -87,28 +86,38 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Payroll">< <u>Payroll</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Employee</h3>
-            <form action="/Admin/Payroll/" method="POST">
+            <form action="/Admin/Payroll" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-6">
-                  <label>Full Name</label>                    
-                  <input type="text" id="Name" name="Name" class="form-control mb-4" placeholder="Enter Full Name"> 
+                  <label>Start</label>
+                  <input type="date" id="Start" name="Start" class="form-control mb-4" required> 
                 </div>
                 <div class="col-md-6">
-                  <label>Detachment</label>
-                  <select id="Detachment" name="Detachment" class="form-control mb-4">
-                    @foreach ($detachment as $detachment)
-                      <option id="RatePerDay" name="RatePerDay" value="{{ $detachment['Detachment'] }}">{{ $detachment['Detachment'] }}</option>
+                  <label>End</label>
+                  <input type="date" id="End" name="End" class="form-control mb-4" required> 
+                </div>
+                <div class="col-md-6">
+                  <label>Name</label>                    
+                  <select id="Name" name="Name" class="form-control mb-4" required>
+                    @foreach ($user as $key => $user)
+                      @if(($user['position'] == "4") && ($user['name'] != ""))
+                        <option value="{{ $user['name'] }}">{{ $user['name'] }}</option>
+                      @endif
                     @endforeach
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label>Location</label>
-                  <input type="text" id="Location" name="Location" class="form-control mb-4" placeholder="Enter Location"> 
+                  <label>Detachment</label>
+                  <select id="DetachmentID" name="DetachmentID" class="form-control mb-4" required>
+                    @foreach ($detachment as $detachment)
+                      <option value="{{ $detachment['Id'] }}">{{ $detachment['Detachment'] }} : {{ $detachment['Location'] }}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-md-6">
                   <label>No. of Days</label>
-                  <input type="number" step="1" max="31" min="0" value="0" id="DaysWorked" name="DaysWorked" class="form-control mb-4">
+                  <input type="number" step="1" max="15" min="0" value="0" id="DaysWorked" name="DaysWorked" class="form-control mb-4" onKeyDown="return false">
                 </div>
                 <div class="col-md-6">
                   <label>Officer's Allowance</label>
@@ -116,15 +125,15 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                   <label>Night Shift Differential (Days)</label>
-                  <input type="number" step="1" max="31" min="0" value="0" id="NSDifferential" name="NSDifferential" class="form-control mb-4">
+                  <input type="number" step="1" max="15" min="0" value="0" id="NSDifferential" name="NSDifferential" class="form-control mb-4" onKeyDown="return false">
                 </div>
                 <div class="col-md-6">
                   <label>Special Holiday (Days)</label>
-                  <input type="number" step="1" min="0" value="0" id="SHDays" name="SHDays" class="form-control mb-4">
+                  <input type="number" step="1" max="15" min="0" value="0" id="SHDays" name="SHDays" class="form-control mb-4" onKeyDown="return false">
                 </div>
                 <div class="col-md-6">
                   <label>Legal Holiday (Days)</label>
-                  <input type="number" step="1" min="0" value="0" id="LHDays" name="LHDays" class="form-control mb-4">
+                  <input type="number" step="1" max="15" min="0" value="0" id="LHDays" name="LHDays" class="form-control mb-4" onKeyDown="return false">
                 </div>
                 <div class="col-md-6">
                   <label>Overtime/Adj.</label>
@@ -132,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                   <label>PhilHealth</label>
-                  <input type="number" step="1" min="0" value="0.00" id="PhilHealth" name="PhilHealth" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="100.00" id="PhilHealth" name="PhilHealth" class="form-control mb-4">
                 </div>
                 <div class="col-md-6">
                   <label>HDMF</label>

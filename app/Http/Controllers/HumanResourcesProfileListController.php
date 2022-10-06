@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Profile;
+use Illuminate\Auth\Events\PasswordReset;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -24,15 +26,15 @@ class HumanResourcesProfileListController extends Controller
             ->orwhere('Extension', 'LIKE', "%$search%")
             ->orwhere('MP', 'LIKE', "%$search%")
             ->orwhere('Nickname', 'LIKE', "%$search%")
-            ->where('Position', 'LIKE', "3")
+            ->where('Position', 'LIKE', "Security Guard")
             ->get();
         }
         else{
-            $profile = Profile::where('Position', 'LIKE', "3")
+            $profile = Profile::where('Position', 'LIKE', "Security Guard")
             ->get();
         }
-        $data = compact('', 'search');
-        return view('HumanResources.Profile.index')->with($data);
+        $data = compact('profile', 'search');
+        return view('HumanResources.ProfileList.index')->with($data);
     }
 
     public function create()
@@ -47,8 +49,8 @@ class HumanResourcesProfileListController extends Controller
 
     public function show($id)
     {
-        $profile=Profile::where('userID', $id)->firstOrFail();
-        return view('HumanResources.ProfileList.index')->with('profile', $profile);
+        $profile = Profile::where('userID', $id)->firstOrFail();
+        return view('HumanResources.ProfileList.profile')->with('profile', $profile);
     }
 
     public function edit($id)
@@ -324,7 +326,7 @@ class HumanResourcesProfileListController extends Controller
         $profile->SDMajorAilmentAbnormality = $request->input('SDMajorAilmentAbnormality');
         $profile->Sketch = $sketchname;
         $profile->update();
-        return view('HumanResources.ProfileList.index')->with('profile', $profile);
+        return view('HumanResources.ProfileList.profile')->with('profile', $profile);
     }
 
     public function destroy($id)

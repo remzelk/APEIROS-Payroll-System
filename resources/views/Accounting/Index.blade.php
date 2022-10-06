@@ -68,13 +68,34 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div  id="main">
+<div id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Notifications:</h1><br>
-			Empty for now.
+          <h1 class="mb-3">Notifications:</h1>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="align-middle">Start</th>
+                <th class="align-middle">End</th>
+                <th class="align-middle">Description</th>
+              </tr>
+            </thead>
+            <div class="scroll">
+              @forelse($announcement as $key => $announcement)
+              <tr>
+                <td>{{ $announcement['DateStart'] }}</td>
+                <td>{{ $announcement['DateEnd'] }}</td>
+                <td>{{ $announcement['Description'] }}</td>
+                @empty
+                <td colspan="3">
+                  <h1>No Data!</h1>
+                </td>
+              @endforelse
+            </tr>
+          </div>
+			  </table>
         </div>
     </div>
   </div>

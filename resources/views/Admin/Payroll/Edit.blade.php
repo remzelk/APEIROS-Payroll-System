@@ -14,8 +14,7 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Admin">Home</a></li>
-    <li class="nav-item"><a href="/Admin/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
     <li class="nav-item has-submenu">
     <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -26,9 +25,9 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/EmployeeList">Employee List</a></li>
+    <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/DetachmentsWages">Detachments & Wages</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -92,24 +91,32 @@ document.addEventListener("DOMContentLoaded", function(){
             @method('Put')
             <div class="row">
                 <div class="col-md-6">
-                  <label>Full Name</label>                    
-                  <input type="text" id="Name" name="Name" class="form-control mb-4" value="{{ $payroll['Name'] }}"> 
+                  <label>Start</label>
+                  <input type="date" id="Start" name="Start" value="{{ $payroll['Start'] }}" class="form-control mb-4" required> 
+                </div>
+                <div class="col-md-6">
+                  <label>End</label>
+                  <input type="date" id="End" name="End" value="{{ $payroll['End'] }}" class="form-control mb-4" required> 
+                </div>
+                <div class="col-md-6">
+                  <label>Name</label>                    
+                  <select id="Name" name="Name" class="form-control mb-4" required>
+                    @foreach ($user as $key => $user)
+                      @if(($user['position'] == "4") && ($user['name'] != "") && ($user['name'] == $payroll['Name']))
+                        <option value="{{ $user['name'] }}" selected>{{ $user['name'] }}</option>
+                      @elseif(($user['position'] == "4") && ($user['name'] != ""))
+                      <option value="{{ $user['name'] }}">{{ $user['name'] }}</option>
+                      @endif
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-md-6">
                   <label>Detachment</label>
                   <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" value="{{ $payroll['Detachment'] }}"> 
                 </div>
                 <div class="col-md-6">
-                  <label>Location</label>
-                  <input type="text" id="Location" name="Location" class="form-control mb-4" value="{{ $payroll['Location'] }}"> 
-                </div>
-                <div class="col-md-6">
                   <label>No. of Days</label>
                   <input type="number" step="1" max="31" min="0" value="{{ $payroll['DaysWorked'] }}" id="DaysWorked" name="DaysWorked" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>Rate Per Day</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['RatePerDay'] }}" id="RatePerDay" name="RatePerDay" class="form-control mb-4">
                 </div>
                 <div class="col-md-6">
                   <label>Officer's Allowance</label>

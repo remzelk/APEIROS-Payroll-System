@@ -47,14 +47,14 @@ class AccountingCredentialsController extends Controller
 
     public function edit($id)
     {
-        $user = User::findorfail($id);
+        $user = User::where('userno', $id)->firstOrFail();
         return view('Admin.Credentials.Accounting.edit')->with('user', $user);
     }
 
     public function update(Request $request, $id)
     {
         
-        $user = User::findorfail($id);
+        $user = User::where('userno', $id)->firstOrFail();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -73,7 +73,6 @@ class AccountingCredentialsController extends Controller
     {
         $user = User::findorfail($id);
         $user->delete();
-        $profile=Profile::where('userID', $id)->delete();
         return redirect('/Admin/Credentials/Accounting');
     }
 }

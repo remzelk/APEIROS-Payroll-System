@@ -69,13 +69,13 @@ class AccountingEmployeePayrollController extends Controller
 
     public function edit($id)
     {
-        $payroll = Payroll::findorfail($id);
+        $payroll = Payroll::where('userno', $id)->firstOrFail();
         return view('Accounting.Payroll.edit')->with('payroll', $payroll);   
     }
 
-    public function update(Request $request, $Id)
+    public function update(Request $request, $id)
     {
-        $payroll = Payroll::findorfail($Id);
+        $payroll = Payroll::where('userno', $id)->firstOrFail();
         $payroll->Name = $request->input('Name');
         $payroll->Detachment = $request->input('Detachment');
         $payroll->Location = $request->input('Location');
@@ -108,7 +108,7 @@ class AccountingEmployeePayrollController extends Controller
 
     public function destroy($id)
     {
-        $payroll = Payroll::findorfail($id);
+        $payroll = Payroll::where('userno', $id)->firstOrFail();
         $payroll->delete();
         return redirect('/Accounting/EmployeePayroll');
     }

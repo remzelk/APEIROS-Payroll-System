@@ -9,6 +9,34 @@ class payroll extends Model
 {
     public $table = 'payroll';
     use HasFactory;
-    public $timestamps = false;
-    protected $primaryKey = 'Id';
+    protected $fillable = [
+        'UserNo',
+        'Start',
+        'End',
+        'Name',
+        'Detachment',
+        'DaysWorked',
+        'RatePerDay',
+        'GrossPay',
+        'OfficersAllowance',
+        'NSDifferential',
+        'NightDifferential',
+        'SHDays',
+        'SpecialHoliday',
+        'LHDays',
+        'LegalHoliday',
+        'OTAdj',
+        'FinalGrossPay',
+        'PhilHealth',
+        'HDMF',
+        'HDMFLoan',
+        'FAMaintenance',
+        'RadioMaintenance',
+        'BankCharge',
+        'Insurance',
+        'CashBond',
+        'TotalDeduction',
+        'CashAdvance',
+        'TotalNetPay'
+    ];
 }
