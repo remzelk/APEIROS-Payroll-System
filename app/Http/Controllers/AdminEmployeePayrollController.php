@@ -39,7 +39,7 @@ class AdminEmployeePayrollController extends Controller
         $payroll = new Payroll();
         $payroll->Start = request('Start');
         $payroll->End = request('End');
-        $payroll->EmployeeNo = request('EmployeeNo')
+        $payroll->EmployeeNo = request('EmployeeNo');
         $payroll->Name = request('Name');
         $DetachmentID = request('DetachmentID');
         $d = Detachments::where('Id', request('DetachmentID'))->firstOrFail();
