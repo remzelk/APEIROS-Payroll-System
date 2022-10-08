@@ -14,6 +14,7 @@ class Attendance extends Migration
             $table->date('End')->nullable();
             $table->boolean('Submitted')->default(0);
             $table->string('AttendanceSheet')->nullable();
+            $table->softDeletes();
         });
     }
 

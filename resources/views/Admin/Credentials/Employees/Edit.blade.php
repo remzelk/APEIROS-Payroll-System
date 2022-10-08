@@ -22,6 +22,7 @@
           <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
           <li><a class="nav-item active" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>

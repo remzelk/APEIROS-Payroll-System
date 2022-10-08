@@ -13,7 +13,10 @@ class Detachments extends Migration
             $table->text('Detachment');
             $table->text('Location');
             $table->text('Region');
-            $table->decimal('Wage');
+            $table->text('ContactNo');
+            $table->text('Email');
+            $table->text('Address');
+            $table->softDeletes();
         });
     }
 

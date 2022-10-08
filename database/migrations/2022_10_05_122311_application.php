@@ -13,6 +13,7 @@ class Application extends Migration
             $table->integer('UserNo');
             $table->boolean('Submitted')->nullable()->default(0);
             $table->string('ApplicationForm')->nullable();
+            $table->softDeletes();
         });
     }
 

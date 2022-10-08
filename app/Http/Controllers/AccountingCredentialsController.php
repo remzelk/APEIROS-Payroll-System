@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Profile;
+use App\Models\Application;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -71,8 +71,10 @@ class AccountingCredentialsController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findorfail($id);
+        $user = User::where('userno', $id)->firstOrFail();
         $user->delete();
+        $application = Application::where('userno', $id)->firstOrFail();
+        $application->delete();
         return redirect('/Admin/Credentials/Accounting');
     }
 }

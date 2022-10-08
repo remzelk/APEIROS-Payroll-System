@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Leave Request')
+@section('title', 'Application')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Chief">Home</a></li>
-    <li class="nav-item"><a href="/Chief/Profile/{{ Auth::user()->id }}">Profile</a></li>
+    <li class="nav-item"><a href="/Chief/Application/{{ Auth::user()->userno }}">Application</a></li>
     <li  class="nav-item has-submenu">
       <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -24,7 +24,7 @@
       </ul>
     </li>
     <li class="nav-item"><a href="/Chief/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Chief/LeaveRequest" class="active">Leave Request</a></li>
+    <li class="nav-item"><a href="/Chief/LeaveRequest">Leave Request</a></li>
     <li class="nav-item"><a href="/Chief/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Chief/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -76,15 +76,34 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div id="main">
-  <div class="container-fluid h-100">
-    <div class="row justify-content-center align-items-center h-100">
-        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-          <div class="card-body p-4 p-md-5">
-			<h1>Leave:</h1><br>
-			Empty for now.
+<div  id="main">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-3">Application Form</h3>
+                        @if($application['Submitted'] == 0)
+                            <form action="/Chief/Application/{{ Auth::user()->userno }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('Put')
+                            <label>Digital version of your application form (PDF format)</label>
+                                <input type="file" id="ApplicationForm" name="ApplicationForm" class="form-control mb-4" accept="application/*" value="{{ old('ApplicationForm', $application['ApplicationForm']) }}" required> 
+                                @if($errors->any())
+                                    {!! implode('', $errors->all('<div><h6 style="color:red">:message</h6></div>')) !!}
+                                @endif
+                                <input type="hidden" id="Submitted" name="Submitted" value="1">
+                                <div class="mt-4 pt-2">
+                                    <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
+                                </div>
+                            </form>
+                        @else
+                            <h6>Application form already submitted!</h6>
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
 <div>
 @endsection

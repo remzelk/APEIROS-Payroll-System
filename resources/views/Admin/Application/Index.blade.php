@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
   <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
-@section('title', 'Home')
+@section('title', 'Application')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -23,6 +23,7 @@
           <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
@@ -97,19 +98,25 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th class="align-middle">Name</th>
             <th class="align-middle">Position</th>
+            <th></th>
+            <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 				@forelse($user as $key => $user)
         @if($user['position'] == "4")
 				<tr>
-					<td class="text-left"><a class="profile-name" href="/Admin/Application/{{ $user['userno'] }}">{{ $user['name'] }}</a></td>
-          <td class="text-left"><a class="profile-name" href="/Admin/Application/{{ $user['userno'] }}">Security Guard</a></td>
+					<td class="text-left">{{ $user['name'] }}</td>
+          <td class="text-left">Security Guard</td>
+          <td class="text-left"><a class="profile-name" target="__blank" href="/Admin/ApplicationList/{{ $user['userno'] }}">View</a></td>
+          <td class="text-left"><a class="profile-name" href="{{ route('downloadapplication', $user['userno']) }}">Download</a></td>
         </tr>
         @elseif($user['position'] == "5")
 				<tr>
-					<td class="text-left"><a class="profile-name" href="/Admin/Application/{{ $user['userno'] }}">{{ $user['name'] }}</a></td>
-          <td class="text-left"><a class="profile-name" href="/Admin/Application/{{ $user['userno'] }}">Chief Security Guard</a></td>
+					<td class="text-left">{{ $user['name'] }}</td>
+          <td class="text-left">Chief Security Guard</td>
+          <td class="text-left"><a class="profile-name" arget="__blank" href="/Admin/ApplicationList/{{ $user['userno'] }}">View</a></td>
+          <td class="text-left"><a class="profile-name" href="{{ route('downloadapplication', $user['userno']) }}">Download</a></td>
         </tr>
         @endif
         @empty

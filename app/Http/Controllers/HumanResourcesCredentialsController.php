@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Profile;
+use App\Models\Application;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -48,14 +48,14 @@ class HumanResourcesCredentialsController extends Controller
 
     public function edit($id)
     {
-        $user = User::findorfail($id);
+        $user = User::where('userno', $id)->firstOrFail();
         return view('Admin.Credentials.HumanResources.edit')->with('user', $user);
     }
 
     public function update(Request $request, $id)
     {
         
-        $user = User::findorfail($id);
+        $user = User::where('userno', $id)->firstOrFail();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -72,8 +72,10 @@ class HumanResourcesCredentialsController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findorfail($id);
+        $user = User::where('userno', $id)->firstOrFail();
         $user->delete();
+        $application = Application::where('userno', $id)->firstOrFail();
+        $application->delete();
         $profile=Profile::where('userID', $id)->delete();
         return redirect('/Admin/Credentials/HumanResources');
     }

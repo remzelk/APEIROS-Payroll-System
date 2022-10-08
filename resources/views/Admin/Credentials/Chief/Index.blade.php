@@ -118,9 +118,9 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $user['email'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Credentials/Chief/{{ $user['id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/Admin/Credentials/Chief/{{ $user['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
-          <form action="/Admin/Credentials/Chief/{{ $user['id'] }}" method="POST">
+          <form action="/Admin/Credentials/Chief/{{ $user['userno'] }}" method="POST">
           @csrf
           @method('Delete')
           <td class="align-middle">

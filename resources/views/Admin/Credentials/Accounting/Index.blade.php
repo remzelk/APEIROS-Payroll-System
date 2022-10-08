@@ -22,6 +22,7 @@
           <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
           <li><a class="nav-item active" href="/Admin/Credentials/Accounting">Accounting</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
@@ -117,9 +118,9 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $user['email'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Credentials/Accounting/{{ $user['id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/Admin/Credentials/Accounting/{{ $user['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
-          <form action="/Admin/Credentials/Accounting/{{ $user['id'] }}" method="POST">
+          <form action="/Admin/Credentials/Accounting/{{ $user['userno'] }}" method="POST">
           @csrf
           @method('Delete')
           <td class="align-middle">

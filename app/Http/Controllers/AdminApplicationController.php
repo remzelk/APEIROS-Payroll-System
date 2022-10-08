@@ -14,24 +14,36 @@ use Illuminate\Validation\Rules;
 
 class AdminApplicationController extends Controller
 {
+    public function view($id)
+    {
+        $application = Application::where('userno', $id)->firstOrFail();
+        return response()->file(public_path(('application/' . $application->ApplicationForm)));
+    }
+
+    public function download($id)
+    {
+        $application = Application::where('userno', $id)->firstOrFail();
+        return response()->download(public_path(('application/' . $application->ApplicationForm), ($application->userno)));
+    }
+
     public function index(Request $request)
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $user = User::orderBy('Name', 'ASC')
+            $user = User::join('application', 'users.userno', '=', 'application.UserNo')
+            ->select('user.*', 'application.*')
+            ->orderBy('Name', 'ASC')
             ->where('Name', 'LIKE', "%$search%")
-            ->where('Position', 'LIKE', '2')
-            ->where('Position', 'LIKE', '3')
-            ->where('Position', 'LIKE', '4')
-            ->where('Position', 'LIKE', '5')
+            ->orwhere('Position', 'LIKE', '4')
+            ->orwhere('Position', 'LIKE', '5')
             ->get();
         }
         else{
-            $user = User::orderBy('Name', 'ASC')
-            ->where('Position', 'LIKE', '2')
-            ->where('Position', 'LIKE', '3')
-            ->where('Position', 'LIKE', '4')
-            ->where('Position', 'LIKE', '5')
+            $user = User::join('application', 'users.userno', '=', 'application.UserNo')
+            ->select('users.*', 'application.*')
+            ->orderBy('Name', 'ASC')
+            ->orwhere('Position', 'LIKE', '4')
+            ->orwhere('Position', 'LIKE', '5')
             ->get();
         }
         $data = compact('user', 'search');
@@ -63,17 +75,14 @@ class AdminApplicationController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'Image' => ['required', 'image', 'mimes:pdf', 'max:2048'],
-            'Sketch' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'ApplicationForm' => ['required', 'mimes:pdf']
         ]);
 
-        $imagename = time() . '-' . $request->input('LastName') . '.' . $request->file('Image')->extension();
-        $sketchname = time() . '-' . $request->input('LastName') . '.' . $request->file('Sketch')->extension();
-        $request->file('Image')->move(public_path('images'), $imagename);
-        $request->file('Sketch')->move(public_path('sketch'), $sketchname);
+        $applicationform = time() . '-' . $request->input('ApplicationForm') . '.' . $request->file('ApplicationForm')->extension();
+        $request->file('ApplicationForm')->move(public_path('application'), $applicationform);
 
-        $application = Application::where('userID', $id)->firstOrFail();
-        $application->Image = $imagename;
+        $application = Application::where('userno', $id)->firstOrFail();
+        $application->ApplicationForm = $applicationform;
         $application->update();
         return view('Admin.Application.application')->with('application', $application);
     }

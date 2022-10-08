@@ -22,6 +22,7 @@
           <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
           <li><a class="nav-item active" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
@@ -85,7 +86,9 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
           <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
-
+          @if($errors->any())
+            {!! implode('', $errors->all('<div><h6 style="color:red">:message</h6></div>')) !!}
+          @endif
         <form method="POST" action="/Admin/Credentials/Register">
             @csrf
             <div class="row">

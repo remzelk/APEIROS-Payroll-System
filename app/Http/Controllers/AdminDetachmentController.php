@@ -20,12 +20,12 @@ class AdminDetachmentController extends Controller
             $detachment = Detachments::all();
         }
         $data = compact('detachment', 'search');
-        return view('Admin.DetachmentsWages.index')->with($data);
+        return view('Admin.Detachments.index')->with($data);
     }
 
     public function create()
     {
-        return view('Admin.DetachmentsWages.add');
+        return view('Admin.Detachments.add');
     }
 
     public function store(Request $request)
@@ -34,9 +34,8 @@ class AdminDetachmentController extends Controller
         $detachment->Detachment = request('Detachment');
         $detachment->Location = request('Location');
         $detachment->Region = request('Region');
-        $detachment->Wage = request('Wage');
         $detachment->save();
-        return redirect('/Admin/DetachmentsWages');
+        return redirect('/Admin/Detachments');
     }
 
     public function show($id)
@@ -47,7 +46,7 @@ class AdminDetachmentController extends Controller
     public function edit($id)
     {
         $detachment = Detachments::findorfail($id);
-        return view('Admin.DetachmentsWages.edit')->with('detachment', $detachment);
+        return view('Admin.Detachments.edit')->with('detachment', $detachment);
     }
 
     public function update(Request $request, $Id)
@@ -58,13 +57,13 @@ class AdminDetachmentController extends Controller
         $detachment->Region = $request->input('Region');
         $detachment->Wage = $request->input('Wage');
         $detachment->update();
-        return redirect('/Admin/DetachmentsWages');
+        return redirect('/Admin/Detachments');
     }
 
     public function destroy($id)
     {
         $detachment = Detachments::findorfail($id);
         $detachment->delete();
-        return redirect('/Admin/DetachmentsWages');
+        return redirect('/Admin/Detachments');
     }
 }

@@ -38,6 +38,7 @@ class Payroll extends Migration
             $table->decimal('TotalDeduction');
             $table->decimal('CashAdvance');
             $table->decimal('TotalNetPay');
+            $table->softDeletes();
         });
     }
 

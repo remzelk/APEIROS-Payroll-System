@@ -33,7 +33,7 @@ class RegisterController extends Controller
         $y = substr($year, -2);
         $m = Carbon::now()->format('m');
         $d = Carbon::now()->format('d');
-        $usercount = User::where('created_at', 'LIKE', "%" . $current->toDateString() . "%")->count() + 1;
+        $usercount = User::withTrashed()->where('created_at', 'LIKE', "%" . $current->toDateString() . "%")->count() + 1;
         if ($usercount < 10)
         {
             $usercount = "0" . $usercount;

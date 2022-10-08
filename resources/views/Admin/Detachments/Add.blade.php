@@ -22,6 +22,7 @@
           <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
@@ -104,6 +105,18 @@ document.addEventListener("DOMContentLoaded", function(){
                         <option value="III">III</option> 
                         <option value="IV-A">IV-A</option> 
                       </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Contact Number</label>
+                    <input type="number" id="ContactNo" name="ContactNo" class="form-control mb-4" placeholder="Enter Contact Number" required> 
+                </div>
+                <div class="col-md-6">
+                    <label>Email</label>
+                    <input type="email" id="Email" name="Email" class="form-control mb-4" placeholder="Enter Email" required> 
+                </div>
+                <div class="col-md-6">
+                    <label>Address</label>
+                    <input type="text" id="Address" name="Address" class="form-control mb-4" placeholder="Enter Address" required> 
                 </div>
             </div>
               <div class="mt-4 pt-2">

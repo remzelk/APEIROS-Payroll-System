@@ -13,6 +13,8 @@ class Announcement extends Migration
             $table->text('DateStart')->nullable();
             $table->text('DateEnd')->nullable();
             $table->text('Description');
+            $table->softDeletes();
+
         });
     }
 

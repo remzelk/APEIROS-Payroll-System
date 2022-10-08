@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Application;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -73,6 +74,8 @@ class AdminCredentialsController extends Controller
     {
         $user = User::where('userno', $id)->firstOrFail();
         $user->delete();
+        $application = Application::where('userno', $id)->firstOrFail();
+        $application->delete();
         return redirect('/Admin/Credentials/Admin');
     }
 }
