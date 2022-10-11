@@ -1,10 +1,11 @@
 <?php
 use App\Models\Application;
 use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'HomeController@index');
 Route::get('/Contact', 'HomeController@contact');
 
-Auth:: routes();
+Auth::routes();
 
 
 Route::get('/Admin/AccountSettings', 'AdminController@accountsettings')->middleware('IsAdmin');
@@ -24,7 +25,7 @@ Route::resource('/Admin', AdminAnnouncementController::class)->middleware('IsAdm
 Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings')->middleware('IsHumanResources');
 Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources/Detachments', HumanResourcesDetachmentController::class)->middleware('IsHumanResources');
-Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)->middleware('IsAdmin');
+Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)->middleware('IsHumanResources');
 
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
 Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings')->middleware('IsAccounting');
@@ -35,7 +36,6 @@ Route::get('/Employee', 'EmployeesController@index')->name('Employee.index')->mi
 Route::get('/Employee/Payslips-Current', 'EmployeesController@payslipscurrent')->middleware('IsEmployee');
 Route::get('/Employee/Payslips-Archive', 'EmployeesController@payslipsarchive')->middleware('IsEmployee');
 Route::get('/Employee/Schedule', 'EmployeesController@schedule')->middleware('IsEmployee');
-Route::get('/Employee/Attendance', 'EmployeesController@attendance')->middleware('IsEmployee');
 Route::get('/Employee/LeaveRequest', 'EmployeesController@leaverequest')->middleware('IsEmployee');
 Route::get('/Employee/BIRForm2316', 'EmployeesController@bir')->middleware('IsEmployee');
 Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings')->middleware('IsEmployee');
@@ -45,6 +45,7 @@ Route::get('/Chief', 'ChiefController@index')->name('Chief.index')->middleware('
 Route::get('/Chief/Payslips-Current', 'ChiefController@payslipscurrent')->middleware('IsChief');
 Route::get('/Chief/Payslips-Archive', 'ChiefController@payslipsarchive')->middleware('IsChief');
 Route::get('/Chief/Schedule', 'ChiefController@schedule')->middleware('IsChief');
+Route::get('/Chief/Attendance', 'ChiefController@attendance')->middleware('IsChief');
 Route::get('/Chief/LeaveRequest', 'ChiefController@leaverequest')->middleware('IsChief');
 Route::get('/Chief/BIRForm2316', 'ChiefController@bir')->middleware('IsChief');
 Route::get('/Chief/AccountSettings', 'ChiefController@accountsettings')->middleware('IsChief');

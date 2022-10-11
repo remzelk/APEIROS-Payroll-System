@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Application extends Model
 {
     public $table = 'application';
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $fillable = [
         'UserNo', 

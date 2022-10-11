@@ -37,6 +37,9 @@ class RedirectIfAuthenticated
                     case 4:
                         return redirect('/Employee');
                         break;
+                    case 5:
+                        return redirect('/Chief');
+                        break;
                     default:
                         return redirect('/login');
                         break;

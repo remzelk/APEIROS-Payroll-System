@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Model\Application;
+use App\Models\Application;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -73,7 +73,7 @@ class EmployeeCredentialsController extends Controller
     {
         $user = User::where('userno', $id)->firstOrFail();
         $user->delete();
-        $application = Application::where('userno', $id)->firstOrFail();
+        $application = Application::where('UserNo', $id)->firstOrFail();
         $application->delete();
         return redirect('/Admin/Credentials/Employee');
     }

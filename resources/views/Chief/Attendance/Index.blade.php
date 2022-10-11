@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Home')
+@section('title', 'Attendance')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -81,8 +81,35 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="row justify-content-center align-items-center h-100">
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                 <div class="card-body p-4 p-md-5">
-                    <h1 class="mb-3">Attendance Sheet:</h1>
-
+                  <h1 class="mb-3">Attendance Sheet:</h1>
+                    <form action="/Chief/Attendance/{{ Auth::user()->userno }}" method="POST" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Duration</label>
+                            <select id="duration" name="duration" class="form-control mb-4" required>
+                              @foreach ($payrollcode as $key => $payrollcode)
+                                <option value="{{ $payrollcode['paycode'] }}">{{ $payrollcode['start'] }} - {{ $payrollcode['end'] }}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Detachment</label>
+                            <select id="detachment" name="detachment" class="form-control mb-4" required>
+                              @foreach ($detachment as $detachment)
+                                <option value="{{ $detachment['dcode'] }}">{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}</option>
+                              @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Digital version of the attendance sheet</label>
+                            <input type="file" id="attendancesheet" name="attendancesheet" class="form-control mb-4" value="{{ old('attendancesheet', $application['attendancesheet']) }}" required>
+                        </div>
+                        <input type="hidden" id="Submitted" name="Submitted" value="1">
+                        <div class="mt-4 pt-2">
+                          <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
+                        </div>
+                      </form>
+                    </div>
                 </div>
             </div>
         </div>

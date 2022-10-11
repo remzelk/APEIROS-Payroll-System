@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Announcement extends Model
+class PayrollCode extends Model
 {
-    public $table = 'announcement';
+    public $table = 'payrollcode';
     use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $primaryKey = 'id';

@@ -85,10 +85,15 @@ document.addEventListener("DOMContentLoaded", function(){
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
-          @if($errors->any())
-            {!! implode('', $errors->all('<div><h6 style="color:red">:message</h6></div>')) !!}
+          @if(session()->has('message'))
+          <div class="alert alert-success">
+            {{ session()->get('message') }}
+          </div>
           @endif
+          @if($errors->any())
+            {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+          @endif
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
         <form method="POST" action="/Admin/Credentials/Register">
             @csrf
             <div class="row">

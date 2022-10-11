@@ -16,27 +16,27 @@ class IsAccounting
 
         if (Auth::user()->position == 3)
         {
-            return $next($request);
+            return next($request);
         }
 
         if (Auth::user()->position == 1)
         {
-            return $redirect()->route('Admin');
+            return redirect()->route('Admin.index');
         }
 
         if (Auth::user()->position == 2)
         {
-            return $redirect()->route('HumanResources');
+            return redirect()->route('HumanResources.index');
         }
 
         if (Auth::user()->position == 4)
         {
-            return $redirect()->route('Employee');
+            return redirect()->route('Employee.index');
         }
 
         if (Auth::user()->position == 5)
         {
-            return $redirect()->route('Chief');
+            return redirect()->route('Chief.index');
         }
     }
 }

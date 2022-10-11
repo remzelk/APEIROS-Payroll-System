@@ -9,7 +9,8 @@ class Detachments extends Migration
     public function up()
     {
         Schema::create('Detachments', function (Blueprint $table) {
-            $table->id('Id');
+            $table->id('id');
+            $table->text('DCode');
             $table->text('Detachment');
             $table->text('Location');
             $table->text('Region');

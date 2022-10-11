@@ -21,22 +21,22 @@ class IsHumanResources
         
         if (Auth::user()->position == 1)
         {
-            return $redirect()->route('Admin');
+            return redirect->route('Admin.index');
         }
 
         if (Auth::user()->position == 3)
         {
-            return $redirect()->route('Accounting');
+            return redirect->route('Accounting.index');
         }
 
         if (Auth::user()->position == 4)
         {
-            return $redirect()->route('Employee');
+            return redirect->route('Employee.index');
         }
 
         if (Auth::user()->position == 5)
         {
-            return $redirect()->route('Chief');
+            return redirect->route('Chief.index');
         }
     }
 }

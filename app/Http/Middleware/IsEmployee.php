@@ -21,22 +21,22 @@ class IsEmployee
         
         if (Auth::user()->position == 1)
         {
-            return $redirect()->route('Admin');
+            return redirect()->route('Admin.index');
         }
 
         if (Auth::user()->position == 2)
         {
-            return $redirect()->route('HumanResources');
+            return redirect()->route('HumanResources.index');
         }
 
         if (Auth::user()->position == 3)
         {
-            return $redirect()->route('Accounting');
+            return redirect()->route('Accounting.index');
         }
 
         if (Auth::user()->position == 5)
         {
-            return $redirect()->route('Chief');
+            return redirect()->route('Chief.index');
         }
     }
 }

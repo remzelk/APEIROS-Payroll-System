@@ -6,7 +6,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
-  <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
 @section('title', 'Home')
 @section('content')
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5" style="width: 50rem;">
 			    <h1>Application List</h1><br>
-                    <iframe src="{{ asset('application/' . $application['ApplicationForm']) }}" style="width: 45rem;">
+                    <iframe src="{{ asset('application/' . $application['ApplicationForm']) }}" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
                         Your browser does not support iFrame.
                     </iframe>		
             </div>

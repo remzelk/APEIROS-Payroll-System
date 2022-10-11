@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class detachments extends Model
 {
     public $table = 'detachments';
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $primaryKey = 'Id';
 }

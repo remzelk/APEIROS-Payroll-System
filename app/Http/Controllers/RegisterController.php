@@ -56,6 +56,6 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        return redirect('/Admin/Credentials/Register');
+        return redirect('/Admin/Credentials/Register')->with('message', 'User added successfully!');
     }
 }

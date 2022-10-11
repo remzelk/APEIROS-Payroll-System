@@ -82,23 +82,43 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="col-12 col-lg-9 col-xl-7">
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
+                        @if($errors->any())
+                          {!! implode('', $errors->all('<div class="alert alert-danger">:message</h6></div>')) !!}
+                        @endif
                         <h3 class="mb-3">Application Form</h3>
                         @if($application['Submitted'] == 0)
                             <form action="/Employee/Application/{{ Auth::user()->userno }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('Put')
-                            <label>Digital version of your application form (PDF format)</label>
-                                <input type="file" id="ApplicationForm" name="ApplicationForm" class="form-control mb-4" accept="application/*" value="{{ old('ApplicationForm', $application['ApplicationForm']) }}" required> 
-                                @if($errors->any())
-                                    {!! implode('', $errors->all('<div><h6 style="color:red">:message</h6></div>')) !!}
-                                @endif
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <label>SSS</label>
+                                    <input type="text" id="SSS" name="SSS" class="form-control mb-4" value="{{ old('SSS', $application['SSS']) }}" required>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label>Pag-IBIG</label>
+                                    <input type="text" id="PagIbig" name="PagIbig" class="form-control mb-4" value="{{ old('PagIbig', $application['PagIbig']) }}" required>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label>Philhealth</label>
+                                    <input type="text" id="Philhealth" name="Philhealth" class="form-control mb-4" value="{{ old('Philhealth', $application['Philhealth']) }}" required>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label>TIN</label>
+                                    <input type="text" id="TIN" name="TIN" class="form-control mb-4" value="{{ old('TIN', $application['TIN']) }}" required>
+                                  </div>
+                                  <label>Digital version of your application form (PDF format)</label>
+                                  <input type="file" id="ApplicationForm" name="ApplicationForm" class="form-control mb-4" accept="application/*" value="{{ old('ApplicationForm', $application['ApplicationForm']) }}" required> 
+                                </div>
                                 <input type="hidden" id="Submitted" name="Submitted" value="1">
                                 <div class="mt-4 pt-2">
                                     <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
                                 </div>
                             </form>
                         @else
+                        <div class="alert alert-success">
                             <h6>Application form already submitted!</h6>
+                        </div>
                         @endif
                     </div>
                 </div>

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class payroll extends Model
 {
     public $table = 'payroll';
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
         'UserNo',
         'Start',
