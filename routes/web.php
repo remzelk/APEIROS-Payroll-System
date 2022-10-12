@@ -12,12 +12,16 @@ Route::get('/Admin/AccountSettings', 'AdminController@accountsettings')->middlew
 Route::get('/Admin/Credentials/Register', 'RegisterController@create')->middleware('IsAdmin');
 Route::post('/Admin/Credentials/Register', 'RegisterController@store')->middleware('IsAdmin');
 Route::get('/Admin/ApplicationList/download/{id}', 'AdminApplicationController@download')->name('downloadapplication')->middleware('IsAdmin');
+Route::get('/Admin/Attendance/download/{id}', 'AdminAttendanceController@download')->name('downloadattendance')->middleware('IsAdmin');
+Route::get('/Admin/Attendance/view/{id}', 'AdminAttendanceController@view')->name('viewattendance')->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Admin', AdminCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/HumanResources', HumanResourcesCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Accounting', AccountingCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Employee', EmployeeCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Chief', ChiefCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/ApplicationList', AdminApplicationController::class)->middleware('IsAdmin');
+Route::resource('/Admin/Attendance', AdminAttendanceController::class)->middleware('IsAdmin');
+Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
 Route::resource('/Admin/PayrollCode', AdminPayrollCodeController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Detachments', AdminDetachmentController::class)->middleware('IsAdmin');

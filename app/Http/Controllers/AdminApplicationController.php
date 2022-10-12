@@ -14,12 +14,6 @@ use Illuminate\Validation\Rules;
 
 class AdminApplicationController extends Controller
 {
-    public function view($id)
-    {
-        $application = Application::where('userno', $id)->firstOrFail();
-        return response()->file(public_path(('application/' . $application->ApplicationForm)));
-    }
-
     public function download($id)
     {
         $application = Application::where('userno', $id)->firstOrFail();

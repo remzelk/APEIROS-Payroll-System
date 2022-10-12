@@ -6,8 +6,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
+  <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
-@section('title', 'Employee Credentials')
+@section('title', 'Application')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -21,13 +22,13 @@
           <li><a class="nav-item" href="/Admin/Credentials/Admin">Admin</a></li>
           <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
-          <li><a class="nav-item active" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance" class="active">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -87,55 +88,32 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Employee Credentials</h1><br>
-      <div class="form-inline">
-      <a href="/Admin/Credentials/Register" class="mb-4">+Register User</a>&emsp;&emsp;
+			<h1>Attendance List</h1><br>
       <form action="" method="get">
-        <div class="my-2 my-lg-0 right"> 
+        <div class="form-inline my-2 my-lg-0 right"> 
             <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
             <button class="btn btn-outline-success mb-4" type="submit">Search</button>
         </div>
       </form>
-    </div>
-			<div class="scroll">
+		<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="align-middle">User No.</th>
-						<th class="align-middle">Name</th>
-						<th class="align-middle">Email</th>
-            <th></th>
-            <th></th>
+						<th class="align-middle">Dates</th>
 					</tr>
 				</thead>
 			<div class="scroll">
-			@forelse($user as $key => $user)
+				@forelse($payrollcode as $key => $payrollcode)
 				<tr>
-          <td>
-						{{ $user['userno'] }}
-					</td>
-					<td>
-						{{ $user['name'] }}
-					</td>
-					<td>
-						{{ $user['email'] }}
-					</td>
-          <td class="align-middle">
-            <a href="/Admin/Credentials/Employee/{{ $user['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit user: <?php echo $user['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-          </td>
-          <form action="/Admin/Credentials/Employee/{{ $user['userno'] }}" method="POST">
-          @csrf
-          @method('Delete')
-          <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Delete user?: <?php echo $user['name'] ?>')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-          </td>
-          </form>
+          <td class="text-left"><a class="profile-name" href="/Admin/Attendance/{{ $payrollcode['PayCode'] }}">Start: {{ $payrollcode['Start'] }},  End: {{ $payrollcode['End'] }}</a></td>
+        </tr>
         @empty
-    		  <td colspan="5">
-            <h1>No Data!</h1>
-          </td>
-			  @endforelse
-				</tr>
+          <tr>
+    		    <td colspan="4">
+              <h1>No Data!</h1>
+            </td>
+          </tr>
+			    @endforelse
 			</div>
 			</table>
 			</div>

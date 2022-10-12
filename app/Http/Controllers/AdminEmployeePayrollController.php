@@ -13,17 +13,18 @@ class AdminEmployeePayrollController extends Controller
 {
     public function index(Request $request)
     {
-        $currenttime = Carbon::today();
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $payroll = Payroll::where('Name', 'LIKE', "%$search%")
-            ->orwhere('Detachment', 'LIKE', "%$search%")
+            $payrollcode = PayrollCode::orderBy('id', 'DESC')
+            ->orwhere('Start', 'LIKE', "%$search%")
+            ->orwhere('End', 'LIKE', "%$search%")
             ->get();
         }
         else{
-            $payroll = Payroll::all();
+            $payrollcode = PayrollCode::orderBy('id', 'DESC')
+            ->get();
         }
-        $data = compact('payroll', 'search');
+        $data = compact('payrollcode', 'search');
         return view('Admin.Payroll.index')->with($data);
     }
 
@@ -266,7 +267,18 @@ class AdminEmployeePayrollController extends Controller
 
     public function show($id)
     {
-        //
+        $currenttime = Carbon::today();
+        $search = $request['search'] ?? "";
+        if ($search != ""){
+            $payroll = Payroll::where('Name', 'LIKE', "%$search%")
+            ->orwhere('Detachment', 'LIKE', "%$search%")
+            ->get();
+        }
+        else{
+            $payroll = Payroll::all();
+        }
+        $data = compact('payroll', 'search');
+        return view('Admin.Payroll.list')->with($data);
     }
 
     public function edit($id)

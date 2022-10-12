@@ -28,6 +28,7 @@
         </ul>
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
