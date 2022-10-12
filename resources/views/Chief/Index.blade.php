@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Chief" class="active">Home</a></li>
-    <li class="nav-item"><a href="/Chief/Profile/{{ Auth::user()->id }}">Profile</a></li>
+    <li class="nav-item"><a href="/Chief/Application/{{ Auth::user()->userno }}">Application</a></li>
     <li  class="nav-item has-submenu">
       <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -23,7 +23,7 @@
           <li><a class="nav-link" href="/Chief/Payslips-Archive">Payslip Archive</a></li>
       </ul>
     </li>
-    <li class="nav-item"><a href="/Chief/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Chief/Attendance/{{ Auth::user()->userno }}">Attendance</a></li>
     <li class="nav-item"><a href="/Chief/LeaveRequest">Leave Request</a></li>
     <li class="nav-item"><a href="/Chief/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Chief/AccountSettings">Account Settings</a></li>

@@ -19,10 +19,14 @@ Route::resource('/Admin/Credentials/Employee', EmployeeCredentialsController::cl
 Route::resource('/Admin/Credentials/Chief', ChiefCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/ApplicationList', AdminApplicationController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
+Route::resource('/Admin/PayrollCode', AdminPayrollCodeController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Detachments', AdminDetachmentController::class)->middleware('IsAdmin');
+Route::resource('/Admin/AssignDetachments', AdminAssignDetachmentController::class)->middleware('IsAdmin');
 Route::resource('/Admin', AdminAnnouncementController::class)->middleware('IsAdmin');
 
+Route::get('/HumanResources/ApplicationList/download/{id}', 'HumanResourcesApplicationController@download')->name('hrdownloadapplication')->middleware('IsHumanResources');
 Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings')->middleware('IsHumanResources');
+Route::resource('/HumanResources/ApplicationList', HumanResourcesApplicationController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources/Detachments', HumanResourcesDetachmentController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)->middleware('IsHumanResources');
@@ -30,6 +34,7 @@ Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)-
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
 Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings')->middleware('IsAccounting');
 Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class)->middleware('IsAccounting');
+Route::resource('/Accounting/PayrollCode', AccountingPayrollCodeController::class)->middleware('IsAccounting');
 Route::resource('/Accounting/Wages', AccountingWageController::class)->middleware('IsAccounting');
 
 Route::get('/Employee', 'EmployeesController@index')->name('Employee.index')->middleware('IsEmployee');

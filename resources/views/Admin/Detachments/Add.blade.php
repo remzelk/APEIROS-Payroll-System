@@ -28,7 +28,9 @@
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -95,8 +97,8 @@ document.addEventListener("DOMContentLoaded", function(){
                     <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" placeholder="Enter Detachment" autofocus required> 
                 </div>
                 <div class="col-md-6">
-                    <label>Location</label>
-                    <input type="text" id="Location" name="Location" class="form-control mb-4" placeholder="Enter Location" required> 
+                    <label>City</label>
+                    <input type="text" id="Location" name="Location" class="form-control mb-4" placeholder="Enter City" required> 
                 </div>
                 <div class="col-md-6">
                     <label>Region</label>
@@ -108,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                     <label>Contact Number</label>
-                    <input type="number" id="ContactNo" name="ContactNo" class="form-control mb-4" placeholder="Enter Contact Number" required> 
+                    <input type="text" id="ContactNo" name="ContactNo" class="form-control mb-4" placeholder="Enter Contact Number" required> 
                 </div>
                 <div class="col-md-6">
                     <label>Email</label>

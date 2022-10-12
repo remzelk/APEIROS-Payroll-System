@@ -14,8 +14,8 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Chief" class="active">Home</a></li>
-    <li class="nav-item"><a href="/Chief/Profile/{{ Auth::user()->id }}">Profile</a></li>
+    <li class="nav-item"><a href="/Chief">Home</a></li>
+    <li class="nav-item"><a href="/Chief/Application/{{ Auth::user()->userno }}">Application</a></li>
     <li  class="nav-item has-submenu">
       <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
@@ -23,7 +23,7 @@
           <li><a class="nav-link" href="/Chief/Payslips-Archive">Payslip Archive</a></li>
       </ul>
     </li>
-    <li class="nav-item"><a href="/Chief/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Chief/Attendance/create" class="active">Attendance</a></li>
     <li class="nav-item"><a href="/Chief/LeaveRequest">Leave Request</a></li>
     <li class="nav-item"><a href="/Chief/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Chief/AccountSettings">Account Settings</a></li>
@@ -81,37 +81,41 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="row justify-content-center align-items-center h-100">
             <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                 <div class="card-body p-4 p-md-5">
+                @if($errors->any())
+                  {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
+                @endif
+                @if(Session::has('error'))
+                  <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
+                @if(Session::has('success'))
+                  <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
                   <h1 class="mb-3">Attendance Sheet:</h1>
-                    <form action="/Chief/Attendance/{{ Auth::user()->userno }}" method="POST" enctype="multipart/form-data">
+                    <form action="/Chief/Attendance" method="POST" enctype="multipart/form-data">
+                      @csrf
                       <div class="row">
                         <div class="col-md-6">
                           <label>Duration</label>
                             <select id="duration" name="duration" class="form-control mb-4" required>
-                              @foreach ($payrollcode as $key => $payrollcode)
-                                <option value="{{ $payrollcode['paycode'] }}">{{ $payrollcode['start'] }} - {{ $payrollcode['end'] }}</option>
+                              @foreach ($payrollcode as $payrollcode)
+                                <option value="{{ $payrollcode['PayCode'] }}">{{ $payrollcode['Start'] }} - {{ $payrollcode['End'] }}</option>
                               @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
-                          <label>Detachment</label>
-                            <select id="detachment" name="detachment" class="form-control mb-4" required>
-                              @foreach ($detachment as $detachment)
-                                <option value="{{ $detachment['dcode'] }}">{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}</option>
-                              @endforeach
-                            </select>
+                          <label>Detachment</label><br>
+                                {{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}   
                         </div>
-                        <div class="col-md-6">
-                          <label>Digital version of the attendance sheet</label>
-                            <input type="file" id="attendancesheet" name="attendancesheet" class="form-control mb-4" value="{{ old('attendancesheet', $application['attendancesheet']) }}" required>
-                        </div>
-                        <input type="hidden" id="Submitted" name="Submitted" value="1">
-                        <div class="mt-4 pt-2">
-                          <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
+                      <label>Digital version of the attendance sheet</label>
+                      <input type="file" id="attendancesheet" name="attendancesheet" class="form-control mb-4" value="{{ old('attendancesheet') }}" required>
+                      <input type="hidden" id="Submitted" name="Submitted" value="1">
+                      </div>
+                      <div class="mt-4 pt-2">
+                        <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
+                      </div>
+                    </form>
+                  </div>
+              </div>
         </div>
     </div>
 <div>

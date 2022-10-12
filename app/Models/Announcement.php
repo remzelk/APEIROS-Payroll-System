@@ -11,5 +11,4 @@ class Announcement extends Model
     public $table = 'announcement';
     use HasFactory, SoftDeletes;
     public $timestamps = false;
-    protected $primaryKey = 'id';
 }

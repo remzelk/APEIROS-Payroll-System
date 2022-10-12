@@ -28,7 +28,9 @@
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -87,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Payroll">< <u>Payroll</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Employee</h3>
-            <form action="/Admin/Payroll/{{ $payroll['Id'] }}" method="POST">
+            <form action="/Admin/Payroll/{{ $payroll['id'] }}" method="POST">
             @csrf
             @method('Put')
             <div class="row">

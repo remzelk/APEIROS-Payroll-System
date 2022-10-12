@@ -28,7 +28,9 @@
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -98,10 +100,13 @@ document.addEventListener("DOMContentLoaded", function(){
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th class="align-middle">Code</th>
 						<th class="align-middle">Detachment</th>
-						<th class="align-middle">Location</th>
+						<th class="align-middle">City</th>
             <th class="align-middle">Region</th>
-            <th class="align-middle">Wage</th>
+            <th class="align-middle">Contact Number</th>
+            <th class="align-middle">Email</th>
+            <th class="align-middle">Address</th>
             <th></th>
             <th></th>
 					</tr>
@@ -109,6 +114,9 @@ document.addEventListener("DOMContentLoaded", function(){
 			<div class="scroll">
 				@forelse($detachment as $key => $detachment)
 				<tr>
+          <td>
+						{{ $detachment['DCode'] }}
+					</td>
 					<td>
 						{{ $detachment['Detachment'] }}
 					</td>
@@ -119,12 +127,18 @@ document.addEventListener("DOMContentLoaded", function(){
 						{{ $detachment['Region'] }}
 					</td>
           <td>
-						{{ $detachment['Wage'] }}
+						{{ $detachment['ContactNo'] }}
+					</td>
+          <td>
+						{{ $detachment['Email'] }}
+					</td>
+          <td>
+						{{ $detachment['Address'] }}
 					</td>
           <td class="align-middle">
-            <a href="/Admin/Detachments/{{ $detachment['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $detachment['Detachment'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="/Admin/Detachments/{{ $detachment['DCode'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $detachment['Detachment'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           </td>
-          <form action="/Admin/Detachments/{{ $detachment['Id'] }}" method="POST">
+          <form action="/Admin/Detachments/{{ $detachment['DCode'] }}" method="POST">
           @csrf
           @method('Delete')
           <td class="align-middle">
@@ -132,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function(){
           </td>
           </form>
         @empty
-    		  <td colspan="5">
+    		  <td colspan="8">
             <h1>No Data!</h1>
           </td>
 			  @endforelse

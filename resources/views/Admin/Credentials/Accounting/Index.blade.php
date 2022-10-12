@@ -28,7 +28,9 @@
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Employee List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>

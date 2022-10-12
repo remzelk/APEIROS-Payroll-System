@@ -86,7 +86,7 @@ class AdminApplicationController extends Controller
         $application = Application::where('userno', $id)->firstOrFail();
         $application->ApplicationForm = $applicationform;
         $application->update();
-        return view('Admin.Application.application')->with('application', $application);
+        return view('Admin.Application.index')->with('application', $application);
     }
 
     public function destroy($id)

@@ -13,6 +13,11 @@ class Application extends Model
     public $timestamps = false;
     protected $fillable = [
         'UserNo', 
+        'SSS',
+        'PagIbig',
+        'Philhealth',
+        'TIN',
+        'DCode',
         'ApplicationForm',
         'Submitted'
     ];

@@ -29,7 +29,9 @@
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList" class="active">Application List</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -121,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function(){
         @endif
         @empty
           <tr>
-    		    <td colspan="2">
+    		    <td colspan="4">
               <h1>No Data!</h1>
             </td>
           </tr>

@@ -7,19 +7,32 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Employee List')
+@section('title', 'Payroll Code (Add)')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/ProfileList" class="active">Profile List</a></li>
-    <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
-    <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
+	<li class="nav-item has-submenu">
+    <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
+        <ul class="submenu collapse">
+          <li><a class="nav-item" href="/Admin/Credentials/Admin">Admin</a></li>
+          <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
+        </ul>
+    </li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode" class="active">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
+    
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
@@ -65,45 +78,39 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <nav class="navbar navbar-light navbg">
-<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Human Resources Portal</a></button> 
+<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div  id="main">
-  <div class="container-fluid h-100">
+  <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Profile List</h1><br>
-      <form action="" method="get">
-        <div class="form-inline my-2 my-lg-0 right"> 
-            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
-            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+          @if(Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+          @endif
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Generate Payroll Code</h3>
+            <form action="/Admin/PayrollCode" method="POST">
+              @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Start</label>
+                    <input type="date" id="Start" name="Start" class="form-control mb-4" required> 
+                </div>
+                <div class="col-md-6">
+                    <label>End</label>
+                    <input type="date" id="End" name="End" class="form-control mb-4" required> 
+                </div>
+            </div>
+              <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-		<div class="scroll">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th class="align-middle">Name</th>
-					</tr>
-				</thead>
-			<div class="scroll">
-				@forelse($profile as $key => $profile)
-				<tr>
-					<td>
-						<a class="profile-name" href="/HumanResources/ProfileList/{{ $profile['userID'] }}">{{ $profile['LastName'] }}, {{ $profile['FirstName'] }} {{ $profile['MiddleName'] }} {{ $profile['Extension'] }} {{ $profile['MP'] }}</a>
-					</td>
-                    @empty
-    		        <td>
-                        <h1>No Data!</h1>
-                    </td>
-			    @endforelse
-				</tr>
-			</div>
-			</table>
-			</div>
-        </div>
+      </div>
     </div>
   </div>
 <div>

@@ -11,5 +11,4 @@ class detachments extends Model
     public $table = 'detachments';
     use HasFactory, SoftDeletes;
     public $timestamps = false;
-    protected $primaryKey = 'Id';
 }

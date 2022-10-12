@@ -15,6 +15,7 @@ class Application extends Migration
             $table->text('PagIbig')->nullable();
             $table->text('Philhealth')->nullable();
             $table->text('TIN')->nullable();
+            $table->text('DCode')->nullable();
             $table->boolean('Submitted')->nullable()->default(0);
             $table->string('ApplicationForm')->nullable();
             $table->softDeletes();

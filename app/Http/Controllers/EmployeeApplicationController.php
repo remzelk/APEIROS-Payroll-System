@@ -56,7 +56,7 @@ class EmployeeApplicationController extends Controller
         $application->Submitted = $request->input('Submitted');
         $application->ApplicationForm = $applicationform;
         $application->update();
-        return view('Employee.Application.index')->with('application', $application)->with('message', 'Application added successfully!');;
+        return view('Employee.Application.index')->with('application', $application);
     }
 
     public function destroy($id)
