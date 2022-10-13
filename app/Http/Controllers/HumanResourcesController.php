@@ -11,23 +11,6 @@ class HumanResourcesController extends Controller
         return view('HumanResources.index');
     }
 
-    public function profile()
-    {
-        return view('HumanResources.profile', ['EmployeeList'=>$this->EmployeeList]);
-    }
-
-    public function addemployee()
-    {
-        
-        return view('HumanResources.addemployee');
-    }
-
-    public function editemployee()
-    {
-        
-        return view('HumanResources.editemployee');
-    }
-
     public function accountsettings()
     {
         return view('HumanResources.accountsettings');

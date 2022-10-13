@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Employee List')
+@section('title', 'Home')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -15,10 +15,10 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/HumanResources/EmployeeList" class="active">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance" class="active">Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -69,76 +69,47 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
+<nav class="navbar navbar-light navbg">
+<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
+</nav>
+
 <div  id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>List of Employees</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-                <label class="mb-4">Sort by:</label>&nbsp;
-				<select class="form-control mb-4" name="Sort" id="Sort">
-					<option value="All" selected="selected">All</option>
-                    <option value="NameAZ">Name (A to Z)</option>
-                    <option value="NameZA">Name (Z to A)</option>
-                    <option value="DateA">Date Joined (Ascending)</option>
-                    <option value="DateD">Date Joined (Descending)</option>
-				</select>
-			</div>
-			<div class="form-inline">
-                <a href="/Admin/EmployeeList/Add" class="mb-4">+Add Employee</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-			<div class="my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" name="search" id="search" value="{{$search}}" placeholder="Search" aria-label="Search">
-    			<button class="btn btn-outline-success mb-4" type="submit" >Search</button>
-			</div>
-            </div>
-			<div class="scroll">
+			<h1>Attendance List</h1><br>
+            <h3>{{ $payrollcode['Start'] }} to {{ $payrollcode['End'] }}</h3>
+      <form action="" method="get">
+        <div class="form-inline my-2 my-lg-0 right"> 
+            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+        </div>
+      </form>
+		<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="align-middle">Employee Name</th>
-						<th class="align-middle">Gender</th>
-                        <th class="align-middle">Date Joined</th>
-						<th class="align-middle">Position</th>
-						<th class="align-middle">Email</th>
-						<th class="align-middle">Password</th>
-                        <th></th>
-                        <th></th>
+						<th class="align-middle">Detachment</th>
+						<th class="align-middle">Location</th>
+						<th class="align-middle"></th>
+						<th class="align-middle"></th>
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($employee as $key => $Employee)
+				@forelse($attendance as $key => $attendance)
 				<tr>
-					<td>
-						{{ $Employee['LastName'] }}, {{ $Employee['FirstName'] }} {{ $Employee['MiddleInitial'] }}
-					</td>
-					<td>
-						{{ $Employee['Gender'] }}
-					</td>
-                    <td>
-						{{ $Employee['DateJoined'] }}
-					</td>
-					<td>
-						{{ $Employee['Position'] }}
-					</td>
-					<td>
-						{{ $Employee['Email'] }}
-					</td>
-					<td>
-						{{ $Employee['Password'] }}
-					</td>
-          <td class="align-middle">
-            <a href="/Admin/EmployeeList/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-          </td>
-          <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Employee['LastName'] ?>, <?php echo $Employee['FirstName'] ?> <?php echo $Employee['MiddleInitial'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-          </td>
-          @empty
-    		  <td colspan="8">
-            <h1>No Data!</h1>
-          </td>
-			  @endforelse
-				</tr>
+                    <td class="text-left">{{ $attendance['Detachment'] }}</td>
+                    <td class="text-left">{{ $attendance['Location'] }}</td>
+                    <td class="text-left"><a class="profile-name" target="__blank" href="/Admin/Attendance/view/{{ $attendance['AttendanceSheet'] }}">View</a></td>
+                    <td class="text-left"><a class="profile-name" href="{{ route('downloadattendance', $attendance['id']) }}">Download</a></td>
+                </tr>
+                @empty
+                <tr>
+    		        <td colspan="4"><h1>No Data!</h1></td>
+                </tr>
+			    @endforelse
 			</div>
 			</table>
 			</div>

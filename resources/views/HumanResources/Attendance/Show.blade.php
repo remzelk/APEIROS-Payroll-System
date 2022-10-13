@@ -15,8 +15,8 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList" class="active">Application List</a></li>
-    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance" class="active">Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
@@ -70,47 +70,16 @@ document.addEventListener("DOMContentLoaded", function(){
 </nav>
 
 <div  id="main">
-    <div class="container py-5 h-100">
+    <div class="container-fluid h-100">
         <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-lg-9 col-xl-7">
-                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                    <div class="card-body p-4 p-md-5">
-                        <form action="/Admin/ApplicationList/{{ $application['userID'] }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('Put')
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Date of Application</label>
-                                    <input type="date" id="DateOfApplication" name="DateOfApplication" class="form-control mb-4" value="{{ old('DateOfApplication', $application['DateOfApplication']) }}" required> 
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Date Hired</label>
-                                    <input type="date" id="DateHired" name="DateHired" class="form-control mb-4" value="{{ old('DateHired' ,$application['DateHired']) }}" required> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5" style="width: 50rem;">
+			    <h1>Attendance View</h1><br>
+                    <iframe src="{{ asset('attendance/' . $attendance['AttendanceSheet']) }}" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
+                        Your browser does not support iFrame.
+                    </iframe>		
             </div>
         </div>
     </div>
-    <div class="container py-5 h-100">
-        <div class="row justify-content-center align-items-center h-100">
-            <div class="col-12 col-lg-9 col-xl-7">
-                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                    <div class="card-body p-4 p-md-5">
-                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Personal Data</h3>
-                        <label>Digital version of your 2 x 2 image</label>
-                        <input type="file" id="Image" name="Image" class="form-control mb-4" accept="image/*" value="{{ old('Image', $application['Image']) }}" required> 
-                        
-                    <div class="mt-4 pt-2">
-                        <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
-                    </div>
-                </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-<div>
+</div>
 @endsection

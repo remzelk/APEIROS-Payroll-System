@@ -23,7 +23,7 @@
           <li><a class="nav-link" href="/Chief/Payslips-Archive">Payslip Archive</a></li>
       </ul>
     </li>
-    <li class="nav-item"><a href="/Chief/Attendance/{{ Auth::user()->userno }}">Attendance</a></li>
+    <li class="nav-item"><a href="/Chief/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Chief/LeaveRequest">Leave Request</a></li>
     <li class="nav-item"><a href="/Chief/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Chief/AccountSettings">Account Settings</a></li>

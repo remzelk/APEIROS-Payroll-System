@@ -14,6 +14,7 @@ Route::post('/Admin/Credentials/Register', 'RegisterController@store')->middlewa
 Route::get('/Admin/ApplicationList/download/{id}', 'AdminApplicationController@download')->name('downloadapplication')->middleware('IsAdmin');
 Route::get('/Admin/Attendance/download/{id}', 'AdminAttendanceController@download')->name('downloadattendance')->middleware('IsAdmin');
 Route::get('/Admin/Attendance/view/{id}', 'AdminAttendanceController@view')->name('viewattendance')->middleware('IsAdmin');
+Route::get('/Admin/Payroll/{paycode}/{id}', 'AdminEmployeePayrollController@editpayroll')->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Admin', AdminCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/HumanResources', HumanResourcesCredentialsController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Credentials/Accounting', AccountingCredentialsController::class)->middleware('IsAdmin');
@@ -22,17 +23,19 @@ Route::resource('/Admin/Credentials/Chief', ChiefCredentialsController::class)->
 Route::resource('/Admin/ApplicationList', AdminApplicationController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Attendance', AdminAttendanceController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
-Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
 Route::resource('/Admin/PayrollCode', AdminPayrollCodeController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Detachments', AdminDetachmentController::class)->middleware('IsAdmin');
 Route::resource('/Admin/AssignDetachments', AdminAssignDetachmentController::class)->middleware('IsAdmin');
 Route::resource('/Admin', AdminAnnouncementController::class)->middleware('IsAdmin');
 
 Route::get('/HumanResources/ApplicationList/download/{id}', 'HumanResourcesApplicationController@download')->name('hrdownloadapplication')->middleware('IsHumanResources');
+Route::get('/HumanResources/Attendance/download/{id}', 'HumanResourcesAttendanceController@download')->name('hrdownloadattendance')->middleware('HumanResources');
+Route::get('/HumanResources/Attendance/view/{id}', 'HumanResourcesAttendanceController@view')->name('hrviewattendance')->middleware('IsHumanResources');
 Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings')->middleware('IsHumanResources');
 Route::resource('/HumanResources/ApplicationList', HumanResourcesApplicationController::class)->middleware('IsHumanResources');
-Route::resource('/HumanResources/EmployeeList', HumanResourcesEmployeeController::class)->middleware('IsHumanResources');
+Route::resource('/HumanResources/Attendance', HumanResourcesAttendanceController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources/Detachments', HumanResourcesDetachmentController::class)->middleware('IsHumanResources');
+Route::resource('/HumanResources/AssignDetachments', HumanResourcesAssignDetachmentController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)->middleware('IsHumanResources');
 
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
@@ -54,11 +57,10 @@ Route::get('/Chief', 'ChiefController@index')->name('Chief.index')->middleware('
 Route::get('/Chief/Payslips-Current', 'ChiefController@payslipscurrent')->middleware('IsChief');
 Route::get('/Chief/Payslips-Archive', 'ChiefController@payslipsarchive')->middleware('IsChief');
 Route::get('/Chief/Schedule', 'ChiefController@schedule')->middleware('IsChief');
-Route::get('/Chief/Attendance', 'ChiefController@attendance')->middleware('IsChief');
 Route::get('/Chief/LeaveRequest', 'ChiefController@leaverequest')->middleware('IsChief');
 Route::get('/Chief/BIRForm2316', 'ChiefController@bir')->middleware('IsChief');
 Route::get('/Chief/AccountSettings', 'ChiefController@accountsettings')->middleware('IsChief');
-Route::resource('/Chief/Attendance', ChiefAttendanceController::class)->middleware('IsChief');;
+Route::resource('/Chief/Attendance', ChiefAttendanceController::class)->middleware('IsChief');
 Route::resource('/Chief/Application', ChiefApplicationController::class)->middleware('IsChief');
 
 Route::get('redirects', [App\Http\Controllers\HomeController::class, 'index']);

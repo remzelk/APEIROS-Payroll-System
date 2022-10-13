@@ -90,97 +90,79 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Payroll">< <u>Payroll</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Employee</h3>
-            <form action="/Admin/Payroll/{{ $payroll['id'] }}" method="POST">
+            <form action="/Admin/Payroll/{{ $payroll['UserNo'] }}" method="POST">
             @csrf
             @method('Put')
             <div class="row">
-                <div class="col-md-6">
-                  <label>Start</label>
-                  <input type="date" id="Start" name="Start" value="{{ $payroll['Start'] }}" class="form-control mb-4" required> 
-                </div>
-                <div class="col-md-6">
-                  <label>End</label>
-                  <input type="date" id="End" name="End" value="{{ $payroll['End'] }}" class="form-control mb-4" required> 
-                </div>
-                <div class="col-md-6">
-                  <label>Name</label>                    
-                  <select id="Name" name="Name" class="form-control mb-4" required>
-                    @foreach ($user as $key => $user)
-                      @if(($user['position'] == "4") && ($user['name'] != "") && ($user['name'] == $payroll['Name']))
-                        <option value="{{ $user['name'] }}" selected>{{ $user['name'] }}</option>
-                      @elseif(($user['position'] == "4") && ($user['name'] != ""))
-                      <option value="{{ $user['name'] }}">{{ $user['name'] }}</option>
+              <div class="col-md-6">
+                  <label>Duration</label>                    
+                  <select id="PayCode" name="PayCode" class="form-control mb-4" required>
+                    @foreach ($payrollcode as $key => $payrollcode)
+                      @if($payrollcode['PayCode'] == $payroll['PayCode'])
+                        <option value="{{ $payrollcode['PayCode'] }}" selected><b>Start:</b> {{ $payrollcode['Start'] }}, <b>End:</b> {{ $payrollcode['End'] }}</option>
+                      @else
+                        <option value="{{ $payrollcode['PayCode'] }}"><b>Start:</b> {{ $payrollcode['Start'] }}, <b>End:</b> {{ $payrollcode['End'] }}</option>
                       @endif
                     @endforeach
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label>Detachment</label>
-                  <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" value="{{ $payroll['Detachment'] }}"> 
+                  <label>Name</label>                    
+                  <select id="Name" name="Name" class="form-control mb-4" required>
+                    @foreach ($user as $key => $user)
+                      @if(($user['position'] == "4") || ($user['position'] == "5") && ($user['name'] != ""))
+                        @if($user['userno'] == $payroll['UserNo'])
+                        <option value="{{ $user['userno'] }}" selected>{{ $user['name'] }}</option>
+                        @else
+                        <option value="{{ $user['userno'] }}">{{ $user['name'] }}</option>
+                        @endif
+                      @endif
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-md-6">
-                  <label>No. of Days</label>
-                  <input type="number" step="1" max="31" min="0" value="{{ $payroll['DaysWorked'] }}" id="DaysWorked" name="DaysWorked" class="form-control mb-4">
+                  <label>Rate Per Day</label>
+                  <input type="number" step="1" min="0" value="{{ $payroll['RatePerDay'] }}" id="RatePerDay" name="RatePerDay" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Officer's Allowance</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['OfficersAllowance'] }}" id="OfficersAllowance" name="OfficersAllowance" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>Night Shift Differential (Days)</label>
-                  <input type="number" step="1" max="31" min="0" value="{{ $payroll['NSDifferential'] }}" id="NSDifferential" name="NSDifferential" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>Special Holiday (Days)</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['SHDays'] }}" id="SHDays" name="SHDays" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>Legal Holiday (Days)</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['LHDays'] }}" id="LHDays" name="LHDays" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['OfficersAllowance'] }}" id="OfficersAllowance" name="OfficersAllowance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Overtime/Adj.</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['OTAdj'] }}" id="OTAdj" name="OTAdj" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>PhilHealth</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['PhilHealth'] }}" id="PhilHealth" name="PhilHealth" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>HDMF</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['HDMF'] }}" id="HDMF" name="HDMF" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['OTAdj'] }}" id="OTAdj" name="OTAdj" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>HDMF Loan</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['HDMFLoan'] }}" id="HDMFLoan" name="HDMFLoan" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['HDMFLoan'] }}" id="HDMFLoan" name="HDMFLoan" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Firearms Maintenance</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['FAMaintenance'] }}" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['FAMaintenance'] }}" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Radio Maintenance</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['RadioMaintenance'] }}" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['RadioMaintenance'] }}" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Bank Charge</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['BankCharge'] }}" id="BankCharge" name="BankCharge" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['BankCharge'] }}" id="BankCharge" name="BankCharge" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Insurance</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['Insurance'] }}" id="Insurance" name="Insurance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['Insurance'] }}" id="Insurance" name="Insurance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Cash Bond</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['CashBond'] }}" id="CashBond" name="CashBond" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['CashBond'] }}" id="CashBond" name="CashBond" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Cash Advance</label>
-                  <input type="number" step="1" min="0" value="{{ $payroll['CashAdvance'] }}" id="CashAdvance" name="CashAdvance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="{{ $payroll['CashAdvance'] }}" id="CashAdvance" name="CashAdvance" class="form-control mb-4" required>
                 </div>
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+                <input class="btn btn-primary btn-lg bton" type="submit" onclick="return confirm('Are you sure these data are correct?')" value="Submit" />
               </div>
             </form>
           </div>
@@ -189,10 +171,4 @@ document.addEventListener("DOMContentLoaded", function(){
     </div>
   </div>
 <div>
-<script>
-    // Warning
-    $(window).on('beforeunload', function(){
-        return "Any changes will be lost";
-    });
-
 @endsection

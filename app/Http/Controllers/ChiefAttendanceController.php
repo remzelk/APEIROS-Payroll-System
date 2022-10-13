@@ -57,8 +57,8 @@ class ChiefAttendanceController extends Controller
         ->where('End', $attendance->End)
         ->where('Detachment', $attendance->Detachment)
         ->where('Location', $attendance->Location)
-        ->firstOrFail();
-        if($a->Submitted != 0) {
+        ->count();
+        if($a != 0) {
             return Redirect::back()->with('error', 'Attendance sheet for this duration has already been submitted!');
         }
         $attendance->save();

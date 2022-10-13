@@ -88,7 +88,13 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			    <h1 class="mb-3">Payroll Codes</h1>
-          <a href="/Admin/PayrollCode/create" class="mb-4">+Generare a new payroll code</a>
+        <form action="" method="get">
+            <div class="form-inline my-2 my-lg-0 right"> 
+            <a href="/Admin/PayrollCode/create" class="mb-4">+Generare a new payroll code</a>&emsp;
+                <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+                <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+            </div>
+        </form>
           <table class="table table-striped">
             <thead>
               <tr>

@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Detachments">< <u>Detachments</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment</h3>
-            <form action="/Admin/Detachments/{{ $detachment['Id'] }}" method="POST">
+            <form action="/Admin/Detachments/{{ $detachment['id'] }}" method="POST">
               @csrf
               @method('Put')
             <div class="row">

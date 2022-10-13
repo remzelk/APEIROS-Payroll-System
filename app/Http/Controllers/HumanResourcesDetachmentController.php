@@ -20,12 +20,12 @@ class HumanResourcesDetachmentController extends Controller
             $detachment = Detachments::all();
         }
         $data = compact('detachment', 'search');
-        return view('HumanResources.detachments')->with($data);
+        return view('HumanResources.Detachments.index')->with($data);
     }
 
     public function create()
     {
-        return view('Accounting.adddetachment');
+        return view('HumanResources.Detachments.add');
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class HumanResourcesDetachmentController extends Controller
     public function edit($id)
     {
         $detachment = Detachments::findorfail($id);
-        return view('HumanResources.editdetachment')->with('detachment', $detachment);
+        return view('HumanResources.Detachments.edit')->with('detachment', $detachment);
     }
 
     public function update(Request $request, $Id)

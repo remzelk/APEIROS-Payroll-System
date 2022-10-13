@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", function(){
             @csrf
             <div class="row">
               <div class="col-md-6">
-                  <label>Payroll Code</label>                    
+                  <label>Duration</label>                    
                   <select id="PayCode" name="PayCode" class="form-control mb-4" required>
                     @foreach ($payrollcode as $key => $payrollcode)
-                        <option value="{{ $payrollcode['id'] }}">{{ $payrollcode['paycode'] }}: {{ $payrollcode['start'] }} - {{ $payrollcode['end'] }}</option>
+                        <option value="{{ $payrollcode['PayCode'] }}"><b>Start:</b> {{ $payrollcode['Start'] }}, <b>End:</b> {{ $payrollcode['End'] }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -106,82 +106,50 @@ document.addEventListener("DOMContentLoaded", function(){
                   <select id="Name" name="Name" class="form-control mb-4" required>
                     @foreach ($user as $key => $user)
                       @if(($user['position'] == "4") || ($user['position'] == "5") && ($user['name'] != ""))
-                        <option value="{{ $user['name'] }}">{{ $user['name'] }}</option>
+                        <option value="{{ $user['userno'] }}">{{ $user['name'] }}</option>
                       @endif
                     @endforeach
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <label>Detachment</label>
-                  <select id="DetachmentID" name="DetachmentID" class="form-control mb-4" required>
-                    @foreach ($detachment as $detachment)
-                      <option value="{{ $detachment['id'] }}">{{ $detachment['Detachment'] }} : {{ $detachment['Location'] }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label>No. of Days</label>
-                  <input type="number" step="1" max="15" min="0" value="0" id="DaysWorked" name="DaysWorked" class="form-control mb-4" onKeyDown="return false">
-                </div>
-                <div class="col-md-6">
                   <label>Rate Per Day</label>
-                  <input type="number" step="1" min="0" value="0.00" id="RatePerDay" name="RatePerDay" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="RatePerDay" name="RatePerDay" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Officer's Allowance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="OfficersAllowance" name="OfficersAllowance" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>Night Shift Differential (Days)</label>
-                  <input type="number" step="1" max="15" min="0" value="0" id="NSDifferential" name="NSDifferential" class="form-control mb-4" onKeyDown="return false">
-                </div>
-                <div class="col-md-6">
-                  <label>Special Holiday (Days)</label>
-                  <input type="number" step="1" max="15" min="0" value="0" id="SHDays" name="SHDays" class="form-control mb-4" onKeyDown="return false">
-                </div>
-                <div class="col-md-6">
-                  <label>Legal Holiday (Days)</label>
-                  <input type="number" step="1" max="15" min="0" value="0" id="LHDays" name="LHDays" class="form-control mb-4" onKeyDown="return false">
+                  <input type="number" step="1" min="0" value="0.00" id="OfficersAllowance" name="OfficersAllowance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Overtime/Adj.</label>
-                  <input type="number" step="1" min="0" value="0.00" id="OTAdj" name="OTAdj" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>PhilHealth</label>
-                  <input type="number" step="1" min="0" value="100.00" id="PhilHealth" name="PhilHealth" class="form-control mb-4">
-                </div>
-                <div class="col-md-6">
-                  <label>HDMF</label>
-                  <input type="number" step="1" min="0" value="0.00" id="HDMF" name="HDMF" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="OTAdj" name="OTAdj" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>HDMF Loan</label>
-                  <input type="number" step="1" min="0" value="0.00" id="HDMFLoan" name="HDMFLoan" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="HDMFLoan" name="HDMFLoan" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Firearms Maintenance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Radio Maintenance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Bank Charge</label>
-                  <input type="number" step="1" min="0" value="0.00" id="BankCharge" name="BankCharge" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="BankCharge" name="BankCharge" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Insurance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="Insurance" name="Insurance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="Insurance" name="Insurance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Cash Bond</label>
-                  <input type="number" step="1" min="0" value="0.00" id="CashBond" name="CashBond" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="CashBond" name="CashBond" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Cash Advance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="CashAdvance" name="CashAdvance" class="form-control mb-4">
+                  <input type="number" step="1" min="0" value="0.00" id="CashAdvance" name="CashAdvance" class="form-control mb-4" required>
                 </div>
             </div>
               <div class="mt-4 pt-2">

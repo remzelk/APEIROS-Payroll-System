@@ -10,12 +10,12 @@ class payroll extends Model
 {
     public $table = 'payroll';
     use HasFactory, SoftDeletes;
+    public $timestamps = false;
     protected $fillable = [
+        'PayCode',
+        'DCode',
         'UserNo',
-        'Start',
-        'End',
         'Name',
-        'Detachment',
         'DaysWorked',
         'RatePerDay',
         'GrossPay',
@@ -31,6 +31,7 @@ class payroll extends Model
         'PhilHealth',
         'HDMF',
         'HDMFLoan',
+        'SSS',
         'FAMaintenance',
         'RadioMaintenance',
         'BankCharge',

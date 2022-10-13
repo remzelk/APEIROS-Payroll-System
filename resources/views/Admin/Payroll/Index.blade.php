@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
   <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
-@section('title', 'Application')
+@section('title', 'Payroll')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -28,8 +28,8 @@
         </ul>
     </li>
     <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/Admin/Attendance" class="active">Attendance</a></li>
-    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Attendance List</h1><br>
+			<h1>Payroll List</h1><br>
       <form action="" method="get">
         <div class="form-inline my-2 my-lg-0 right"> 
             <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
@@ -108,7 +108,10 @@ document.addEventListener("DOMContentLoaded", function(){
 			<div class="scroll">
 				@forelse($payrollcode as $key => $payrollcode)
 				<tr>
-          			<td class="text-left"><a class="profile-name" target="__blank" href="/Admin/Attendance/{{ $payrollcode['PayCode'] }}">Start: {{ $payrollcode['Start'] }},  End: {{ $payrollcode['End'] }}</a></td>
+					<td class="text-left">{{ $payrollcode['PayCode'] }}</td>
+					<td class="text-left">{{ $payrollcode['Start'] }}</td>
+					<td class="text-left">{{ $payrollcode['End'] }}</td>
+          			<td class="text-left"><a class="profile-name" href="/Admin/Payroll/{{ $payrollcode['PayCode'] }}">View</a></td>
         		</tr>
         		@empty
           <tr>

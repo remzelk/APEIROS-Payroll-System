@@ -11,11 +11,9 @@ class Payroll extends Migration
         Schema::create('Payroll', function (Blueprint $table) {
             $table->id('id');
             $table->text('PayCode');
+            $table->text('DCode');
             $table->integer('UserNo');
-            $table->date('Start');
-            $table->date('End');
             $table->text('Name');
-            $table->text('Detachment');
             $table->integer('DaysWorked')->default(0);
             $table->decimal('RatePerDay')->nullable();
             $table->decimal('GrossPay')->nullable();

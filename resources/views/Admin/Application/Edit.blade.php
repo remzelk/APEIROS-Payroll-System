@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="col-12 col-lg-9 col-xl-7">
                 <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                     <div class="card-body p-4 p-md-5">
-                        <form action="/Admin/ApplicationList/{{ $application['userID'] }}" method="POST" enctype="multipart/form-data">
+                        <form action="/Admin/ApplicationList/{{ $application['UserNo'] }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('Put')
                             <div class="row">

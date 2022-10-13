@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1 class="mb-3">Payroll</h1>
-			<h3 class="mb-3">October 1 - 15</h3>
+			<h3 class="mb-3">Start: {{ $payrollcode['Start'] }} &emsp; End: {{ $payrollcode['End'] }}</h3>
 			<a href="/Admin/Payroll/create">+Add Employee</a>
 			<div class="form-inline my-2 my-lg-0 right"> 
 				<form action="" method="get">
@@ -104,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th></th>
 						<th></th>
+						<th class="align-middle">Detachment</th>
+						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
 						<th class="align-middle">Rate Per Day</th>
@@ -111,15 +113,16 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Officer's Allowance</th>
 						<th class="align-middle">Night Shift Differential</th>
 						<th class="align-middle">Night Differential</th>
-						<th class="align-middle">No. of Days</th>
+						<th class="align-middle">S.H. Days</th>
 						<th class="align-middle">Special Holiday</th>
-						<th class="align-middle">No. of Days</th>
+						<th class="align-middle">L.H. Days</th>
 						<th class="align-middle">Legal Holiday</th>
 						<th class="align-middle">OT/Adj.</th>
 						<th class="align-middle">Gross Pay</th>
 						<th class="align-middle">PhilHealth</th>
 						<th class="align-middle">HDMF</th>
 						<th class="align-middle">HDMF Loan</th>
+						<th class="align-middle">SSS</th>
 						<th class="align-middle">F/A MNTNZ</th>
 						<th class="align-middle">Radio MNTANANZ</th>
 						<th class="align-middle">Bank Charge</th>
@@ -131,95 +134,108 @@ document.addEventListener("DOMContentLoaded", function(){
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($payroll as $key => $Payroll)
+				@forelse($payroll as $key => $payroll)
 				<tr>
 					<td class="align-middle">
-						<a href="/Admin/Payroll/{{ $Payroll['Id'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a href="/Admin/Payroll/{{$payroll['PayCode']}}/{{ $payroll['UserNo'] }}" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					</td>
 					<td class="align-middle">
-						<form action="/Admin/Payroll/{{ $Payroll['Id'] }}" method="POST">
+						<form action="/Admin/Payroll/{{ $payroll['UserNo'] }}" method="POST">
 							@csrf
 							@method('Delete')
                             <input type="hidden" name="name" value= <?php echo $key ?>>
-							<button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $Payroll['Name'] ?>?')"><i class="fa fa-trash" aria-hidden="true" value="Delete"></i></button>
+							<button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $payroll['Name'] ?>?')"><i class="fa fa-trash" aria-hidden="true" value="Delete"></i></button>
 						</form>
 					</td>
 					<td>
-						{{ $Payroll['Name'] }}
+						@foreach($detachment as $detachment)
+							@if($detachment['DCode'] == $payroll['DCode'])
+								{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
+							@endif
+						@endforeach
 					</td>
 					<td>
-						{{ $Payroll['DaysWorked'] }}
+						{{ $payroll['UserNo'] }}
 					</td>
 					<td>
-						{{ $Payroll['RatePerDay'] }}
+						{{ $payroll['Name'] }}
 					</td>
 					<td>
-						{{ $Payroll['GrossPay'] }}
+						{{ $payroll['DaysWorked'] }}
 					</td>
 					<td>
-						{{ $Payroll['OfficersAllowance'] }}
+						{{ $payroll['RatePerDay'] }}
 					</td>
 					<td>
-						{{ $Payroll['NSDifferential'] }}
+						{{ $payroll['GrossPay'] }}
 					</td>
 					<td>
-						{{ $Payroll['NightDifferential'] }}
+						{{ $payroll['OfficersAllowance'] }}
 					</td>
 					<td>
-						{{ $Payroll['SHDays'] }}
+						{{ $payroll['NSDifferential'] }}
 					</td>
 					<td>
-						{{ $Payroll['SpecialHoliday'] }}
+						{{ $payroll['NightDifferential'] }}
 					</td>
 					<td>
-						{{ $Payroll['LHDays'] }}
+						{{ $payroll['SHDays'] }}
 					</td>
 					<td>
-						{{ $Payroll['LegalHoliday'] }}
+						{{ $payroll['SpecialHoliday'] }}
 					</td>
 					<td>
-						{{ $Payroll['OTAdj'] }}
+						{{ $payroll['LHDays'] }}
 					</td>
 					<td>
-						{{ $Payroll['FinalGrossPay'] }}
+						{{ $payroll['LegalHoliday'] }}
 					</td>
 					<td>
-						{{ $Payroll['PhilHealth'] }}
+						{{ $payroll['OTAdj'] }}
 					</td>
 					<td>
-						{{ $Payroll['HDMF'] }}
+						{{ $payroll['FinalGrossPay'] }}
 					</td>
 					<td>
-						{{ $Payroll['HDMFLoan'] }}
+						{{ $payroll['PhilHealth'] }}
 					</td>
 					<td>
-						{{ $Payroll['FAMaintenance'] }}
+						{{ $payroll['HDMF'] }}
 					</td>
 					<td>
-						{{ $Payroll['RadioMaintenance'] }}
+						{{ $payroll['HDMFLoan'] }}
+					</td>
+					<td>
+						{{ $payroll['SSS'] }}
+					</td>
+					<td>
+						{{ $payroll['FAMaintenance'] }}
+					</td>
+					<td>
+						{{ $payroll['RadioMaintenance'] }}
 					</td>	
 					<td>
-						{{ $Payroll['BankCharge'] }}
+						{{ $payroll['BankCharge'] }}
 					</td>
 					<td>
-						{{ $Payroll['Insurance'] }}
+						{{ $payroll['Insurance'] }}
 					</td>
 					<td>
-						{{ $Payroll['CashBond'] }}
+						{{ $payroll['CashBond'] }}
 					</td>
 					<td>
-						{{ $Payroll['TotalDeduction'] }}
+						{{ $payroll['TotalDeduction'] }}
 					</td>
 					<td>
-						{{ $Payroll['CashAdvance'] }}
+						{{ $payroll['CashAdvance'] }}
 					</td>
 					<td>
-						{{ $Payroll['TotalNetPay'] }}
+						{{ $payroll['TotalNetPay'] }}
 					</td>
 				</tr>
 				@empty
 				<tr>
-					<td colspan="26">
+					<td colspan="29">
 						<h1>No Data!</h1>
 					</td>
     			
