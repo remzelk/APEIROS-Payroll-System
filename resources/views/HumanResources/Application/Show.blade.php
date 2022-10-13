@@ -16,7 +16,9 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/ApplicationList" class="active">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
