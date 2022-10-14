@@ -11,6 +11,9 @@ class Application extends Migration
         Schema::create('Application', function (Blueprint $table) {
             $table->id('id');
             $table->integer('UserNo');
+            $table->text('Address')->nullable();
+            $table->text('Phone')->nullable();
+            $table->text('Email')->nullable();
             $table->text('SSS')->nullable();
             $table->text('PagIbig')->nullable();
             $table->text('Philhealth')->nullable();

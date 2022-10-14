@@ -7,17 +7,17 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Edit Wage')
+@section('title', 'Payroll Code (Edit)')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Accounting">Home</a></li>
-    <li class="nav-item"><a href="/Accounting/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/Accounting/EmployeePayroll">Employee Payroll</a></li>
-    <li class="nav-item"><a href="/Accounting/Wages" class="active">Wages</a></li>
+    <li class="nav-item"><a href="/Accounting/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Accounting/PayrollCode" class="active">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Accounting/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Accounting/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <nav class="navbar navbar-light navbg">
 <button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Accounting Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, User!</a>
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div  id="main">
@@ -74,22 +74,25 @@ document.addEventListener("DOMContentLoaded", function(){
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <a href="/Accounting/Wages">< <u>Wages</u></a><br><br>
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Wage</h3>
-            <form>
-
+          @if(Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+          @endif
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Generate Payroll Code</h3>
+            <form action="/Accounting/PayrollCode/{{ $payrollcode['PayCode'] }}" method="POST">
+              @csrf
+              @method('Put')
             <div class="row">
                 <div class="col-md-6">
-                    <label>Location</label>
-                    <input type="text" id="FirstName" class="form-control mb-4" placeholder="Enter Location"> 
+                    <label>Start</label>
+                    <input type="date" id="Start" name="Start" value="{{ old('Start', $payrollcode['Start']) }}" class="form-control mb-4" required> 
                 </div>
                 <div class="col-md-6">
-                    <label>Wage</label>
-                    <input type="text" id="LastName" class="form-control mb-4" placeholder="Enter Wage"> 
+                    <label>End</label>
+                    <input type="date" id="End" name="End" value="{{ old('End', $payrollcode['End']) }}" class="form-control mb-4" required> 
                 </div>
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
               </div>
             </form>
           </div>
@@ -98,9 +101,4 @@ document.addEventListener("DOMContentLoaded", function(){
     </div>
   </div>
 <div>
-<script>
-    window.onbeforeunload = function(){
-  return 'Are you sure you want to leave?';
-};
-</script>
 @endsection

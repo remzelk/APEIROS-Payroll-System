@@ -49,6 +49,9 @@ class ChiefApplicationController extends Controller
         $request->file('ApplicationForm')->move(public_path('application'), $applicationform);
 
         $application = Application::where('userno', $id)->firstOrFail();
+        $application->Address = $request->input('Address');
+        $application->Phone = $request->input('Phone');
+        $application->Email = $request->input('Email');
         $application->SSS = $request->input('SSS');
         $application->PagIbig = $request->input('PagIbig');
         $application->Philhealth = $request->input('Philhealth');

@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Employee Payroll (Add Employee)')
+@section('title', 'Payroll')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -15,9 +15,9 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Accounting">Home</a></li>
-    <li class="nav-item"><a href="/Accounting/Profile">Profile</a></li>
+    <li class="nav-item"><a href="/Accounting/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Accounting/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Accounting/Payroll" class="active">Payroll</a></li>
-    <li class="nav-item"><a href="/Accounting/Wages">Wages</a></li>
     <li class="nav-item"><a href="/Accounting/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -74,26 +74,76 @@ document.addEventListener("DOMContentLoaded", function(){
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <a href="/Accounting/EmployeePayroll">< <u>Employee Payroll</u></a><br><br>
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Employee (Employee Payroll)</h3>
-            <form>
+          <a href="/Admin/Payroll">< <u>Payroll</u></a><br><br>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Employee</h3>
+            <form action="/Admin/Payroll" method="POST">
             @csrf
             <div class="row">
-                <div class="col-md-6">
-                    <label>Full Name</label>
-                    <input type="text" id="Name" name="Name" class="form-control mb-4" placeholder="Enter Full Name"> 
+              <div class="col-md-6">
+                  <label>Duration</label>                    
+                  <select id="PayCode" name="PayCode" class="form-control mb-4" required>
+                    @foreach ($payrollcode as $key => $payrollcode)
+                        <option value="{{ $payrollcode['PayCode'] }}"><b>Start:</b> {{ $payrollcode['Start'] }}, <b>End:</b> {{ $payrollcode['End'] }}</option>
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-md-6">
-                    <label>Detachment</label>
-                    <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" placeholder="Enter Detachment"> 
+                  <label>Name</label>                    
+                  <select id="Name" name="Name" class="form-control mb-4" required>
+                    @foreach ($user as $key => $user)
+                      @if(($user['position'] == "4") || ($user['position'] == "5") && ($user['name'] != ""))
+                        <option value="{{ $user['userno'] }}">{{ $user['name'] }}</option>
+                      @endif
+                    @endforeach
+                  </select>
                 </div>
                 <div class="col-md-6">
-                    <label>Location</label>
-                    <input type="text" id="Location" name="Location" class="form-control mb-4" placeholder="Enter Location"> 
+                  <label>Rate Per Day</label>
+                  <input type="number" step="1" min="0" value="0.00" id="RatePerDay" name="RatePerDay" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Officer's Allowance</label>
+                  <input type="number" step="1" min="0" value="0.00" id="OfficersAllowance" name="OfficersAllowance" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Overtime/Adj.</label>
+                  <input type="number" step="1" min="0" value="0.00" id="OTAdj" name="OTAdj" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>SSS Loan</label>
+                  <input type="number" step="1" min="0" value="0.00" id="SSSLoan" name="SSSLoan" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>HDMF Loan</label>
+                  <input type="number" step="1" min="0" value="0.00" id="HDMFLoan" name="HDMFLoan" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Firearms Maintenance</label>
+                  <input type="number" step="1" min="0" value="0.00" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Radio Maintenance</label>
+                  <input type="number" step="1" min="0" value="0.00" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Bank Charge</label>
+                  <input type="number" step="1" min="0" value="0.00" id="BankCharge" name="BankCharge" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Insurance</label>
+                  <input type="number" step="1" min="0" value="0.00" id="Insurance" name="Insurance" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Cash Bond</label>
+                  <input type="number" step="1" min="0" value="0.00" id="CashBond" name="CashBond" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>Cash Advance</label>
+                  <input type="number" step="1" min="0" value="0.00" id="CashAdvance" name="CashAdvance" class="form-control mb-4" required>
                 </div>
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+                <input class="btn btn-primary btn-lg bton" type="submit" onclick="return confirm('Are you sure these data are correct?')" value="Submit" />
               </div>
             </form>
           </div>
@@ -102,9 +152,4 @@ document.addEventListener("DOMContentLoaded", function(){
     </div>
   </div>
 <div>
-<script>
-    window.onbeforeunload = function(){
-  return 'Are you sure you want to leave?';
-};
-</script>
 @endsection

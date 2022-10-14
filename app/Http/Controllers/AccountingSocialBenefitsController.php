@@ -24,6 +24,7 @@ class AccountingSocialBenefitsController extends Controller
             ->where('Name', 'LIKE', "%$search%")
             ->orwhere('Position', 'LIKE', '4')
             ->orwhere('Position', 'LIKE', '5')
+            ->whereNull('users.deleted_at')
             ->get();
         }
         else{
@@ -32,39 +33,10 @@ class AccountingSocialBenefitsController extends Controller
             ->orderBy('Name', 'ASC')
             ->orwhere('Position', 'LIKE', '4')
             ->orwhere('Position', 'LIKE', '5')
+            ->whereNull('users.deleted_at')
             ->get();
         }
         $data = compact('user', 'search');
-        return view('Admin.Application.index')->with($data);
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
+        return view('Accounting.SocialBenefits.index')->with($data);
     }
 }

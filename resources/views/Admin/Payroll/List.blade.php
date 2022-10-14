@@ -27,13 +27,14 @@
         </ul>
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
-    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
-    
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
@@ -123,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">HDMF</th>
 						<th class="align-middle">HDMF Loan</th>
 						<th class="align-middle">SSS</th>
+						<th class="align-middle">SSS Loan</th>
 						<th class="align-middle">F/A MNTNZ</th>
 						<th class="align-middle">Radio MNTANANZ</th>
 						<th class="align-middle">Bank Charge</th>
@@ -148,11 +150,11 @@ document.addEventListener("DOMContentLoaded", function(){
 						</form>
 					</td>
 					<td>
-						@foreach($detachment as $detachment)
-							@if($detachment['DCode'] == $payroll['DCode'])
-								{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
-							@endif
-						@endforeach
+					@foreach($detachment as $detachment)
+              			@if($detachment['DCode'] == $payroll['DCode'])
+                			{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
+              			@endif
+            		@endforeach
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}
@@ -207,6 +209,9 @@ document.addEventListener("DOMContentLoaded", function(){
 					</td>
 					<td>
 						{{ $payroll['SSS'] }}
+					</td>
+					<td>
+						{{ $payroll['SSSLoan'] }}
 					</td>
 					<td>
 						{{ $payroll['FAMaintenance'] }}

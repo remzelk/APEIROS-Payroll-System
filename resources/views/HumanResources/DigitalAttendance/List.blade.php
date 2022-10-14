@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Detachments')
+@section('title', 'Digital Attendance')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -15,10 +15,11 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
-    <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance" class="active">DigitalAttendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -74,51 +75,69 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>List of Detatchments</h1><br>
-			<div class="form-inline my-2 my-lg-0"> 
-                <label class="mb-4">Sort by:</label>&nbsp;
-				<select class="form-control mb-4" name="Sort" id="Sort">
-					<option value="AllPosts" selected="selected">All</option>
-                    <option value="DAZ">Detachments (A to Z)</option>
-                    <option value="DZA">Detachments (Z to A)</option>
-                    <option value="LAZ">Location (A to Z)</option>
-                    <option value="LZA">Location (Z to A)</option>
-				</select>
+			<h1 class="mb-3">Digital Attendance</h1>
+			<h3 class="mb-3">Start: {{ $payrollcode['Start'] }} &emsp; End: {{ $payrollcode['End'] }}</h3>
+			<div class="form-inline my-2 my-lg-0 right"> 
+				<form action="" method="get">
+					<input class="form-control mb-4 search" type="search" name="search" value="{{ $search }}" placeholder="Name/Detach./Loc.">
+					<button class="btn btn-outline-success mb-4" type="submit">Search</button>
+				</form>
 			</div>
-      <div class="form-inline">
-      <a href="/HumanResources/Detachments/Add" class="mb-4">+Add Detachment</a>&emsp;&emsp;
-			<div class="my-2 my-lg-0 right"> 
-    			<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    			<button class="btn btn-outline-success mb-4" type="submit">Search</button>
-			</div>
-    </div>
+
 			<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th></th>
 						<th class="align-middle">Detachment</th>
-						<th class="align-middle">Location</th>
+						<th class="align-middle">User No.</th>
+						<th class="align-middle">Employee Name</th>
+						<th class="align-middle">No. of Days</th>
+						<th class="align-middle">Night Shift Differential</th>
+						<th class="align-middle">S.H. Days</th>
+						<th class="align-middle">L.H. Days</th>
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($detachment as $key => $Detachment)
+				@forelse($payroll as $key => $payroll)
 				<tr>
-					<td>
-						{{ $Detachment['Detachment'] }}
+					<td class="align-middle">
+						<a href="/HumanResources/DigitalAttendance/{{$payroll['PayCode']}}/{{ $payroll['UserNo'] }}" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					</td>
 					<td>
-						{{ $Detachment['Location'] }}
+						@foreach($detachment as $detachment)
+							@if($detachment['DCode'] == $payroll['DCode'])
+								{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
+							@endif
+						@endforeach
 					</td>
-          <td class="align-middle">
-            <a href="/HumanResources/Detachments/Edit" class="btn btn-primary" onclick="return confirm('Edit detachment: <?php echo $Detachment['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-          </td>
-          <td class="align-middle">
-            <button class="btn btn-danger" onclick="return confirm('Delete detachment: <?php echo $Detachment['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-          </td>
+					<td>
+						{{ $payroll['UserNo'] }}
+					</td>
+					<td>
+						{{ $payroll['Name'] }}
+					</td>
+					<td>
+						{{ $payroll['DaysWorked'] }}
+					</td>
+					<td>
+						{{ $payroll['NSDifferential'] }}
+					</td>
+					<td>
+						{{ $payroll['SHDays'] }}
+					</td>
+					<td>
+						{{ $payroll['LHDays'] }}
+					</td>
 				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
+				@empty
+				<tr>
+					<td colspan="8">
+						<h1>No Data!</h1>
+					</td>
+    			
+				</tr>
+				@endforelse
 			</div>
 			</table>
 			</div>

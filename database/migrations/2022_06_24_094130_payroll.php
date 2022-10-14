@@ -30,6 +30,7 @@ class Payroll extends Migration
             $table->decimal('HDMF')->nullable();
             $table->decimal('HDMFLoan')->nullable();
             $table->decimal('SSS')->nullable();
+            $table->decimal('SSSLoan')->nullable();
             $table->decimal('FAMaintenance')->nullable();
             $table->decimal('RadioMaintenance')->nullable();
             $table->decimal('BankCharge')->nullable();

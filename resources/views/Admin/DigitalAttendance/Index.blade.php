@@ -6,19 +6,36 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
+  <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
-@section('title', 'Wages')
+@section('title', 'Payroll')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
-  <img src="https://media.discordapp.net/attachments/958687400203255808/958687472227868682/275714560_317115067181930_3442500599053539010_n.png?width=1025&height=180" alt="logo" width="250" height="40">
+  <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Accounting">Home</a></li>
-    <li class="nav-item"><a href="/Accounting/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/Accounting/EmployeePayroll">Employee Payroll</a></li>
-    <li class="nav-item"><a href="/Accounting/Wages" class="active">Wages</a></li>
-    <li class="nav-item"><a href="/Accounting/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
+    <li class="nav-item has-submenu">
+    <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
+        <ul class="submenu collapse">
+          <li><a class="nav-item" href="/Admin/Credentials/Admin">Admin</a></li>
+          <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
+        </ul>
+    </li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance" class="active">Digital Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
@@ -64,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <nav class="navbar navbar-light navbg">
-<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Accounting Portal</a></button> 
+<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
@@ -73,46 +90,38 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>List of Wages</h1><br>
-      <div class="form-inline">
-	<div class="my-2 my-lg-0 float-right"> 
-    	<input class="form-control mb-4 search" type="search" placeholder="Search Detachment" aria-label="Search">
-    	<button class="btn btn-outline-success mb-4" type="submit">Search</button>
-	</div>
-    </div>
-			<div class="scroll">
+			<h1>Digital Attendance List</h1><br>
+      <form action="" method="get">
+        <div class="form-inline my-2 my-lg-0 right"> 
+            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+        </div>
+      </form>
+		<div class="scroll">
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="align-middle">Location</th>
-						<th class="align-middle">Region</th>
-                        <th class="align-middle">Wage</th>
-                        <th class="align-middle"></th>
-                        <th class="align-middle"></th>
+						<th class="align-middle">Payroll Code</th>
+						<th class="align-middle">Start</th>
+						<th class="align-middle">End</th>
+						<th class="align-middle"></th>
 					</tr>
 				</thead>
 			<div class="scroll">
-				@forelse($Wages as $key => $Wages)
+				@forelse($payrollcode as $key => $payrollcode)
 				<tr>
-					<td>
-						{{ $Wages['Location'] }}
-					</td>
-					<td>
-						{{ $Wages['Region'] }}
-					</td>
-                    <td>
-						{{ $Wages['Wage'] }}
-					</td>
-          <td class="align-middle">
-            <a href="/Accountin/Wages/Edit" class="btn btn-primary" onclick="return confirm('Edit wage: <?php echo $Wages['Location'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-          </td>
-          <td class="align-middle">
-            <a href="#" class="btn btn-danger" onclick="return confirm('Delete wage: <?php echo $Wages['Location'] ?>?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
-          </td>
-				</tr>
-			@empty
-    		<h1>No Data!</h1>
-			@endforelse
+					<td class="text-left">{{ $payrollcode['PayCode'] }}</td>
+					<td class="text-left">{{ $payrollcode['Start'] }}</td>
+					<td class="text-left">{{ $payrollcode['End'] }}</td>
+          			<td class="text-left"><a class="profile-name" target="__blank" href="/Admin/DigitalAttendance/{{ $payrollcode['PayCode'] }}">View</a></td>
+        		</tr>
+        		@empty
+          <tr>
+    		    <td colspan="4">
+              <h1>No Data!</h1>
+            </td>
+          </tr>
+			    @endforelse
 			</div>
 			</table>
 			</div>

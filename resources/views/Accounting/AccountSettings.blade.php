@@ -15,9 +15,9 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Accounting">Home</a></li>
-    <li class="nav-item"><a href="/Accounting/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/Accounting/EmployeePayroll">Employee Payroll</a></li>
-    <li class="nav-item"><a href="/Accounting/Wages">Wages</a></li>
+    <li class="nav-item"><a href="/Accounting/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Accounting/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Accounting/Payroll">Payroll</a></li>
     <li class="nav-item"><a href="/Accounting/AccountSettings" class="active">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -33,6 +33,7 @@ function toggleNav() {
     sidenav.style.width = sidenav.style.width == "250px" ? '0' : '250px';
     main.style.marginLeft = main.style.marginLeft === "250px" ? '0' : '250px';
 }
+
 document.addEventListener("DOMContentLoaded", function(){
   document.querySelectorAll('.sidenav .nav-link').forEach(function(element){
     

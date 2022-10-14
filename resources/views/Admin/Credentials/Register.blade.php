@@ -26,12 +26,14 @@
           <li><a class="nav-item active" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -116,14 +118,14 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                     <label>Password</label>
-                    <input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" />
+                    <input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" pattern="(?=.*\d)(?=.*[\W_]).{8,}" title="Minimum of 8 characters. Should have at least one special character and one number."/>
                     @error('password')
                       <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
                 </div>
                 <div class="col-md-6">
                     <label>Confirm Password</label>
-                    <input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required />
+                    <input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required pattern="(?=.*\d)(?=.*[\W_]).{8,}" title="Minimum of 8 characters. Should have at least one special character and one number."/>
                 </div>
                 <div class="col-md-6">
                     <label>Position</label>

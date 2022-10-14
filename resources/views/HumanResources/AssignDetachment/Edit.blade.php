@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Assign Detachment')
+@section('title', 'Assign Detachments')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -16,9 +16,10 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments" class="active">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">DigitalAttendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -76,17 +77,17 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Assign Detachment</h3>
-            <form action="/Admin/AssignDetachments/{{ $assign['userno'] }}" method="POST">
+            <form action="/HumanResources/AssignDetachments/{{ $assign['userno'] }}" method="POST">
               @csrf
               @method('Put')
             <div class="row mb-3">
-                <div class="col-md-6">
-                    <label>User No.</label><br>
-                    {{ $assign['userno'] }}
+                <div class="col-md-6 mb-3">
+                    <h6>User No.</h6>
+                    <label>{{ $assign['userno'] }}</label>
                 </div>
-                <div class="col-md-6">
-                    <label>Name</label><br>
-                    {{ $assign['name'] }}
+                <div class="col-md-6 mb-3">
+                    <h6>Name</h6>
+                    <label>{{ $assign['name'] }}</label>
                 </div>
             </div>
             <div class="row">

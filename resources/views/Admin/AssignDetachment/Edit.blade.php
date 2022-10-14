@@ -27,12 +27,14 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments" class="active">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -94,13 +96,13 @@ document.addEventListener("DOMContentLoaded", function(){
               @csrf
               @method('Put')
             <div class="row mb-3">
-                <div class="col-md-6">
-                    <label>User No.</label><br>
-                    {{ $assign['userno'] }}
+                <div class="col-md-6 mb-3">
+                    <h6>User No.</h6>
+                    <label>{{ $assign['userno'] }}</label>
                 </div>
-                <div class="col-md-6">
-                    <label>Name</label><br>
-                    {{ $assign['name'] }}
+                <div class="col-md-6 mb-3">
+                    <h6>Name</h6>
+                    <label>{{ $assign['name'] }}</label>
                 </div>
             </div>
             <div class="row">

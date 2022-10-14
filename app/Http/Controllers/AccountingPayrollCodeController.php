@@ -48,7 +48,7 @@ class AccountingPayrollCodeController extends Controller
         $em = Carbon::parse(request('End'))->format('m');
         $ed = Carbon::parse(request('End'))->format('d');
         $code = ($sy . $sm . $sd . $ey . $em. $ed);
-        $payrollcode->PayCode = ('P' . $code);;
+        $payrollcode->PayCode = ('P' . $code);
         $p = PayrollCode::withTrashed()->where('PayCode', 'LIKE', $payrollcode->PayCode)->count();
         if($p != 0) {
             return Redirect::back()->with('error', 'Payroll code already exists!');

@@ -26,12 +26,14 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -131,6 +133,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 <div class="col-md-6">
                   <label>Overtime/Adj.</label>
                   <input type="number" step="1" min="0" value="{{ $payroll['OTAdj'] }}" id="OTAdj" name="OTAdj" class="form-control mb-4" required>
+                </div>
+                <div class="col-md-6">
+                  <label>SSS Loan</label>
+                  <input type="number" step="1" min="0" value="{{ $payroll['SSSLoan'] }}" id="SSSLoan" name="SSSLoan" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>HDMF Loan</label>

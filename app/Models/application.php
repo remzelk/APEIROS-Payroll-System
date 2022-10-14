@@ -13,6 +13,9 @@ class Application extends Model
     public $timestamps = false;
     protected $fillable = [
         'UserNo', 
+        'Address',
+        'Phone',
+        'Email',
         'SSS',
         'PagIbig',
         'Philhealth',

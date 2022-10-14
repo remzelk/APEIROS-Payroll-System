@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Edit Detachment')
+@section('title', 'Detachments')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -15,11 +15,11 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/Profile">Profile</a></li>
-    <li class="nav-item"><a href="/HumanResources/EmployeeList">Employee List</a></li>
-    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
-    <li class="nav-item"><a href="/HumanResources/AddEmployee">Add Employee</a></li>
+    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">DigitalAttendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -78,20 +78,51 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/HumanResources/Detachments">< <u>Detachments</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment</h3>
-            <form>
-
+            <form action="/HumanResources/Detachments/{{ $detachment['DCode'] }}" method="POST">
+              @csrf
+              @method('Put')
             <div class="row">
                 <div class="col-md-6">
                     <label>Detachment</label>
-                    <input type="text" id="FirstName" class="form-control mb-4" placeholder="Enter Detachment"> 
+                    <input type="text" id="Detachment" name="Detachment" class="form-control mb-4" value="{{ $detachment['Detachment'] }}"> 
                 </div>
                 <div class="col-md-6">
-                    <label>Location</label>
-                    <input type="text" id="LastName" class="form-control mb-4" placeholder="Enter Location"> 
+                    <label>City</label>
+                    <input type="text" id="Location" name="Location" class="form-control mb-4" value="{{ $detachment['Location'] }}"> 
                 </div>
+                <div class="col-md-6">
+                    <label>Region</label>
+                      <select id="Region" name="Region" class="form-control mb-4">
+                        @if ($detachment['Region'] == "NCR")
+                          <option value="NCR" selected>NCR</option> 
+                          <option value="III">III</option> 
+                          <option value="IV-A">IV-A</option>
+                        @elseif ($detachment['Region'] == "III")
+                          <option value="NCR">NCR</option> 
+                          <option value="III" selected>III</option> 
+                          <option value="IV-A">IV-A</option>
+                        @elseif ($detachment['Region'] == "IV-A")
+                          <option value="NCR">NCR</option> 
+                          <option value="III">III</option> 
+                          <option value="IV-A" selected>IV-A</option> 
+                        @endif
+                      </select>
+                </div>
+                  <div class="col-md-6">
+                      <label>Contact Number</label>
+                      <input type="text" id="ContactNo" name="ContactNo" class="form-control mb-4" value="{{ $detachment['ContactNo'] }}" required> 
+                  </div>
+                  <div class="col-md-6">
+                      <label>Email</label>
+                      <input type="email" id="Email" name="Email" class="form-control mb-4" value="{{ $detachment['Email'] }}" required> 
+                  </div>
+                  <div class="col-md-6">
+                      <label>Address</label>
+                      <input type="text" id="Address" name="Address" class="form-control mb-4" value="{{ $detachment['Address'] }}" required> 
+                  </div>
             </div>
               <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" />
+                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
               </div>
             </form>
           </div>
@@ -100,9 +131,4 @@ document.addEventListener("DOMContentLoaded", function(){
     </div>
   </div>
 <div>
-<script>
-    window.onbeforeunload = function(){
-  return 'Are you sure you want to leave?';
-};
-</script>
 @endsection

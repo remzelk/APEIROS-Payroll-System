@@ -45,8 +45,8 @@ Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)-
 
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
 Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings')->middleware('IsAccounting');
-Route::resource('/Accounting/SocialBenefits', AccountingSocialBenefitsController::class)->middleware('IsAccounting');
 Route::get('/Accounting/Payroll/{paycode}/{id}', 'AccountingEmployeePayrollController@editpayroll')->middleware('IsAccounting');
+Route::resource('/Accounting/SocialBenefits', AccountingSocialBenefitsController::class)->middleware('IsAccounting');
 Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class)->middleware('IsAccounting');
 Route::resource('/Accounting/PayrollCode', AccountingPayrollCodeController::class)->middleware('IsAccounting');
 

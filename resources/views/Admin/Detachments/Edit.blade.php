@@ -26,12 +26,14 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
-    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Code</a></li>
-    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
-    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -90,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function(){
           <div class="card-body p-4 p-md-5">
           <a href="/Admin/Detachments">< <u>Detachments</u></a><br><br>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Detachment</h3>
-            <form action="/Admin/Detachments/{{ $detachment['id'] }}" method="POST">
+            <form action="/Admin/Detachments/{{ $detachment['DCode'] }}" method="POST">
               @csrf
               @method('Put')
             <div class="row">
@@ -120,6 +122,18 @@ document.addEventListener("DOMContentLoaded", function(){
                         @endif
                       </select>
                 </div>
+                  <div class="col-md-6">
+                      <label>Contact Number</label>
+                      <input type="text" id="ContactNo" name="ContactNo" class="form-control mb-4" value="{{ $detachment['ContactNo'] }}" required> 
+                  </div>
+                  <div class="col-md-6">
+                      <label>Email</label>
+                      <input type="email" id="Email" name="Email" class="form-control mb-4" value="{{ $detachment['Email'] }}" required> 
+                  </div>
+                  <div class="col-md-6">
+                      <label>Address</label>
+                      <input type="text" id="Address" name="Address" class="form-control mb-4" value="{{ $detachment['Address'] }}" required> 
+                  </div>
             </div>
               <div class="mt-4 pt-2">
                 <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">

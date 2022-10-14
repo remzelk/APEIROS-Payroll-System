@@ -74,7 +74,9 @@ class AdminDetachmentController extends Controller
         $detachment->Detachment = $request->input('Detachment');
         $detachment->Location = $request->input('Location');
         $detachment->Region = $request->input('Region');
-        $detachment->Wage = $request->input('Wage');
+        $detachment->ContactNo = $request->input('ContactNo');
+        $detachment->Email = $request->input('Email');
+        $detachment->Address = $request->input('Address');
         $detachment->update();
         return redirect('/Admin/Detachments');
     }

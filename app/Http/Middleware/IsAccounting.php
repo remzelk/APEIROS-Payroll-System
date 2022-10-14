@@ -16,7 +16,7 @@ class IsAccounting
 
         if (Auth::user()->position == 3)
         {
-            return next($request);
+            return $next($request);
         }
 
         if (Auth::user()->position == 1)

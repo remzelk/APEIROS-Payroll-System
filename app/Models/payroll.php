@@ -32,6 +32,7 @@ class payroll extends Model
         'HDMF',
         'HDMFLoan',
         'SSS',
+        'SSSLoan',
         'FAMaintenance',
         'RadioMaintenance',
         'BankCharge',

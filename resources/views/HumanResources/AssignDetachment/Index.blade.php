@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Assign Detachment')
+@section('title', 'Assign Detachments')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -16,9 +16,10 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
-    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments" class="active">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">DigitalAttendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         @endif
                     @endforeach
                 @endif
-                <td class="align-middle"><a href="/Admin/AssignDetachments/{{ $assign['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                <td class="align-middle"><a href="/HumanResources/AssignDetachments/{{ $assign['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                 @empty
                 <td colspan="5">
                   <h1>No Data!</h1>

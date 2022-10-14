@@ -14,18 +14,18 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Employee">Home</a></li>
-    <li class="nav-item"><a href="/Employee/Profile/{{ Auth::user()->id }}">Profile</a></li>
+    <li class="nav-item"><a href="/Chief">Home</a></li>
+    <li class="nav-item"><a href="/Chief/Profile/{{ Auth::user()->id }}">Profile</a></li>
     <li  class="nav-item has-submenu">
       <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
-          <li><a class="nav-item active" href="/Employee/Payslips-Current">Current Payslip</a></li>
-          <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
+          <li><a class="nav-item active" href="/Chief/Payslips-Current">Current Payslip</a></li>
+          <li><a class="nav-link" href="/Chief/Payslips-Archive">Payslip Archive</a></li>
       </ul>
-    <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
-    <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
-    <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Chief/Attendance/{{ Auth::user()->userno }}">Attendance</a></li>
+    <li class="nav-item"><a href="/Chief/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Chief/BIRForm2316">BIR Form 2316</a></li>
+    <li class="nav-item"><a href="/Chief/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
@@ -70,17 +70,17 @@ document.addEventListener("DOMContentLoaded", function(){
 }); 
 </script>
 
-<nav id="navbar" class="navbar navbar-light navbg">
-<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Employee Portal</a></button> 
+<nav class="navbar navbar-light navbg">
+<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Chief Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div id="main">
-<a href="" id="printpayslip" onclick="window.print()" target="_blank" class="btn btn-primary"><i class="fa fa-print" aria-hidden="true"></i>Print</a>
+<a href="" id="printpayslip" onclick="window.print()" target="_blank" class="btn btn-primary pr"><i class="fa fa-print" aria-hidden="true"></i>Print</a>
   <img src="https://cdn.discordapp.com/attachments/958687400203255808/1016414040618180638/275714560_317115067181930_3442500599053539010_n_1.png" alt="logo"><br><br>
   <div class="d-flex justify-content-between">
     <div>
-      <h1>Name</h1>
+      <h1>{{ $payroll['Name'] }}</h1>
       <p>Address</p>
       <p>Phone Number</p>
       <p>Email</p>
@@ -96,9 +96,13 @@ document.addEventListener("DOMContentLoaded", function(){
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            @foreach($detachment as $detachment)
+              @if($detachment['DCode'] == $payroll['DCode'])
+                <td>{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}</td>
+              @endif
+            @endforeach
+                <td>{{ $payrollcode['Start'] }}</td>
+                <td>{{ $payrollcode['End'] }}</td>
           </tr>
         </tbody>
       </table>
@@ -110,54 +114,52 @@ document.addEventListener("DOMContentLoaded", function(){
     <tbody>
       <tr>
         <th scope="row">No. of days</td>
-        <td></td>
+        <td>{{ $payroll['DaysWorked'] }}</td>
       </tr>
       <tr>
-        <th scope="row">Salary per day</td>
-        <td></td>
+        <th scope="row">Rate per day</td>
+        <td>{{ $payroll['RatePerDay'] }}</td>
       </tr>
       <tr>
-        <th scope="row">Ecola</td>
-        <td></td>
+        <th scope="row">Gross Pay</td>
+        <th scope="row">{{ $payroll['GrossPay'] }}</th>
       </tr>
       <tr>
-        <th scope="row">Total pay</td>
-        <th scope="row"></th>
+        <th scope="row">Officer's Allowance</td>
+        <td>{{ $payroll['OfficersAllowance'] }}</td>
       </tr>
       <tr>
-        <th scope="row">Adj.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Uniform</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Allowance</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Differential</td>
-        <td></td>
+        <th scope="row">Night Shift Differential</td>
+        <td>{{ $payroll['NSDifferential'] }}</td>
       </tr>
       <tr>
         <th scope="row">Night Differential</td>
-        <td></td>
+        <td>{{ $payroll['NightDifferential'] }}</td>
       </tr>
       <tr>
-        <th scope="row">T/N/Differential</td>
-        <td></td>
+        <th scope="row">S.H. Days</td>
+        <td>{{ $payroll['SHDays'] }}</td>
       </tr>
       <tr>
         <th scope="row">Special Holiday</td>
-        <td></td>
+        <td>{{ $payroll['SpecialHoliday'] }}</td>
       </tr>
       <tr>
+        <th scope="row">L.H. Days</td>
+        <td>{{ $payroll['LHDays'] }}</td>
+      </tr>
+      <tr>
+      <tr>
         <th scope="row">Legal Holiday</td>
-        <td></td>
-      </tr><tr>
+        <td>{{ $payroll['LegalHoliday'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">OT/Adj.</td>
+        <td>{{ $payroll['OTAdj'] }}</td>
+      </tr>
+      <tr>
         <th scope="row">Gross Pay</td>
-        <th scope="row"></th>
+        <th scope="row">{{ $payroll['FinalGrossPay'] }}</th>
       </tr>
     </tbody>
   </table>
@@ -166,65 +168,57 @@ document.addEventListener("DOMContentLoaded", function(){
     <tbody>
       <tr>
         <th scope="row">SSS</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">PhilHealth</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Pag-IBIG</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Firearms Maintenance</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Radio Maintenance</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Bank Charge</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Insurance</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Cash Advance</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Cash Bond</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">Burial Assistance</td>
-        <td></td>
+        <td>{{ $payroll['SSS'] }}</td>
       </tr>
       <tr>
         <th scope="row">SSS Loan</td>
-        <td></td>
+        <td>{{ $payroll['SSSLoan'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">PhilHealth</td>
+        <td>{{ $payroll['PhilHealth'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">HDMF</td>
+        <td>{{ $payroll['HDMF'] }}</td>
       </tr>
       <tr>
         <th scope="row">HDMF Loan</td>
-        <td></td>
+        <td>{{ $payroll['HDMFLoan'] }}</td>
       </tr>
       <tr>
-        <th scope="row">Other</td>
-        <td></td>
+        <th scope="row">Firearms Maintenance</td>
+        <td>{{ $payroll['FAMaintenance'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Radio Maintenance</td>
+        <td>{{ $payroll['RadioMaintenance'] }}<td>
+      </tr>
+      <tr>
+        <th scope="row">Bank Charge</td>
+        <td>{{ $payroll['BankCharge'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Insurance</td>
+        <td>{{ $payroll['Insurance'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cash Bond</td>
+        <td>{{ $payroll['CashBond'] }}</td>
       </tr>
       <tr>
         <th scope="row">Total Deduction</td>
-        <td></td>
+        <td scope="row">{{ $payroll['TotalDeduction'] }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cash Advance</td>
+        <td>{{ $payroll['CashAdvance'] }}</td>
       </tr>
     </tbody>
   </table>
 </div>
 <div class="center">
-  <h1 class="mb-4">Net Pay:</h1>
+  <h1 class="mb-4">Net Pay: {{ $payroll['TotalNetPay'] }}</h1>
   <p class="mb-4">If you have any concerns, please contact us on apeirosagency@yahoo.com.</p>
 </div>
 <div>

@@ -135,7 +135,10 @@ z-index: 2;
 .navbg {
 background-image: linear-gradient(15deg, #484f8f 0%, #484f8f 100%);
 }
-
+.pr {
+  position: fixed;
+  z-index: 2;
+}
 @media print {
   #printpayslip {
     display: none;
