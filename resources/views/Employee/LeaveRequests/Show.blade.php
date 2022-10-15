@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Attendance')
+@section('title', 'Leave Request')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -16,15 +16,8 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee">Home</a></li>
     <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}">Application</a></li>
-    <li  class="nav-item has-submenu">
-      <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
-        <ul class="submenu collapse">
-          <li><a class="nav-item" href="/Employee/Payslips-Current">Current Payslip</a></li>
-          <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
-      </ul>
-    </li>
-    <li class="nav-item"><a href="/Employee/Attendance"class="active">Attendance</a></li>
-    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
+    <li class="nav-item"><a href="/Employee/LeaveRequests" class="active">Leave Requests</a></li>
     <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -76,14 +69,63 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div id="main">
-  <div class="container-fluid h-100">
+<div  id="main">
+  <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Attendance:</h1><br>
-			Empty for now.
+          <a href="/Employee/LeaveRequests">< <u>Archive Requests</u></a><br><br>
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Review Leave Form</h3>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                  <h6>Leave No.</h6>
+                  <label>{{ $leave['LeaveNo'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>User No.</h6>
+                  <label>{{ $leave['UserNo'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>Name</h6>
+                  <label>{{ $leave['Name'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>Leave Type</h6>
+                  <label>{{ $leave['LeaveType'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>Start</h6>
+                  <label>{{ $leave['Start'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>End</h6>
+                  <label>{{ $leave['End'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>Leave Days Used</h6>
+                  <label>{{ $leave['DaysUsed'] }}</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <h6>Paid Leave Days Used</h6>
+                  <label>{{ $leave['PaidDaysUsed'] }}</label>
+                </div>
+              </div>
+              <h6>Reason</h6>
+              <label>{{ $leave['Reason'] }}</label>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                  <h6>Approve/Reject Request</h6>
+                  @if($leave['Approved'] == "1")
+                    <td>Approved</td>
+                @elseif($leave['Approved'] == "0")
+                    <td>Rejected</td>
+                @endif
+                </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 <div>

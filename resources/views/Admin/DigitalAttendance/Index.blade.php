@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
   <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
-@section('title', 'Payroll')
+@section('title', 'Digital Attendance')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -34,6 +34,7 @@
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Admin/DigitalAttendance" class="active">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>

@@ -14,17 +14,11 @@
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Chief">Home</a></li>
+  <li class="nav-item"><a href="/Chief">Home</a></li>
     <li class="nav-item"><a href="/Chief/Application/{{ Auth::user()->userno }}">Application</a></li>
-    <li  class="nav-item has-submenu">
-      <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
-        <ul class="submenu collapse">
-          <li><a class="nav-item" href="/Chief/Payslips-Current">Current Payslip</a></li>
-          <li><a class="nav-link" href="/Chief/Payslips-Archive">Payslip Archive</a></li>
-      </ul>
-    </li>
-    <li class="nav-item"><a href="/Chief/Attendance/create" class="active">Attendance</a></li>
-    <li class="nav-item"><a href="/Chief/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Chief/Attendance" class="active">Attendance</a></li>
+    <li class="nav-item"><a href="/Chief/Payslips">Payslips</a></li>
+    <li class="nav-item"><a href="/Chief/LeaveRequests">Leave Request</a></li>
     <li class="nav-item"><a href="/Chief/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Chief/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -73,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <nav class="navbar navbar-light navbg">
 <button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Chief Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome,  {{ Auth::user()->name }}!</a>
+<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
 <div id="main">

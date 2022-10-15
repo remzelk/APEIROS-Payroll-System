@@ -15,16 +15,9 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee">Home</a></li>
-    <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}">Application</a></li>
-    <li  class="nav-item has-submenu">
-      <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
-        <ul class="submenu collapse">
-          <li><a class="nav-item" href="/Employee/Payslips-Current">Current Payslip</a></li>
-          <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
-      </ul>
-    </li>
-    <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}" class="active">Application</a></li>
+    <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
+    <li class="nav-item"><a href="/Employee/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -91,6 +84,18 @@ document.addEventListener("DOMContentLoaded", function(){
                                 @csrf
                                 @method('Put')
                                 <div class="row">
+                                  <div class="col-md-6">
+                                    <label>Address</label>
+                                    <input type="text" id="Address" name="Address" class="form-control mb-4" value="{{ old('Address', $application['Address']) }}" required>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label>Phone</label>
+                                    <input type="text" id="Phone" name="Phone" class="form-control mb-4" value="{{ old('Phone', $application['Phone']) }}" required>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label>Email</label>
+                                    <input type="email" id="Email" name="Email" class="form-control mb-4" value="{{ old('Email', $application['Email']) }}" required>
+                                  </div>
                                   <div class="col-md-6">
                                     <label>SSS</label>
                                     <input type="text" id="SSS" name="SSS" class="form-control mb-4" value="{{ old('SSS', $application['SSS']) }}" required>

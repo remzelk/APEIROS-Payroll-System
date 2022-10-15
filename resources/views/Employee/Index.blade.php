@@ -16,15 +16,8 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee" class="active">Home</a></li>
     <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}">Application</a></li>
-    <li  class="nav-item has-submenu">
-      <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
-        <ul class="submenu collapse">
-          <li><a class="nav-item" href="/Employee/Payslips-Current">Current Payslip</a></li>
-          <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
-      </ul>
-    </li>
-    <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Employee/LeaveRequest">Leave Request</a></li>
+    <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
+    <li class="nav-item"><a href="/Employee/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>

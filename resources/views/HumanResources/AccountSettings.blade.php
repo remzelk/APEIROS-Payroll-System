@@ -19,7 +19,8 @@
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">DigitalAttendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/LeaveRequests">Leave Requests</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings" class="active">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>

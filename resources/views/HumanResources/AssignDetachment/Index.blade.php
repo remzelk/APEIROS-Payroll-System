@@ -19,7 +19,8 @@
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments" class="active">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">DigitalAttendance</a></li>
+    <li class="nav-item"><a href="/HumanResources/LeaveRequests">Leave Requests</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -87,19 +88,14 @@ document.addEventListener("DOMContentLoaded", function(){
               </tr>
             </thead>
             <div class="scroll">
-              @forelse($assign as $key => $assign)
+            @forelse($assign as $key => $assign)
               <tr>
                 <td>{{ $assign['userno'] }}</td>
                 <td>{{ $assign['name'] }}</td>
                 @if($assign['DCode'] == NULL)
-                    <td colspan="2">Not Assigned</td>
+                    <td>Not Assigned</td>
                 @else
-                    @foreach($detachment as $detachment)
-                        @if($detachment['DCode'] == $assign['DCode'])
-                            <td>{{ $detachment['Detachment'] }}</td>
-                            <td>{{ $detachment['Location'] }}</td>
-                        @endif
-                    @endforeach
+                  <td>{{ $assign['DCode'] }}</td>
                 @endif
                 <td class="align-middle"><a href="/HumanResources/AssignDetachments/{{ $assign['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                 @empty

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Payroll;
 use App\Models\PayrollCode;
 use App\Models\User;
+use Auth;
 use App\Models\Application;
 use App\Models\Detachments;
 
@@ -26,7 +27,7 @@ class ChiefPayslipsController extends Controller
             ->get();
         }
         $data = compact('payrollcode', 'search');
-        return view('Chief.Payslip.index')->with($data);
+        return view('Chief.Payslips.index')->with($data);
     }
 
     public function create()
@@ -51,23 +52,14 @@ class ChiefPayslipsController extends Controller
 
     public function show($id)
     {
-        $search = $request['search'] ?? "";
-        if ($search != ""){
-            $payroll = Payroll::join('detachments', 'payroll.DCode', '=', 'detachments.DCode')
-            ->select('payroll.*', 'detachments.*')
-            ->orderBy('Detachment', 'ASC')
-            ->orwhere('Name', 'LIKE', "%$search%")
-            ->orwhere('Detachment', 'LIKE', "%$search%")
-            ->get();
-        }
-        else{
-            $payroll = Payroll::where('PayCode', 'LIKE', $id)
-            ->get();
-        }
+        $payroll = Payroll::where('PayCode', 'LIKE', $id)
+        ->where('UserNo', 'LIKE', Auth::user()->userno)
+        ->firstOrFail();
         $detachment = Detachments::all();
+        $application = Application::where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
         $payrollcode = PayrollCode::where('PayCode', 'LIKE', $id)->firstOrFail();
-        $data = compact('payroll', 'search', 'payrollcode', 'detachment');
-        return view('Chief.Payslip.show')->with($data);
+        $data = compact('payroll', 'payrollcode', 'detachment', 'application');
+        return view('Chief.Payslips.show')->with($data);
     }
 
     public function destroy($id)

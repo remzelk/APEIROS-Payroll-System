@@ -33,6 +33,7 @@
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -105,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th></th>
 						<th></th>
-						<th class="align-middle">Detachment</th>
+						<th class="align-middle">Detachment Code</th>
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
@@ -150,11 +151,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						</form>
 					</td>
 					<td>
-					@foreach($detachment as $detachment)
-              			@if($detachment['DCode'] == $payroll['DCode'])
-                			{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
-              			@endif
-            		@endforeach
+						{{ $payroll['DCode'] }}
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}

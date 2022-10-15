@@ -19,7 +19,8 @@
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/HumanResources/DigitalAttendance" class="active">DigitalAttendance</a></li>
+	<li class="nav-item"><a href="/HumanResources/LeaveRequests">Leave Requests</a></li>
+    <li class="nav-item"><a href="/HumanResources/DigitalAttendance" class="active">Digital Attendance</a></li>
     <li class="nav-item"><a href="/HumanResources/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
@@ -89,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				<thead>
 					<tr>
 						<th></th>
-						<th class="align-middle">Detachment</th>
+						<th class="align-middle">D. Code</th>
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
@@ -105,11 +106,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						<a href="/HumanResources/DigitalAttendance/{{$payroll['PayCode']}}/{{ $payroll['UserNo'] }}" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					</td>
 					<td>
-						@foreach($detachment as $detachment)
-							@if($detachment['DCode'] == $payroll['DCode'])
-								{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
-							@endif
-						@endforeach
+						{{ $payroll['DCode'] }}
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}

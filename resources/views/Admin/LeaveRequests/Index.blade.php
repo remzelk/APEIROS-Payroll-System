@@ -7,26 +7,35 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Leave Request')
+@section('title', 'Leave Requests')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
   <ul class="nav flex-column" id="nav_accordion">
-    <li class="nav-item"><a href="/Employee">Home</a></li>
-    <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}">Application</a></li>
-    <li  class="nav-item has-submenu">
-      <a href="#" class="nav-link">Payslips <i class="fa fa-caret-down"></i></a>
+    <li class="nav-item"><a href="/Admin">Home</a></li> 
+    <li class="nav-item has-submenu">
+    <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
         <ul class="submenu collapse">
-          <li><a class="nav-item" href="/Employee/Payslips-Current">Current Payslip</a></li>
-          <li><a class="nav-link" href="/Employee/Payslips-Archive">Payslip Archive</a></li>
-      </ul>
+          <li><a class="nav-item" href="/Admin/Credentials/Admin">Admin</a></li>
+          <li><a class="nav-link" href="/Admin/Credentials/HumanResources">Human Resources</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Accounting">Accounting</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Employee">Employee</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Chief">Chief</a></li>
+          <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
+        </ul>
     </li>
-    <li class="nav-item"><a href="/Employee/Attendance">Attendance</a></li>
-    <li class="nav-item"><a href="/Employee/LeaveRequest" class="active">Leave Request</a></li>
-    <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>
-    <li class="nav-item"><a href="/Employee/AccountSettings">Account Settings</a></li>
+    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
+    <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
+    <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/LeaveRequests" class="active">Leave Requests</a></li>
+    <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
+    <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
   </ul>
 </nav>
@@ -72,17 +81,59 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <nav class="navbar navbar-light navbg">
-<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Employee Portal</a></button> 
+<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Admin Portal</a></button> 
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div id="main">
+<div  id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Leave:</h1><br>
-			Empty for now.
+			<h1>Pending Leaves</h1><br>
+      <div class="form-inline">
+      <a href="/Admin/LeaveRequests/Archive" class="mb-4">Leave Requests Archive</a>&emsp;&emsp;
+      <form action="" method="get">
+        <div class="my-2 my-lg-0 right"> 
+            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+			<div class="scroll">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="align-middle">Leave No</th>
+						<th class="align-middle">User No</th>
+						<th class="align-middle">Name</th>
+            <th class="align-middle"></th>
+					</tr>
+				</thead>
+			<div class="scroll">
+				@forelse($leave as $key => $leave)
+				<tr>
+          <td>
+						{{ $leave['LeaveNo'] }}
+					</td>
+					<td>
+						{{ $leave['UserNo'] }}
+					</td>
+					<td>
+						{{ $leave['Name'] }}
+					</td>
+          <td class="align-middle">
+            <a href="/Admin/LeaveRequests/{{ $leave['LeaveNo'] }}/edit" class="btn btn-primary" onclick="return confirm('Edit leave: <?php echo $leave['LeaveNo'] ?>?')">Review</a>
+          </td>
+        @empty
+    		  <td colspan="9">
+            <h1>No Data!</h1>
+          </td>
+			  @endforelse
+				</tr>
+			</div>
+			</table>
+			</div>
         </div>
     </div>
   </div>

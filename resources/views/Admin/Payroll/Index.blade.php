@@ -34,6 +34,7 @@
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll" class="active">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>

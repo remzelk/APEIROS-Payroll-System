@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
   <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
-@section('title', 'Home')
+@section('title', 'Assign Detachment')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -34,6 +34,7 @@
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+    <li class="nav-item"><a href="/Admin/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Admin/DigitalAttendance">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -96,8 +97,7 @@ document.addEventListener("DOMContentLoaded", function(){
               <tr>
                 <th class="align-middle">User No.</th>
                 <th class="align-middle">Name</th>
-                <th class="align-middle">Detachment</th>
-                <th class="align-middle">Location</th>
+                <th class="align-middle">DCode</th>
                 <th></th>
               </tr>
             </thead>
@@ -107,14 +107,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 <td>{{ $assign['userno'] }}</td>
                 <td>{{ $assign['name'] }}</td>
                 @if($assign['DCode'] == NULL)
-                    <td colspan="2">Not Assigned</td>
+                    <td>Not Assigned</td>
                 @else
-                    @foreach($detachment as $detachment)
-                        @if($detachment['DCode'] == $assign['DCode'])
-                            <td>{{ $detachment['Detachment'] }}</td>
-                            <td>{{ $detachment['Location'] }}</td>
-                        @endif
-                    @endforeach
+                  <td>{{ $assign['DCode'] }}</td>
                 @endif
                 <td class="align-middle"><a href="/Admin/AssignDetachments/{{ $assign['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                 @empty

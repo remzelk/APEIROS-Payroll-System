@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Payroll')
+@section('title', 'Digital Attendance')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -33,6 +33,7 @@
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
     <li class="nav-item"><a href="/Admin/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Admin/Payroll">Payroll</a></li>
+	<li class="nav-item"><a href="/Admin/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Admin/DigitalAttendance" class="active">Digital Attendance</a></li>
     <li class="nav-item"><a href="/Admin/AccountSettings">Account Settings</a></li>
     <li class="nav-item"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
@@ -103,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				<thead>
 					<tr>
 						<th></th>
-						<th class="align-middle">Detachment</th>
+						<th class="align-middle">D. Code</th>
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
@@ -119,11 +120,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						<a href="/Admin/DigitalAttendance/{{$payroll['PayCode']}}/{{ $payroll['UserNo'] }}" class="btn btn-primary" onclick="return confirm('Edit employee: <?php echo $payroll['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 					</td>
 					<td>
-						@foreach($detachment as $detachment)
-							@if($detachment['DCode'] == $payroll['DCode'])
-								{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
-							@endif
-						@endforeach
+						{{ $payroll['DCode'] }}
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}
@@ -146,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				</tr>
 				@empty
 				<tr>
-					<td colspan="8">
+					<td colspan="29">
 						<h1>No Data!</h1>
 					</td>
     			

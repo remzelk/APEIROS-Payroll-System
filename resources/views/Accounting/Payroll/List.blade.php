@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th></th>
 						<th></th>
-						<th class="align-middle">Detachment</th>
+						<th class="align-middle">Detachment Code</th>
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
@@ -134,11 +134,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						</form>
 					</td>
 					<td>
-					@foreach($detachment as $detachment)
-              			@if($detachment['DCode'] == $payroll['DCode'])
-                			{{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}
-              			@endif
-            		@endforeach
+						{{ $payroll['DCode'] }}
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}

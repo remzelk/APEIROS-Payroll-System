@@ -280,11 +280,8 @@ class AdminEmployeePayrollController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $payroll = Payroll::join('detachments', 'payroll.DCode', '=', 'detachments.DCode')
-            ->select('payroll.*', 'detachments.*')
-            ->orderBy('Detachment', 'ASC')
+            $payroll = Payroll::orderBy('Name', 'ASC')
             ->orwhere('Name', 'LIKE', "%$search%")
-            ->orwhere('Detachment', 'LIKE', "%$search%")
             ->get();
         }
         else{
