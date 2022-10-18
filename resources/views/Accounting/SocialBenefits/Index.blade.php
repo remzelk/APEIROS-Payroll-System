@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function(){
 				<thead>
 					<tr>
                         <th class="align-middle">Name</th>
-                        <th class="align-middle">Position</th>
                         <th class="align-middle">SSS</th>
                         <th class="align-middle">Pag-IBIG</th>
                         <th class="align-middle">Philhealth</th>
@@ -94,25 +93,13 @@ document.addEventListener("DOMContentLoaded", function(){
 				</thead>
 			<div class="scroll">
 				@forelse($user as $key => $user)
-                    @if($user['position'] == "4")
 				        <tr>
-					        <td class="text-left">{{ $user['name'] }}</td>
-                            <td class="text-left">Security Guard</td>
-                            <td class="text-left">{{ $user['SSS'] }}</td>
-                            <td class="text-left">{{ $user['PagIbig'] }}</td>
-                            <td class="text-left">{{ $user['Philhealth'] }}</td>
-                            <td class="text-left">{{ $user['TIN'] }}</td>
+					        <td class="text-left">{{ $user['Name'] }}</td>
+                  <td class="text-left">{{ $user['SSS'] }}</td>
+                  <td class="text-left">{{ $user['PagIbig'] }}</td>
+                  <td class="text-left">{{ $user['Philhealth'] }}</td>
+                  <td class="text-left">{{ $user['TIN'] }}</td>
                         </tr>
-                    @elseif($user['position'] == "5")
-                        <tr>
-                            <td class="text-left">{{ $user['name'] }}</td>
-                            <td class="text-left">Chief Security Guard</td>
-                            <td class="text-left">{{ $user['SSS'] }}</td>
-                            <td class="text-left">{{ $user['PagIbig'] }}</td>
-                            <td class="text-left">{{ $user['Philhealth'] }}</td>
-                            <td class="text-left">{{ $user['TIN'] }}</td>
-                        </tr>
-                        @endif
                         @empty
                         <tr>
     		    <td colspan="4">

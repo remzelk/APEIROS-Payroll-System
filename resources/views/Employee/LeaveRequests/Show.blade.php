@@ -120,6 +120,8 @@ document.addEventListener("DOMContentLoaded", function(){
                     <td>Approved</td>
                 @elseif($leave['Approved'] == "0")
                     <td>Rejected</td>
+                    @elseif($leave['Approved'] == NULL)
+                    <td>TBA</td>
                 @endif
                 </div>
             </div>

@@ -16,6 +16,7 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/ApplicationList" class="active">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
@@ -87,32 +88,23 @@ document.addEventListener("DOMContentLoaded", function(){
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th class="align-middle">User No.</th>
 						<th class="align-middle">Name</th>
-            <th class="align-middle">Position</th>
             <th></th>
             <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 				@forelse($user as $key => $user)
-        @if($user['position'] == "4")
 				<tr>
-					<td class="text-left">{{ $user['name'] }}</td>
-          <td class="text-left">Security Guard</td>
-          <td class="text-left"><a class="profile-name" target="__blank" href="/HumanResources/ApplicationList/{{ $user['userno'] }}">View</a></td>
-          <td class="text-left"><a class="profile-name" href="{{ route('hrdownloadapplication', $user['userno']) }}">Download</a></td>
+					<td class="text-left">{{ $user['UserNo'] }}</td>
+					<td class="text-left">{{ $user['Name'] }}</td>
+          <td class="text-left"><a class="profile-name" target="_blank" href="/HumanResources/ApplicationList/{{ $user['ApplicationForm'] }}">View</a></td>
+          <td class="text-left"><a class="profile-name" href="{{ route('hrdownloadapplication', $user['UserNo'])}}">Download</a></td>
         </tr>
-        @elseif($user['position'] == "5")
-				<tr>
-					<td class="text-left">{{ $user['name'] }}</td>
-          <td class="text-left">Chief Security Guard</td>
-          <td class="text-left"><a class="profile-name" arget="__blank" href="/HumanResources/ApplicationList/{{ $user['userno'] }}">View</a></td>
-          <td class="text-left"><a class="profile-name" href="{{ route('hrdownloadapplication', $user['userno']) }}">Download</a></td>
-        </tr>
-        @endif
         @empty
           <tr>
-    		    <td colspan="2">
+    		    <td colspan="4">
               <h1>No Data!</h1>
             </td>
           </tr>

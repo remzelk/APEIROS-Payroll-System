@@ -11,6 +11,7 @@ class Application extends Migration
         Schema::create('Application', function (Blueprint $table) {
             $table->id('id');
             $table->integer('UserNo');
+            $table->text('Name')->nullable();
             $table->text('Address')->nullable();
             $table->text('Phone')->nullable();
             $table->text('Email')->nullable();
@@ -19,6 +20,8 @@ class Application extends Migration
             $table->text('Philhealth')->nullable();
             $table->text('TIN')->nullable();
             $table->text('DCode')->nullable();
+            $table->text('Detachment')->nullable();
+            $table->text('Location')->nullable();
             $table->boolean('Submitted')->nullable()->default(0);
             $table->string('ApplicationForm')->nullable();
             $table->softDeletes();

@@ -117,10 +117,12 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="row">
                 <div class="col-md-6 mb-3">
                   <h6>Approve/Reject Request</h6>
-                  @if($leave['Approved'] == "1")
+                @if($leave['Approved'] == "1")
                     <td>Approved</td>
                 @elseif($leave['Approved'] == "0")
                     <td>Rejected</td>
+                @elseif($leave['Approved'] == NULL)
+                    <td>TBA</td>
                 @endif
                 </div>
             </div>

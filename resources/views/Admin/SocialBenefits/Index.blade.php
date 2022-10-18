@@ -29,6 +29,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits" class="active">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
@@ -103,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function(){
 				<thead>
 					<tr>
                         <th class="align-middle">Name</th>
-                        <th class="align-middle">Position</th>
                         <th class="align-middle">SSS</th>
                         <th class="align-middle">Pag-IBIG</th>
                         <th class="align-middle">Philhealth</th>
@@ -112,25 +112,13 @@ document.addEventListener("DOMContentLoaded", function(){
 				</thead>
 			<div class="scroll">
 				@forelse($user as $key => $user)
-                    @if($user['position'] == "4")
 				        <tr>
-					        <td class="text-left">{{ $user['name'] }}</td>
-                            <td class="text-left">Security Guard</td>
-                            <td class="text-left">{{ $user['SSS'] }}</td>
-                            <td class="text-left">{{ $user['PagIbig'] }}</td>
-                            <td class="text-left">{{ $user['Philhealth'] }}</td>
-                            <td class="text-left">{{ $user['TIN'] }}</td>
+					        <td class="text-left">{{ $user['Name'] }}</td>
+                  <td class="text-left">{{ $user['SSS'] }}</td>
+                  <td class="text-left">{{ $user['PagIbig'] }}</td>
+                  <td class="text-left">{{ $user['Philhealth'] }}</td>
+                  <td class="text-left">{{ $user['TIN'] }}</td>
                         </tr>
-                    @elseif($user['position'] == "5")
-                        <tr>
-                            <td class="text-left">{{ $user['name'] }}</td>
-                            <td class="text-left">Chief Security Guard</td>
-                            <td class="text-left">{{ $user['SSS'] }}</td>
-                            <td class="text-left">{{ $user['PagIbig'] }}</td>
-                            <td class="text-left">{{ $user['Philhealth'] }}</td>
-                            <td class="text-left">{{ $user['TIN'] }}</td>
-                        </tr>
-                        @endif
                         @empty
                         <tr>
     		    <td colspan="4">

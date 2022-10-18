@@ -14,38 +14,22 @@ use Illuminate\Validation\Rules;
 
 class HumanResourcesApplicationController extends Controller
 {
-    public function view($id)
-    {
-        $application = Application::where('userno', $id)->firstOrFail();
-        return response()->file(public_path(('application/' . $application->ApplicationForm)));
-    }
-
     public function download($id)
     {
-        $application = Application::where('userno', $id)->firstOrFail();
-        return response()->download(public_path(('application/' . $application->ApplicationForm), ($application->userno)));
+        $application = Application::where('UserNo', $id)->firstOrFail();
+        return response()->download(public_path(('application/' . $application->ApplicationForm), ($application->UserNo)));
     }
 
     public function index(Request $request)
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $user = User::join('application', 'users.userno', '=', 'application.UserNo')
-            ->select('user.*', 'application.*')
-            ->orderBy('Name', 'ASC')
+            $user = Application::orderBy('Name', 'ASC')
             ->where('Name', 'LIKE', "%$search%")
-            ->orwhere('Position', 'LIKE', '4')
-            ->orwhere('Position', 'LIKE', '5')
-            ->whereNull('users.deleted_at')
             ->get();
         }
         else{
-            $user = User::join('application', 'users.userno', '=', 'application.UserNo')
-            ->select('users.*', 'application.*')
-            ->orderBy('Name', 'ASC')
-            ->orwhere('Position', 'LIKE', '4')
-            ->orwhere('Position', 'LIKE', '5')
-            ->whereNull('users.deleted_at')
+            $user = Application::orderBy('Name', 'ASC')
             ->get();
         }
         $data = compact('user', 'search');
@@ -64,13 +48,13 @@ class HumanResourcesApplicationController extends Controller
 
     public function show($id)
     {
-        $application = Application::where('userno', $id)->firstOrFail();
+        $application = Application::where('ApplicationForm', $id)->firstOrFail();
         return view('HumanResources.Application.show')->with('application', $application);
     }
 
     public function edit($id)
     {
-        $application = Application::where('userno', $id)->firstOrFail();
+        $application = Application::where('UserNo', $id)->firstOrFail();
         return view('HumanResources.Application.edit')->with('application', $application);
     }
 
@@ -86,7 +70,7 @@ class HumanResourcesApplicationController extends Controller
         $application = Application::where('userno', $id)->firstOrFail();
         $application->ApplicationForm = $applicationform;
         $application->update();
-        return view('HumanResources.Application.application')->with('application', $application);
+        return view('HumanResources.Application.index')->with('application', $application);
     }
 
     public function destroy($id)

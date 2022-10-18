@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			<a href="/Accounting/Payroll/create">+Add Employee</a>
 			<div class="form-inline my-2 my-lg-0 right"> 
 				<form action="" method="get">
-					<input class="form-control mb-4 search" type="search" name="search" value="{{ $search }}" placeholder="Name/Detach./Loc.">
+					<input class="form-control mb-4 search" type="search" name="search" value="{{ $search }}" placeholder="Search">
 					<button class="btn btn-outline-success mb-4" type="submit">Search</button>
 				</form>
 			</div>
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th></th>
 						<th></th>
-						<th class="align-middle">Detachment Code</th>
+						<th class="align-middle">Detachment</th>
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						</form>
 					</td>
 					<td>
-						{{ $payroll['DCode'] }}
+					{{ $payroll['Detachment'] }}: {{ $payroll['Location'] }}
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}

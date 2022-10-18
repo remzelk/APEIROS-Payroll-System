@@ -19,13 +19,15 @@ class AdminPayrollCodeController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $payrollcode = PayrollCode::where('PayCode', 'LIKE', "%$search%")
+            $payrollcode = PayrollCode::orderby('PayCode', 'DESC')
+            ->where('PayCode', 'LIKE', "%$search%")
             ->orwhere('Start', 'LIKE', "%$search%")
             ->orwhere('End', 'LIKE', "%$search%")
             ->get();
         }
         else{
-            $payrollcode = PayrollCode::all();
+            $payrollcode = PayrollCode::orderby('PayCode', 'DESC')
+            ->get();
         }
         $data = compact('payrollcode', 'search');
         return view('Admin.PayrollCode.index')->with($data);
@@ -84,7 +86,7 @@ class AdminPayrollCodeController extends Controller
         return redirect('/Admin/PayrollCode')->with('message', 'Payroll code: ' . $payrollcode->PayCode . ' edited successfully!');
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $payrollcode = PayrollCode::where('PayCode', $id)->firstOrFail();
         $payrollcode->delete();

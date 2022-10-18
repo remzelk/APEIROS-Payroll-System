@@ -50,7 +50,8 @@ class RegisterController extends Controller
         if (($user->position == 4) || ($user->position == 5))
         {
             Application::create([
-                'UserNo' => $user->userno
+                'UserNo' => $user->userno,
+                'Name' => $user->name
             ]);
         }
 

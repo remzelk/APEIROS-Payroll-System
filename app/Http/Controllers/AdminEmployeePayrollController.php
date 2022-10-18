@@ -28,7 +28,7 @@ class AdminEmployeePayrollController extends Controller
         $search = $request['search'] ?? "";
         if ($search != ""){
             $payrollcode = PayrollCode::orderBy('id', 'DESC')
-            ->orwhere('Start', 'LIKE', "%$search%")
+            ->where('Start', 'LIKE', "%$search%")
             ->orwhere('End', 'LIKE', "%$search%")
             ->get();
         }
@@ -59,6 +59,9 @@ class AdminEmployeePayrollController extends Controller
         $payroll->Name = $u->name;
         $app = Application::where('UserNo', 'LIKE', $payroll->UserNo)->firstOrFail();
         $payroll->DCode = $app->DCode; 
+        $d = Detachments::where('DCode', $payroll->DCode)->firstOrFail();
+        $payroll->Detachment = $d->Detachment;
+        $payroll->Location = $d->Location;
         $payroll->DaysWorked = 0;
         $payroll->RatePerDay = request('RatePerDay');
         $payroll->GrossPay = ($payroll->DaysWorked * $payroll->RatePerDay);
@@ -281,16 +284,19 @@ class AdminEmployeePayrollController extends Controller
         $search = $request['search'] ?? "";
         if ($search != ""){
             $payroll = Payroll::orderBy('Name', 'ASC')
+            ->orderBy('Detachment', 'ASC')
+            ->where('UserNo', 'LIKE', "%$search%")
             ->orwhere('Name', 'LIKE', "%$search%")
+            ->orwhere('Detachment', 'LIKE', "%$search%")
+            ->orwhere('Location', 'LIKE', "%$search%")
             ->get();
         }
         else{
             $payroll = Payroll::where('PayCode', 'LIKE', $id)
             ->get();
         }
-        $detachment = Detachments::all();
         $payrollcode = PayrollCode::where('PayCode', 'LIKE', $id)->firstOrFail();
-        $data = compact('payroll', 'search', 'payrollcode', 'detachment');
+        $data = compact('payroll', 'search', 'payrollcode');
         return view('Admin.Payroll.list')->with($data);
     }
 
@@ -308,6 +314,9 @@ class AdminEmployeePayrollController extends Controller
         $payroll->Name = $u->name;
         $app = Application::where('UserNo', 'LIKE', $payroll->UserNo)->firstOrFail();
         $payroll->DCode = $app->DCode; 
+        $d = Detachments::where('DCode', $payroll->DCode)->firstOrFail();
+        $payroll->Detachment = $d->Detachment;
+        $payroll->Location = $d->Location;
         $payroll->RatePerDay = request('RatePerDay');
         $payroll->GrossPay = ($payroll->DaysWorked * $payroll->RatePerDay);
         $payroll->OfficersAllowance = request('OfficersAllowance');

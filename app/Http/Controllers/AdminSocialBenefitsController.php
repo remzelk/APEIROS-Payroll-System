@@ -18,22 +18,12 @@ class AdminSocialBenefitsController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $user = User::join('application', 'users.userno', '=', 'application.UserNo')
-            ->select('user.*', 'application.*')
-            ->orderBy('Name', 'ASC')
+            $user = Application::orderBy('Name', 'ASC')
             ->where('Name', 'LIKE', "%$search%")
-            ->orwhere('Position', 'LIKE', '4')
-            ->orwhere('Position', 'LIKE', '5')
-            ->whereNull('users.deleted_at')
             ->get();
         }
         else{
-            $user = User::join('application', 'users.userno', '=', 'application.UserNo')
-            ->select('users.*', 'application.*')
-            ->orderBy('Name', 'ASC')
-            ->orwhere('Position', 'LIKE', '4')
-            ->orwhere('Position', 'LIKE', '5')
-            ->whereNull('users.deleted_at')
+            $user = Application::orderBy('Name', 'ASC')
             ->get();
         }
         $data = compact('user', 'search');

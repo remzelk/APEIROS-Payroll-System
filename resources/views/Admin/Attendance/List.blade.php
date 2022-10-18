@@ -29,6 +29,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				<tr>
                     <td class="text-left">{{ $attendance['Detachment'] }}</td>
                     <td class="text-left">{{ $attendance['Location'] }}</td>
-                    <td class="text-left"><a class="profile-name" target="__blank" href="/Admin/Attendance/view/{{ $attendance['AttendanceSheet'] }}">View</a></td>
+                    <td class="text-left"><a class="profile-name" target="_blank" href="/Admin/Attendance/view/{{ $attendance['AttendanceSheet'] }}">View</a></td>
                     <td class="text-left"><a class="profile-name" href="{{ route('downloadattendance', $attendance['id']) }}">Download</a></td>
                 </tr>
                 @empty

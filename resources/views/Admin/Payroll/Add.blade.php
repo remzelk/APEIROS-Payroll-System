@@ -28,6 +28,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
@@ -136,23 +137,23 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                   <label>Firearms Maintenance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4" required>
+                  <input type="number" step="1" min="0" value="10.00" id="FAMaintenance" name="FAMaintenance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Radio Maintenance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4" required>
+                  <input type="number" step="1" min="0" value="10.00" id="RadioMaintenance" name="RadioMaintenance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Bank Charge</label>
-                  <input type="number" step="1" min="0" value="0.00" id="BankCharge" name="BankCharge" class="form-control mb-4" required>
+                  <input type="number" step="1" min="0" value="10.00" id="BankCharge" name="BankCharge" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Insurance</label>
-                  <input type="number" step="1" min="0" value="0.00" id="Insurance" name="Insurance" class="form-control mb-4" required>
+                  <input type="number" step="1" min="0" value="30.00" id="Insurance" name="Insurance" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Cash Bond</label>
-                  <input type="number" step="1" min="0" value="0.00" id="CashBond" name="CashBond" class="form-control mb-4" required>
+                  <input type="number" step="1" min="0" value="100.00" id="CashBond" name="CashBond" class="form-control mb-4" required>
                 </div>
                 <div class="col-md-6">
                   <label>Cash Advance</label>

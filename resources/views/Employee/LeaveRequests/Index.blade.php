@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     <a href="/Employee/LeaveRequests/{{ $leave['LeaveNo'] }}" class="btn btn-primary">View</a>
                 </td>
                 @empty
-                <td colspan="4">
+                <td colspan="5">
                   <h1>No Data!</h1>
                 </td>
               @endforelse

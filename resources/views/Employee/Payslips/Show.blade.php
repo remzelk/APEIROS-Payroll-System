@@ -15,9 +15,9 @@
   <div class="d-flex justify-content-between">
     <div>
       <h1>{{ $payroll['Name'] }}</h1>
-      <p>Address</p>
-      <p>Phone Number</p>
-      <p>Email</p>
+      <p>{{ $application['Address'] }}</p>
+      <p>{{ $application['Phone'] }}</p>
+      <p>{{ $application['Email'] }}</p>
     </div>
     <div>
       <table class="table table-bordered">

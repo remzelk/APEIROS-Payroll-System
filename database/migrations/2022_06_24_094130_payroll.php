@@ -12,6 +12,8 @@ class Payroll extends Migration
             $table->id('id');
             $table->text('PayCode');
             $table->text('DCode');
+            $table->text('Detachment');
+            $table->text('Location');
             $table->integer('UserNo');
             $table->text('Name');
             $table->integer('DaysWorked')->default(0);

@@ -29,6 +29,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
@@ -93,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Announcement</h3>
-            <form action="/Admin" method="POST">
+            <form action="/Admin/{{ $announcement['id'] }}" method="POST">
               @csrf
               @method('Put')
             <div class="row">

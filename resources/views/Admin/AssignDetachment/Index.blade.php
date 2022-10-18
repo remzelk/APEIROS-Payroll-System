@@ -29,6 +29,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments" class="active">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
@@ -92,26 +93,35 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			    <h1 class="mb-3">Assign Detachment</h1>
+          <form action="" method="get">
+            <div class="form-inline my-2 my-lg-0 right"> 
+              <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+              <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+            </div>
+          </form>
+		<div class="scroll">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th class="align-middle">User No.</th>
                 <th class="align-middle">Name</th>
                 <th class="align-middle">DCode</th>
+                <th class="align-middle">Detachment</th>
                 <th></th>
               </tr>
             </thead>
             <div class="scroll">
               @forelse($assign as $key => $assign)
               <tr>
-                <td>{{ $assign['userno'] }}</td>
-                <td>{{ $assign['name'] }}</td>
+                <td>{{ $assign['UserNo'] }}</td>
+                <td>{{ $assign['Name'] }}</td>
                 @if($assign['DCode'] == NULL)
-                    <td>Not Assigned</td>
+                    <td colspan="2">Not Assigned</td>
                 @else
                   <td>{{ $assign['DCode'] }}</td>
+                  <td>{{ $assign['Detachment'] }}: {{ $assign['Location'] }}</td>
                 @endif
-                <td class="align-middle"><a href="/Admin/AssignDetachments/{{ $assign['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                <td class="align-middle"><a href="/Admin/AssignDetachments/{{ $assign['UserNo'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                 @empty
                 <td colspan="5">
                   <h1>No Data!</h1>

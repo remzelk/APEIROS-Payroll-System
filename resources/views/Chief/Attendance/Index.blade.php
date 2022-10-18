@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function(){
                           <label>Detachment</label><br>
                                 {{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}   
                         </div>
-                      <label>Digital version of the attendance sheet</label>
+                      <label>Digital version of the attendance sheet (PDF format)</label>
                       <input type="file" id="attendancesheet" name="attendancesheet" class="form-control mb-4" value="{{ old('attendancesheet') }}" required>
                       <input type="hidden" id="Submitted" name="Submitted" value="1">
                       </div>

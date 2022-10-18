@@ -28,6 +28,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>
@@ -106,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function(){
 					<tr>
 						<th></th>
 						<th></th>
-						<th class="align-middle">Detachment Code</th>
+						<th class="align-middle">Detachment</th>
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
@@ -151,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						</form>
 					</td>
 					<td>
-						{{ $payroll['DCode'] }}
+						{{ $payroll['Detachment'] }}: {{ $payroll['Location'] }}
 					</td>
 					<td>
 						{{ $payroll['UserNo'] }}

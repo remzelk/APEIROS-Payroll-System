@@ -14,7 +14,7 @@
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
   <img src="https://media.discordapp.net/attachments/958687400203255808/1016964339208556555/White.png?width=960&height=169" alt="logo" width="250" height="40">
   </div>
-  <ul class="nav flex-column" id="nav_accordion">
+  <ul class="nav flex-column scrollbar-deep-purple bordered-deep-purple thin" id="nav_accordion">
     <li class="nav-item"><a href="/Admin" class="active">Home</a></li> 
     <li class="nav-item has-submenu">
     <a href="#" class="nav-link">Credentials <i class="fa fa-caret-down"></i></a>
@@ -29,6 +29,7 @@
     </li>
     <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
+    <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/Admin/AssignDetachments">Assign Detachments</a></li>
     <li class="nav-item"><a href="/Admin/PayrollCode">Payroll Codes</a></li>

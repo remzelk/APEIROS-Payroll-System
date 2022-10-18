@@ -18,26 +18,18 @@ class AdminAssignDetachmentController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $assign = Application::join('users', 'users.userno', '=', 'application.UserNo')
-            ->select('users.*', 'application.*')
-            ->orderBy('Name', 'ASC')
-            ->where('Name', 'LIKE', "%$search%")
-            ->orwhere('Position', 'LIKE', '4')
-            ->orwhere('Position', 'LIKE', '5')
-            ->whereNull('users.deleted_at')
+            $assign = Application::orderBy('Name', 'ASC')
+            ->where('UserNo', 'LIKE', "%$search%")
+            ->orwhere('Name', 'LIKE', "%$search%")    
+            ->orwhere('DCode', 'LIKE', "%$search%")    
+            ->orwhere('Detachment', 'LIKE', "%$search%")
+            ->orwhere('Location', 'LIKE', "%$search%")
             ->get();
         }
         else{
-            $assign = Application::join('users', 'users.userno', '=', 'application.UserNo')
-            ->select('users.*', 'application.*')
-            ->orderBy('Name', 'ASC')
-            ->orwhere('Position', 'LIKE', '4')
-            ->orwhere('Position', 'LIKE', '5')
-            ->whereNull('users.deleted_at')
-            ->get();
+            $assign = Application::orderBy('Name', 'ASC')->get();
         }
-        $detachment = Detachments::all();
-        $data = compact('assign', 'search', 'detachment');
+        $data = compact('assign', 'search');
         return view('Admin.AssignDetachment.index')->with($data);
     }
 
@@ -58,10 +50,8 @@ class AdminAssignDetachmentController extends Controller
 
     public function edit($id)
     {
-        $assign = Application::join('users', 'users.userno', '=', 'application.UserNo')
-            ->select('users.*', 'application.*')
-            ->orderBy('Name', 'ASC')
-            ->where('application.userno', 'LIKE', $id)
+        $assign = Application::orderBy('Name', 'ASC')
+            ->where('UserNo', 'LIKE', $id)
             ->firstOrFail();
         $detachment = Detachments::all();
         $data = compact('assign', 'detachment');
@@ -72,6 +62,9 @@ class AdminAssignDetachmentController extends Controller
     {
         $application = Application::where('userno', $id)->firstOrFail();
         $application->DCode = $request->input('DCode');
+        $d = Detachments::where('DCode', $application->DCode)->firstOrFail();
+        $application->Detachment = $d->Detachment;
+        $application->Location = $d->Location;
         $application->update();
         return redirect('/Admin/AssignDetachments');
     }

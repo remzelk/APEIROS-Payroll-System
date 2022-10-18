@@ -16,6 +16,7 @@
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
     <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments" class="active">Assign Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/Attendance">Attendance</a></li>
@@ -78,17 +79,17 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Assign Detachment</h3>
-            <form action="/HumanResources/AssignDetachments/{{ $assign['userno'] }}" method="POST">
+            <form action="/HumanResources/AssignDetachments/{{ $assign['UserNo'] }}" method="POST">
               @csrf
               @method('Put')
             <div class="row mb-3">
                 <div class="col-md-6 mb-3">
                     <h6>User No.</h6>
-                    <label>{{ $assign['userno'] }}</label>
+                    <label>{{ $assign['UserNo'] }}</label>
                 </div>
                 <div class="col-md-6 mb-3">
                     <h6>Name</h6>
-                    <label>{{ $assign['name'] }}</label>
+                    <label>{{ $assign['Name'] }}</label>
                 </div>
             </div>
             <div class="row">

@@ -23,7 +23,7 @@ class HumanResourcesAttendanceController extends Controller
     public function download($id)
     {
         $attendance = Attendance::where('id', $id)->firstOrFail();
-        return response()->download(public_path(('attendance/' . $attendance->AttendanceSheet), ($attendance->AttendanceSheet)));
+        return response()->download(public_path(('attendance/' . $attendance->AttendanceSheet), ($attendance->id)));
     }
 
     public function index(Request $request)

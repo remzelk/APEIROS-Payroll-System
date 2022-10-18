@@ -45,7 +45,7 @@ class ChiefApplicationController extends Controller
             'ApplicationForm' => ['required', 'mimes:pdf']
         ]);
 
-        $applicationform = time() . '-' . $request->input('ApplicationForm') . '.' . $request->file('ApplicationForm')->extension();
+        $applicationform = time() . '-' . Auth::user()->userno . '.' . $request->file('ApplicationForm')->extension();
         $request->file('ApplicationForm')->move(public_path('application'), $applicationform);
 
         $application = Application::where('userno', $id)->firstOrFail();

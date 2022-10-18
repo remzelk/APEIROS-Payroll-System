@@ -56,8 +56,9 @@ class EmployeePayslipsController extends Controller
         ->where('UserNo', 'LIKE', Auth::user()->userno)
         ->firstOrFail();
         $detachment = Detachments::all();
+        $application = Application::where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
         $payrollcode = PayrollCode::where('PayCode', 'LIKE', $id)->firstOrFail();
-        $data = compact('payroll', 'payrollcode', 'detachment');
+        $data = compact('payroll', 'payrollcode', 'detachment', 'application');
         return view('Employee.Payslips.show')->with($data);
     }
 

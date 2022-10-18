@@ -36,16 +36,14 @@
     top: 0;
     left: 0;
     background-color: #484f8f;
-    overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     border: none;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .sidenav a, .dropdown-btn {
     font-family: 'Inter', sans-serif;
-    font-size: .925rem;
     display: block;
     padding: 8px;
     font-size: 18px;
