@@ -122,7 +122,9 @@ document.addEventListener("DOMContentLoaded", function(){
                                 </div>
                             </form>
                         @else
+                        <div class="alert alert-success">
                             <h6>Application form already submitted!</h6>
+                        </div>
                         @endif
                 </div>
             </div>

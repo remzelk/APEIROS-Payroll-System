@@ -59,14 +59,13 @@ class AdminCredentialsController extends Controller
         $user = User::where('userno', $id)->firstOrFail();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'exists:users'],
-            'position' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'position' => ['required', 'string', 'max:255']
         ]);
-        User::whereIn('userno', $id)->update([
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'position' => $request->input('position'),
-        ]);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->position = $request->input('position');
+        $user->save();
         return redirect('/Admin/Credentials/Admin');
     }
 

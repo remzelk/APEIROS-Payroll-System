@@ -93,42 +93,34 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
           <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Edit Credentials</h3>
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form action="/Admin/Credentials/Admin/{{ $user['id'] }}" method="POST" >
-          @csrf
-          @method('Put')
+        <form method="POST" action="/Admin/Credentials/Admin/{{ $user['userno'] }}">
+            @csrf
+            @method('Put')
             <div class="row">
                 <div class="col-md-6">
                     <label>Name</label>
-                    <x-input id="name" class="form-control mb-4" type="text" name="name" value="{{ $user['name'] }}" required autofocus />
+                    <input id="name" class="form-control mb-4" type="text" name="name" value="{{ $user['name'] }}" required autofocus />
                 </div>
                 <div class="col-md-6">
                     <label>Email</label>
-                    <x-input id="email" class="form-control mb-4" type="email" name="email" value="{{ $user['email'] }}" required />
-                </div>
-                <div class="col-md-6">
-                    <label>Password</label>
-                    <x-input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" />
-                </div>
-                <div class="col-md-6">
-                    <label>Confirm Password</label>
-                    <x-input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required />
+                    <input id="email" class="form-control mb-4" type="email" name="email" value="{{ $user['email'] }}" required />
                 </div>
                 <div class="col-md-6">
                     <label>Position</label>
                     <select class="form-control mb-4" name="position" id="position">
-                        <option value="Admin" selected>Admin</option>
-                        <option value="Human Resources">Human Resources</option>
-                        <option value="Accounting">Accounting</option>
-                        <option value="Employee">Employee</option>
+                        <option value="1" selected>Admin</option>
+                        <option value="2">Human Resources</option>
+                        <option value="3">Accounting</option>
+                        <option value="4">Employee</option>
+                        <option value="5">Chief</option>
                     </select>
                 </div>
             </div>
-            <div class="mt-4 pt-2">
-                <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
-              </div>
+            <div class="flex items-center justify-end mt-4">
+                <button class="btn btn-primary btn-lg bton">
+                    Edit
+                </button>
+            </div>
         </form>
         </div>
         </div>

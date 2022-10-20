@@ -53,20 +53,17 @@ class EmployeeCredentialsController extends Controller
 
     public function update(Request $request, $id)
     {
-        
         $user = User::where('userno', $id)->firstOrFail();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'position' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'position' => ['required', 'string', 'max:255']
         ]);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->position = $request->input('position');
-        $user->password = Hash::make($request->input('password'));
-        $user->update();
-        return redirect('/Admin/Credential/Employee');
+        $user->save();
+        return redirect('/Admin/Credentials/Employee');
     }
 
     public function destroy($id)

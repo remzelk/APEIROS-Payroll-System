@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth, Hash, Session;
 
-class EmployeeChangePasswordController extends Controller
+class HumanResourcesChangePasswordController extends Controller
 {
     public function index()
     {
 
-      return view('Employee.accountsettings');
+      return view('HumanResources.accountsettings');
     }
 
     public function changePassword(Request $request)

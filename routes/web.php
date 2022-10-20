@@ -8,7 +8,8 @@ Route::get('/Contact', 'HomeController@contact');
 Auth::routes();
 
 
-Route::get('/Admin/AccountSettings', 'AdminController@accountsettings')->middleware('IsAdmin');
+Route::get('/Admin/AccountSettings', 'AdminChangePasswordController@index')->middleware('IsAdmin');
+Route::post('/Admin/AccountSettings', 'AdminChangePasswordController@changePassword')->name('change.password')->middleware('IsAdmin');
 Route::get('/Admin/Credentials/Register', 'RegisterController@create')->middleware('IsAdmin');
 Route::post('/Admin/Credentials/Register', 'RegisterController@store')->middleware('IsAdmin');
 Route::get('/Admin/ApplicationList/download/{id}', 'AdminApplicationController@download')->name('downloadapplication')->middleware('IsAdmin');
@@ -43,7 +44,8 @@ Route::get('/HumanResources/DigitalAttendance/{paycode}/{id}', 'HumanResourcesDi
 Route::get('/HumanResources/BIRForm2316/view/{id}', 'HumanResourcesBIRController@view')->middleware('IsHumanResources');
 Route::get('/HumanResources/BIRForm2316/download/{id}', 'HumanResourcesBIRController@download')->name('hrbir')->middleware('IsHumanResources');
 Route::get('/HumanResources/LeaveRequests/Archive', 'HumanResourcesLeaveRequestsController@archive')->middleware('IsHumanResources');
-Route::get('/HumanResources/AccountSettings', 'HumanResourcesController@accountsettings')->middleware('IsHumanResources');
+Route::get('/HumanResources/AccountSettings', 'HumanResourcesChangePasswordController@index')->middleware('IsHumanResources');
+Route::post('/HumanResources/AccountSettings', 'HumanResourcesChangePasswordController@changePassword')->name('hrchange.password')->middleware('IsHumanResources');
 Route::resource('/HumanResources/ApplicationList', HumanResourcesApplicationController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources/BIRForm2316', HumanResourcesBIRController::class)->middleware('IsHumanResources');
 Route::resource('/HumanResources/Attendance', HumanResourcesAttendanceController::class)->middleware('IsHumanResources');
@@ -54,7 +56,8 @@ Route::resource('/HumanResources/AssignDetachments', HumanResourcesAssignDetachm
 Route::resource('/HumanResources', HumanResourcesAnnouncementController::class)->middleware('IsHumanResources');
 
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
-Route::get('/Accounting/AccountSettings', 'AccountingController@accountsettings')->middleware('IsAccounting');
+Route::get('/Accounting/AccountSettings', 'AccountingChangePasswordController@index')->middleware('IsAccounting');
+Route::post('/Accounting/AccountSettings', 'AccountingChangePasswordController@changePassword')->name('accountingchange.password')->middleware('IsAccounting');
 Route::get('/Accounting/Payroll/{paycode}/{id}', 'AccountingEmployeePayrollController@editpayroll')->middleware('IsAccounting');
 Route::resource('/Accounting/SocialBenefits', AccountingSocialBenefitsController::class)->middleware('IsAccounting');
 Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class)->middleware('IsAccounting');
@@ -63,7 +66,8 @@ Route::resource('/Accounting/PayrollCode', AccountingPayrollCodeController::clas
 Route::get('/Employee', 'EmployeesController@index')->name('Employee.index')->middleware('IsEmployee');
 Route::get('/Employee/BIRForm2316/view/{id}', 'EmployeeBIRController@view')->middleware('IsEmployee');
 Route::get('/Employee/BIRForm2316/download/{id}', 'EmployeeBIRController@download')->name('employeebir')->middleware('IsEmployee');
-Route::get('/Employee/AccountSettings', 'EmployeesController@accountsettings')->middleware('IsEmployee');
+Route::get('/Employee/AccountSettings', 'EmployeeChangePasswordController@index')->middleware('IsEmployee');
+Route::post('/Employee/AccountSettings', 'EmployeeChangePasswordController@changePassword')->name('employeechange.password')->middleware('IsEmployee');
 Route::resource('/Employee/BIRForm2316', EmployeeBIRController::class)->middleware('IsEmployee');
 Route::resource('/Employee/LeaveRequests', EmployeeLeaveRequestsController::class)->middleware('IsEmployee');
 Route::resource('/Employee/Payslips', EmployeePayslipsController::class)->middleware('IsEmployee');
@@ -72,7 +76,8 @@ Route::resource('/Employee/Application', EmployeeApplicationController::class)->
 Route::get('/Chief', 'ChiefController@index')->name('Chief.index')->middleware('IsChief');
 Route::get('/Chief/BIRForm2316/view/{id}', 'ChiefBIRController@view')->middleware('IsChief');
 Route::get('/Chief/BIRForm2316/download/{id}', 'ChiefBIRController@download')->name('chiefbir')->middleware('IsChief');
-Route::get('/Chief/AccountSettings', 'ChiefController@accountsettings')->middleware('IsChief');
+Route::get('/Chief/AccountSettings', 'ChiefChangePasswordController@index')->middleware('IsChief');
+Route::post('/Chief/AccountSettings', 'ChiefChangePasswordController@changePassword')->name('chiefchange.password')->middleware('IsChief');
 Route::resource('/Chief/LeaveRequests', ChiefLeaveRequestsController::class)->middleware('IsChief');
 Route::resource('/Chief/BIRForm2316', ChiefBIRController::class)->middleware('IsChief');
 Route::resource('/Chief/Payslips', ChiefPayslipsController::class)->middleware('IsChief');
