@@ -17,13 +17,19 @@ class EmployeePayslipsController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $payrollcode = PayrollCode::orderBy('id', 'DESC')
+            $payrollcode = PayrollCode::join('payroll', 'payrollcode.PayCode', '=', 'payroll.PayCode')
+            ->select('payrollcode.*', 'payroll.*')
+            ->orderBy('payrollcode.id', 'DESC')
+            ->where('userno', 'LIKE', Auth::user()->userno)
             ->orwhere('Start', 'LIKE', "%$search%")
             ->orwhere('End', 'LIKE', "%$search%")
             ->get();
         }
         else{
-            $payrollcode = PayrollCode::orderBy('id', 'DESC')
+            $payrollcode = PayrollCode::join('payroll', 'payrollcode.PayCode', '=', 'payroll.PayCode')
+            ->select('payrollcode.*', 'payroll.*')
+            ->orderBy('payrollcode.id', 'DESC')
+            ->where('userno', 'LIKE', Auth::user()->userno)
             ->get();
         }
         $data = compact('payrollcode', 'search');
