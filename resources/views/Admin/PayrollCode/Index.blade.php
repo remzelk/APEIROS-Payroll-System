@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			    <h1 class="mb-3">Payroll Codes</h1>
         <form action="" method="get">
             <div class="form-inline my-2 my-lg-0 right"> 
-            <a href="/Admin/PayrollCode/create" class="mb-4">+Generare a new payroll code</a>&emsp;
+            <a href="/Admin/PayrollCode/create" class="mb-4">+Generate a new payroll code</a>&emsp;
                 <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
                 <button class="btn btn-outline-success mb-4" type="submit">Search</button>
             </div>
