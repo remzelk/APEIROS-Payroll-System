@@ -106,8 +106,6 @@ document.addEventListener("DOMContentLoaded", function(){
                     <td>Yes</td>
                 @elseif($leave['Approved'] == "0")
                     <td>No</td>
-                @elseif($leave['Approved'] == NULL)
-                    <td>TBA</td>  
                 @endif
                 <td class="align-middle">
                     <a href="/HumanResources/LeaveRequests/{{ $leave['LeaveNo'] }}" target="_blank" class="btn btn-primary">View</a>

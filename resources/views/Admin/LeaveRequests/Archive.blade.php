@@ -116,9 +116,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 <td>{{ $leave['Start'] }}</td>
                 <td>{{ $leave['End'] }}</td>
                 <td>{{ $leave['LeaveType'] }}</td>
-                @if($leave['Approved'] == NULL)
-                    <td>TBA</td>
-                @elseif($leave['Approved'] == "1")
+                @if($leave['Approved'] == "1")
                     <td>Yes</td>
                 @elseif($leave['Approved'] == "0")
                     <td>No</td>
