@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function(){
                   </div>
                   <div class="col-md-6">
                       <label>Email</label>
-                      <input type="email" id="Email" name="Email" class="form-control mb-4" value="{{ $detachment['Email'] }}" required> 
+                      <input type="email" id="Email" name="Email" class="form-control mb-4" value="{{ $detachment['Email'] }}"> 
                   </div>
                   <div class="col-md-6">
                       <label>Address</label>
