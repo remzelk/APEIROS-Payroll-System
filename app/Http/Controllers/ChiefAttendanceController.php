@@ -22,7 +22,7 @@ class ChiefAttendanceController extends Controller
     {
         $id = $request->user()->userno;
         $application = Application::where('UserNo', $id)->firstOrFail();
-        $payrollcode = PayrollCode::all();
+        $payrollcode = PayrollCode::orderBy('id', 'DESC')->get();
         $detachment = Detachments::where('DCode', $application->DCode)->firstOrFail();
         $data = compact('payrollcode', 'detachment');
         return view('Chief.Attendance.index')->with($data);
