@@ -276,7 +276,7 @@ class AccountingEmployeePayrollController extends Controller
         $payroll->CashAdvance = request('CashAdvance');
         $payroll->TotalNetPay = ($payroll->FinalGrossPay - $payroll->TotalDeduction - $payroll->CashAdvance);
         $payroll->save();
-        return redirect('/Accounting/Payroll');
+        return redirect('/Accounting/Payroll/' . $payroll->PayCode);
     }
 
     public function show(Request $request, $id)
@@ -527,7 +527,7 @@ class AccountingEmployeePayrollController extends Controller
         $payroll->CashAdvance = request('CashAdvance');
         $payroll->TotalNetPay = ($payroll->FinalGrossPay - $payroll->TotalDeduction - $payroll->CashAdvance);
         $payroll->update();
-        return redirect('/Accounting/Payroll');
+        return redirect('/Accounting/Payroll/' . $payroll->PayCode);
     }
 
     public function destroy($id)

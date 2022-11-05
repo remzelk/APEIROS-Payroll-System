@@ -57,8 +57,8 @@ class AdminDigitalAttendanceController extends Controller
     
     public function update(Request $request, $id)
     {
-        $payroll = Payroll::where('UserNo', $id)->firstOrFail();
-        $pc = PayrollCode::where('PayCode', $payroll->PayCode)->firstOrFail();
+        $payroll = Payroll::where('UserNo', $id)->where('PayCode', request('PayCode'))->firstOrFail();
+        $pc = PayrollCode::where('PayCode', request('PayCode'))->firstOrFail();
         $payroll->DaysWorked = request('DaysWorked');
         $payroll->GrossPay = ($payroll->DaysWorked * $payroll->RatePerDay);
         $payroll->NSDifferential = request('NSDifferential');
@@ -259,10 +259,10 @@ class AdminDigitalAttendanceController extends Controller
                 $payroll->SSS = 1125.00;
             }
         }
-        $payroll->TotalDeduction = ($payroll->PhilHealth + $payroll->HDMF + $payroll->HDMFLoan + $payroll->SSS + $payroll->FAMaintenance + $payroll->RadioMaintenance + $payroll->BankCharge + $payroll->Insurance + $payroll->CashBond);
+        $payroll->TotalDeduction = ($payroll->PhilHealth + $payroll->HDMF + $payroll->HDMFLoan + $payroll->SSS + $payroll->SSSLoan + $payroll->FAMaintenance + $payroll->RadioMaintenance + $payroll->BankCharge + $payroll->Insurance + $payroll->CashBond);
         $payroll->TotalNetPay = ($payroll->FinalGrossPay - $payroll->TotalDeduction - $payroll->CashAdvance);
         $payroll->update();
-        return redirect('/Admin/DigitalAttendance');
+        return redirect('/Admin/DigitalAttendance/' . $payroll->PayCode);
     }
     
     public function show(Request $request, $id)

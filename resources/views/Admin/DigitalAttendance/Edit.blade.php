@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function(){
                       <div class="mb-3"><b>Start:</b> {{ $payrollcode['Start'] }}, <b>End:</b> {{ $payrollcode['End'] }}</div>
                       @endif
                     @endforeach
+                    <input type="hidden" id="PayCode" name="PayCode" value="{{ $payroll['PayCode'] }}">
                 </div>
                 <div class="col-md-6">
                   <label>Name</label><br> 
