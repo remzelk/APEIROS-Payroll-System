@@ -23,6 +23,7 @@ class EmployeePayslipsController extends Controller
             ->where('userno', 'LIKE', Auth::user()->userno)
             ->orwhere('Start', 'LIKE', "%$search%")
             ->orwhere('End', 'LIKE', "%$search%")
+            ->whereNull('payroll.deleted_at')
             ->get();
         }
         else{
@@ -30,6 +31,7 @@ class EmployeePayslipsController extends Controller
             ->select('payrollcode.*', 'payroll.*')
             ->orderBy('payrollcode.id', 'DESC')
             ->where('userno', 'LIKE', Auth::user()->userno)
+            ->whereNull('payroll.deleted_at')
             ->get();
         }
         $data = compact('payrollcode', 'search');
