@@ -535,6 +535,6 @@ class AdminEmployeePayrollController extends Controller
         $payroll = Payroll::where('UserNo', $id)
         ->firstOrFail();
         $payroll->delete();
-        return redirect('/Admin/Payroll');
+        return redirect('/Admin/Payroll/' . $payroll->PayCode);
     }
 }
