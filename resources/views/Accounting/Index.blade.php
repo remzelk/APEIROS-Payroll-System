@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          <h1 class="mb-3">Notifications:</h1>
+          <h1 class="mb-3">Announcements</h1>
           <table class="table table-striped">
             <thead>
               <tr>
