@@ -78,6 +78,9 @@ document.addEventListener("DOMContentLoaded", function(){
                         @if($errors->any())
                           {!! implode('', $errors->all('<div><h6 style="color:red">:message</h6></div>')) !!}
                         @endif
+                        @if(Session::has('error'))
+                          <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                        @endif
                         <h3 class="mb-3">Leave Request Form</h3>
                             <form action="/Employee/LeaveRequests" method="POST">
                                 @csrf 

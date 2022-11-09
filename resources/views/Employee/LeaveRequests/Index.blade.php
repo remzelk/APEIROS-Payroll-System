@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function(){
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			    <h1 class="mb-3">Leave Request Archive</h1>
+          <h4 class="mb-3"><b>Days Left:</b> {{ $daysleft }} &emsp; <b>Paid Days Left:</b> {{ $paidleft }}</h4>
           <a href="/Employee/LeaveRequests/create" class="mb-4">+Send Leave Request</a>
           <table class="table table-striped">
             <thead>
@@ -92,12 +93,12 @@ document.addEventListener("DOMContentLoaded", function(){
                 <td>{{ $leave['Start'] }}</td>
                 <td>{{ $leave['End'] }}</td>
                 <td>{{ $leave['LeaveType'] }}</td>
-                @if($leave['Approved'] == NULL)
-                    <td>TBA</td>
-                @elseif($leave['Approved'] == "1")
+                @if($leave['Approved'] == "1")
                     <td>Yes</td>
                 @elseif($leave['Approved'] == "0")
                     <td>No</td>
+                @elseif($leave['Approved'] == NULL)
+                    <td>TBA</td>
                 @endif
                 <td class="align-middle">
                     <a href="/Employee/LeaveRequests/{{ $leave['LeaveNo'] }}" class="btn btn-primary">View</a>

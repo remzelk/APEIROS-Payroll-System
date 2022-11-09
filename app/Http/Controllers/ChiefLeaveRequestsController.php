@@ -11,18 +11,24 @@ use App\Models\LeaveRequests;
 use App\Models\User;
 use App\Models\Application;
 use App\Models\Detachments;
+use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Redirect;
 
 class ChiefLeaveRequestsController extends Controller
 {
     public function index()
     {
         $leave = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->get();
-        return view('Chief.LeaveRequests.index')->with('leave', $leave);
+        $last = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
+        $paidleft = (5 - $last->DaysUsed);
+        $daysleft = (15 - $last->PaidDaysUsed);
+        $data = compact('leave', 'paidleft', 'daysleft');
+        return view('Chief.LeaveRequests.index')->with($data);
     }
 
     public function create()
@@ -52,9 +58,19 @@ class ChiefLeaveRequestsController extends Controller
         $leave->LeaveType = request('LeaveType');
         $leave->Reason = request('Reason');
         $c = LeaveRequests::where('UserNo', 'LIKE', Auth::user()->userno)->count();
+        $last = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
+        $end = $leave->End;
+        $start = $leave->Start;
+        $e = new DateTime($end);
+        $s = new DateTime($start);
+        $interval = $s->diff($e);
+        $diff = $interval->format('%a');
+        if(($diff + $last->DaysUsed) > 15)
+        {
+            return Redirect::back()->with('error', 'Your request exceeds your leave limit. Days available: ' . 15 - $last->DaysUsed);
+        }
         if ($c != 0)
         {
-            $last = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
             $leave->DaysUsed = $last->DaysUsed;
             $leave->PaidDaysUsed = $last->PaidDaysUsed;
         }
