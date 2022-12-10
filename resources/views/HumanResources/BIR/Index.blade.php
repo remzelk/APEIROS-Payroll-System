@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/HumanResources/BIRForm2316" class="active">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div  id="main">
+<div id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			<h1>BIR Form 2316</h1><br>
       <form action="" method="get">
         <div class="form-inline my-2 my-lg-0 right"> 
-        <a href="/HumanResources/BIRForm2316/create" class="mb-4"><i class="fa fa-envelope"></i> Send BIR Form 2316</a>&emsp;
+        <a href="/HumanResources/BIRForm2316/create" class="mb-4"><i class="fa fa-envelope"></i> Send BIR Form</a>&emsp;
             <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
             <button class="btn btn-outline-success mb-4" type="submit">Search</button>
         </div>

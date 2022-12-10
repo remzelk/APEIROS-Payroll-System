@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/all.css" >
 @endsection
-@section('title', 'Application')
+@section('title', 'Profile')
 @section('content')
 <nav id="mySidenav" class="sidenav">
   <div class="d-flex justify-content-center align-items-center px-3 py-4">
@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee">Home</a></li>
-    <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}">Application</a></li>
+    <li class="nav-item"><a href="/Employee/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Employee/Payslips" class="active">Payslips</a></li>
     <li class="nav-item"><a href="/Employee/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Employee/BIRForm2316">BIR Form 2316</a></li>

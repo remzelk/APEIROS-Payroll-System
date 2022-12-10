@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/HumanResources/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments" class="active">Assign Detachments</a></li>
@@ -98,15 +98,15 @@ document.addEventListener("DOMContentLoaded", function(){
             <div class="scroll">
               @forelse($assign as $key => $assign)
               <tr>
-                <td>{{ $assign['UserNo'] }}</td>
-                <td>{{ $assign['Name'] }}</td>
-                @if($assign['DCode'] == NULL)
+                <td>{{ $assign['userno'] }}</td>
+                <td>{{ $assign['name'] }}</td>
+                @if($assign['dcode'] == NULL)
                     <td colspan="2">Not Assigned</td>
                 @else
-                  <td>{{ $assign['DCode'] }}</td>
+                  <td>{{ $assign['dcode'] }}</td>
                   <td>{{ $assign['Detachment'] }}: {{ $assign['Location'] }}</td>
                 @endif
-                <td class="align-middle"><a href="/HumanResources/AssignDetachments/{{ $assign['UserNo'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['Name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                <td class="align-middle"><a href="/HumanResources/AssignDetachments/{{ $assign['userno'] }}/edit" class="btn btn-primary" onclick="return confirm('Assign detachment: <?php echo $assign['name'] ?>?')"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                 @empty
                 <td colspan="5">
                   <h1>No Data!</h1>

@@ -16,9 +16,9 @@
   <div class="d-flex justify-content-between">
     <div>
       <h1>{{ $payroll['Name'] }}</h1>
-      <p>{{ $application['Address'] }}</p>
-      <p>{{ $application['Phone'] }}</p>
-      <p>{{ $application['Email'] }}</p>
+      <p>{{ $profile['CurrentAddress'] }}</p>
+      <p>{{ $profile['ContactNumber'] }}</p>
+      <p>{{ Auth::user()->email }}</p>
     </div>
     <div>
       <table class="table table-bordered">
@@ -89,11 +89,11 @@
         <td>{{ $payroll['LegalHoliday'] }}</td>
       </tr>
       <tr>
-        <th scope="row">OT/Adj.</td>
+        <th scope="row">Adjustment</td>
         <td>{{ $payroll['OTAdj'] }}</td>
       </tr>
       <tr>
-        <th scope="row">Gross Pay</td>
+        <th scope="row">Adjusted Pay</td>
         <th scope="row">{{ $payroll['FinalGrossPay'] }}</th>
       </tr>
     </tbody>

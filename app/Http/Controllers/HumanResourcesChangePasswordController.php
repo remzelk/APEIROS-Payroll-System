@@ -9,15 +9,14 @@ class HumanResourcesChangePasswordController extends Controller
 {
     public function index()
     {
-
-      return view('HumanResources.accountsettings');
+      return view('HumanResources.changepassword');
     }
 
     public function changePassword(Request $request)
     {
         $request->validate([
           'current_password' => 'required',
-          'password' => 'required|string|min:6|confirmed',
+          'password' => 'required|string|min:8|confirmed',
           'password_confirmation' => 'required',
         ]);
 

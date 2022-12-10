@@ -14,10 +14,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('position')->nullable();
-            $table->integer('userno');
+            $table->integer('userno')->unique();
             $table->string('password');
+            $table->string('dcode')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->datetime('last_login_at')->nullable();
+            $table->string('last_login_ip')->nullable();
             $table->softDeletes();
         });
     }

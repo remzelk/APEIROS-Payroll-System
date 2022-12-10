@@ -26,7 +26,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -91,46 +91,9 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-          @if(session()->has('success'))
-          <div class="alert alert-success">
-            {{ session()->get('success') }}
-          </div>
-          @endif
-          @if($errors->any())
-            {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
-          @endif
 			      <h1 class="mb-3">Account Settings</h1><br>
-            <h3 class="mb-3"><i>Change Password:</i></h3>
-            <form method="POST" action="{{ route('change.password') }}">
-            @csrf
-			      <div class="my-2 my-lg-0"> 
-            <label for="password">Current Password</label>
-    			    <input class="form-control mb-4 @error('current_password') is-invalid @enderror" type="password" id="current_password" name="current_password" placeholder="Current Password" required>
-              @error('current_password')
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-            </div>
-            <div class="my-2 my-lg-0">
-            <label for="password">New Password</label>
-              <input class="form-control mb-4 " type="password" id="password" name="password" placeholder="New Password" required>
-              @error('password')
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-		  	    </div>
-            <div class="my-2 my-lg-0">
-            <label for="password">Confirm Password</label>
-              <input class="form-control mb-4" type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm New Password" required>
-              @error('password_confirmation')
-                  <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-		  	    </div>
-            <button class="btn btn-info" type="submit" name="submit" id="submit" style="background-image: url(https://i.imgur.com/6YuRxJA.png)">Change Password</button>
+            <a href="/Admin/AccountSettings/ChangeName" class="btn btn-info" style="background-image: url(https://i.imgur.com/6YuRxJA.png)">Change Name</a>
+            <a href="/Admin/AccountSettings/ChangePassword" class="btn btn-info" style="background-image: url(https://i.imgur.com/6YuRxJA.png)">Change Password</a>
           </form>
         </div>
     </div>

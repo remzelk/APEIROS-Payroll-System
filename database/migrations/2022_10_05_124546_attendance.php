@@ -10,12 +10,17 @@ class Attendance extends Migration
     {
         Schema::create('Attendance', function (Blueprint $table) {
             $table->id('id');
-            $table->date('Start')->nullable();
-            $table->date('End')->nullable();
+            $table->text('PayCode');
+            $table->text('DCode');
+            $table->text('UserNo');
+            $table->text('Name');
             $table->text('Detachment')->nullable();
             $table->text('Location')->nullable();
+            $table->integer('DaysWorked')->default(0);
+            $table->integer('NSDifferential')->default(0);
+            $table->integer('SHDays')->default(0);
+            $table->integer('LHDays')->default(0);
             $table->boolean('Submitted')->default(0);
-            $table->string('AttendanceSheet')->nullable();
             $table->softDeletes();
         });
     }

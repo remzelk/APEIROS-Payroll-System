@@ -27,7 +27,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -87,12 +87,15 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div  id="main">
+<div id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
 			<h1>Payroll List</h1><br>
+      <div class="mb-4">
+      <a href="/Admin/Payroll/SSS">SSS Contribution</a>
+      </div>
       <form action="" method="get">
         <div class="form-inline my-2 my-lg-0 right"> 
             <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">

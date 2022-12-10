@@ -26,7 +26,7 @@
           <li><a class="nav-item active" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -117,17 +117,6 @@ document.addEventListener("DOMContentLoaded", function(){
                     @error('email')
                       <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                     @enderror
-                </div>
-                <div class="col-md-6">
-                    <label>Password</label>
-                    <input id="password" class="form-control mb-4" type="password" name="password" required autocomplete="new-password" pattern="(?=.*\d)(?=.*[\W_]).{8,}" title="Minimum of 8 characters. Should have at least one special character and one number."/>
-                    @error('password')
-                      <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                    @enderror
-                </div>
-                <div class="col-md-6">
-                    <label>Confirm Password</label>
-                    <input id="password_confirmation" class="form-control mb-4" type="password" name="password_confirmation" required pattern="(?=.*\d)(?=.*[\W_]).{8,}" title="Minimum of 8 characters. Should have at least one special character and one number."/>
                 </div>
                 <div class="col-md-6">
                     <label>Position</label>

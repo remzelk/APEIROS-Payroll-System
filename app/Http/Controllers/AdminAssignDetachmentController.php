@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Detachments;
 use App\Models\User;
-use App\Models\Application;
+use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
+
 
 class AdminAssignDetachmentController extends Controller
 {
@@ -18,18 +20,26 @@ class AdminAssignDetachmentController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $assign = Application::orderBy('Name', 'ASC')
-            ->where('UserNo', 'LIKE', "%$search%")
-            ->orwhere('Name', 'LIKE', "%$search%")    
-            ->orwhere('DCode', 'LIKE', "%$search%")    
-            ->orwhere('Detachment', 'LIKE', "%$search%")
-            ->orwhere('Location', 'LIKE', "%$search%")
+            $assign = User::leftjoin('detachments', 'users.dcode', '=', 'detachments.DCode')
+            ->select('users.*', 'detachments.*')
+            ->orderBy('name', 'ASC')
+            ->where('userno', 'LIKE', "%$search%")
+            ->orwhere('name', 'LIKE', "%$search%")    
+            ->orwhere('users.dcode', 'LIKE', "%$search%")
+            ->whereNull('users.deleted_at')
             ->get();
         }
         else{
-            $assign = Application::orderBy('Name', 'ASC')->get();
+            $assign = User::leftjoin('detachments', 'users.dcode', '=', 'detachments.DCode')
+            ->select('users.*', 'detachments.*')
+            ->orderBy('name', 'ASC')
+            ->where('position', 'LIKE', 4)
+            ->orwhere('position', 'LIKE', 5)
+            ->whereNull('users.deleted_at')
+            ->get();
         }
-        $data = compact('assign', 'search');
+        $detachment = Detachments::all();
+        $data = compact('assign', 'detachment', 'search');
         return view('Admin.AssignDetachment.index')->with($data);
     }
 
@@ -50,7 +60,7 @@ class AdminAssignDetachmentController extends Controller
 
     public function edit($id)
     {
-        $assign = Application::orderBy('Name', 'ASC')
+        $assign = User::orderBy('Name', 'ASC')
             ->where('UserNo', 'LIKE', $id)
             ->firstOrFail();
         $detachment = Detachments::all();
@@ -60,12 +70,9 @@ class AdminAssignDetachmentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $application = Application::where('userno', $id)->firstOrFail();
-        $application->DCode = $request->input('DCode');
-        $d = Detachments::where('DCode', $application->DCode)->firstOrFail();
-        $application->Detachment = $d->Detachment;
-        $application->Location = $d->Location;
-        $application->update();
+        $user = User::where('userno', $id)->firstOrFail();
+        $user->dcode = $request->input('DCode');
+        $user->save();
         return redirect('/Admin/AssignDetachments');
     }
 

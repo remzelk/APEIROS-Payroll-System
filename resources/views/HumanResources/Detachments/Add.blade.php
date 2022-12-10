@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/HumanResources/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments" class="active">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                     <label>Email</label>
-                    <input type="email" id="Email" name="Email" class="form-control mb-4" placeholder="Enter Email"> 
+                    <input type="email" id="Email" name="Email" class="form-control mb-4" placeholder="Enter Email" required> 
                 </div>
                 <div class="col-md-6">
                     <label>Address</label>

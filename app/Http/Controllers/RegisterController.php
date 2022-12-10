@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Application;
+use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -26,7 +26,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'position' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $current = Carbon::now();
         $year = Carbon::now()->format('Y');
@@ -44,14 +43,13 @@ class RegisterController extends Controller
             'email' => $request->email,
             'position' => $request->position,
             'userno' => $userno,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make('apeiros'),
         ]);
 
         if (($user->position == 4) || ($user->position == 5))
         {
-            Application::create([
-                'UserNo' => $user->userno,
-                'Name' => $user->name
+            Profile::create([
+                'UserNo' => $user->userno
             ]);
         }
 

@@ -24,9 +24,17 @@ class EmployeeLeaveRequestsController extends Controller
     public function index()
     {
         $leave = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->get();
-        $last = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
-        $paidleft = (5 - $last->DaysUsed);
-        $daysleft = (15 - $last->PaidDaysUsed);
+        $last = LeaveRequests::orderBy('id', 'DESC')->where('UserNo', 'LIKE', Auth::user()->userno)->first();
+        if($last == NULL)
+        {
+            $paidleft = 5;
+            $daysleft = 15;
+        }
+        else
+        {
+            $paidleft = (5 - $last->DaysUsed);
+            $daysleft = (15 - $last->PaidDaysUsed);
+        }
         $data = compact('leave', 'paidleft', 'daysleft');
         return view('Employee.LeaveRequests.index')->with($data);
     }

@@ -26,7 +26,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Employee Name</th>
 						<th class="align-middle">No. of Days</th>
 						<th class="align-middle">Rate Per Day</th>
-						<th class="align-middle">Gross Pay</th>
+						<th class="align-middle">Basic Pay</th>
 						<th class="align-middle">Officer's Allowance</th>
 						<th class="align-middle">Night Shift Differential</th>
 						<th class="align-middle">Night Differential</th>
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Special Holiday</th>
 						<th class="align-middle">L.H. Days</th>
 						<th class="align-middle">Legal Holiday</th>
-						<th class="align-middle">OT/Adj.</th>
+						<th class="align-middle">Adjustment</th>
 						<th class="align-middle">Gross Pay</th>
 						<th class="align-middle">PhilHealth</th>
 						<th class="align-middle">HDMF</th>
@@ -147,7 +147,8 @@ document.addEventListener("DOMContentLoaded", function(){
 						<form action="/Admin/Payroll/{{ $payroll['UserNo'] }}" method="POST">
 							@csrf
 							@method('Delete')
-                            <input type="hidden" name="name" value= <?php echo $key ?>>
+                            <input type="hidden" name="PayCode" value="{{$payroll['PayCode']}}">
+                            <input type="hidden" name="Name" value="{{$payroll['Name']}}">
 							<button class="btn btn-danger" onclick="return confirm('Remove employee: <?php echo $payroll['Name'] ?>?')"><i class="fa fa-trash" aria-hidden="true" value="Delete"></i></button>
 						</form>
 					</td>

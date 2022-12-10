@@ -2,35 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Payroll;
 use App\Models\PayrollCode;
 use App\Models\User;
 use Auth;
-use App\Models\Application;
+use App\Models\Profile;
 use App\Models\Detachments;
 
 class EmployeePayslipsController extends Controller
 {
     public function index(Request $request)
     {
+        $id = $request->user()->userno;
         $search = $request['search'] ?? "";
         if ($search != ""){
             $payrollcode = PayrollCode::join('payroll', 'payrollcode.PayCode', '=', 'payroll.PayCode')
             ->select('payrollcode.*', 'payroll.*')
             ->orderBy('payrollcode.id', 'DESC')
-            ->where('userno', 'LIKE', Auth::user()->userno)
+            ->where('payroll.userno', 'LIKE', Auth::user()->userno)
             ->orwhere('Start', 'LIKE', "%$search%")
             ->orwhere('End', 'LIKE', "%$search%")
             ->whereNull('payroll.deleted_at')
             ->get();
         }
-        else{
+        else
+        {
             $payrollcode = PayrollCode::join('payroll', 'payrollcode.PayCode', '=', 'payroll.PayCode')
             ->select('payrollcode.*', 'payroll.*')
-            ->orderBy('payrollcode.id', 'DESC')
-            ->where('userno', 'LIKE', Auth::user()->userno)
+            ->where('payroll.userno', 'LIKE', Auth::user()->userno)
             ->whereNull('payroll.deleted_at')
             ->get();
         }
@@ -64,9 +66,9 @@ class EmployeePayslipsController extends Controller
         ->where('UserNo', 'LIKE', Auth::user()->userno)
         ->firstOrFail();
         $detachment = Detachments::all();
-        $application = Application::where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
+        $profile = Profile::where('UserNo', 'LIKE', Auth::user()->userno)->firstOrFail();
         $payrollcode = PayrollCode::where('PayCode', 'LIKE', $id)->firstOrFail();
-        $data = compact('payroll', 'payrollcode', 'detachment', 'application');
+        $data = compact('payroll', 'payrollcode', 'detachment', 'profile');
         return view('Employee.Payslips.show')->with($data);
     }
 

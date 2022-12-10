@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
   <li class="nav-item"><a href="/Chief">Home</a></li>
-    <li class="nav-item"><a href="/Chief/Application/{{ Auth::user()->userno }}" class="active">Application</a></li>
+    <li class="nav-item"><a href="/Chief/Profile" class="active">Profile</a></li>
     <li class="nav-item"><a href="/Chief/Attendance">Attendance</a></li>
     <li class="nav-item"><a href="/Chief/Payslips">Payslips</a></li>
     <li class="nav-item"><a href="/Chief/LeaveRequests">Leave Request</a></li>

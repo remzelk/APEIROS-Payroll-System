@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/HumanResources/BIRForm2316" class="active">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
@@ -67,11 +67,6 @@ document.addEventListener("DOMContentLoaded", function(){
 }); 
 </script>
 
-<nav class="navbar navbar-light navbg">
-<button class="bt" onclick="toggleNav()">&#9776; <a class = "navbar-brand my-2 my-lg-0">Human Resources Portal</a></button> 
-<a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
-</nav>
-
 <div  id="main">
   <div class="container-fluid h-100">
     <div class="row justify-content-center align-items-center h-100">
@@ -98,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function(){
 				<tr>
 					<td class="text-left">{{ $bir['UserNo'] }}</td>
 					<td class="text-left">{{ $bir['Name'] }}</td>
-                    <td class="text-left"><a class="profile-name" target="_blank" href="/HumanResources/BIRForm2316/view/{{ $bir['BIRForm'] }}">View</a></td>
-                    <td class="text-left"><a class="profile-name" href="{{ route('hrbir', $bir['BIRForm']) }}">Download</a></td>
+                    <td class="text-left"><a class="profile-name" target="_ blank" href="/HumanResources/BIRForm2316/view/{{ $bir['BIRForm'] }}">View</a></td>
+                    <td class="text-left"><a class="profile-name" href="{{ route('adminbir', $bir['BIRForm']) }}">Download</a></td>
                 </tr>
         @empty
           <tr>

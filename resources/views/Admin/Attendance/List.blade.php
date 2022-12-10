@@ -27,7 +27,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Detachment</th>
 						<th class="align-middle">Location</th>
 						<th class="align-middle"></th>
-						<th class="align-middle"></th>
 					</tr>
 				</thead>
 			<div class="scroll">
@@ -115,8 +114,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				<tr>
                     <td class="text-left">{{ $attendance['Detachment'] }}</td>
                     <td class="text-left">{{ $attendance['Location'] }}</td>
-                    <td class="text-left"><a class="profile-name" target="_blank" href="/Admin/Attendance/view/{{ $attendance['AttendanceSheet'] }}">View</a></td>
-                    <td class="text-left"><a class="profile-name" href="{{ route('downloadattendance', $attendance['id']) }}">Download</a></td>
+                    <td class="text-left"><a class="profile-name" target="_blank" href="/Admin/Attendance/{{$attendance['PayCode']}}/{{$attendance['DCode']}}">View</a></td>
                 </tr>
                 @empty
                 <tr>

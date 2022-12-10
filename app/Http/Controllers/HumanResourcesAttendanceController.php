@@ -5,25 +5,43 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\PayrollCode;
 use App\Models\Attendance;
+use App\Models\Detachments;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use App\Models\Payroll;
+use App\Models\SSS;
+
 
 class HumanResourcesAttendanceController extends Controller
 {
-    public function view($id)
+    public function attendance(Request $request, $paycode, $id)
     {
-        $attendance = Attendance::where('attendancesheet', $id)->firstOrFail();
-        return view('HumanResources.Attendance.show')->with('attendance', $attendance);
-    }
-
-    public function download($id)
-    {
-        $attendance = Attendance::where('id', $id)->firstOrFail();
-        return response()->download(public_path(('attendance/' . $attendance->AttendanceSheet), ($attendance->id)));
+        $search = $request['search'] ?? "";
+        if ($search != ""){
+            $attendance = Attendance::join('detachments', 'attendance.DCode', '=', 'detachments.DCode')
+            ->select('attendance.*', 'detachments.*')
+            ->orderBy('Detachment', 'ASC')
+            ->orwhere('Name', 'LIKE', "%$search%")
+            ->orwhere('Detachment', 'LIKE', "%$search%")
+            ->get();
+        }
+        else{
+            $attendance = Attendance::where('PayCode', 'LIKE', $paycode)
+            ->where('DCode', 'LIKE', $id)
+            ->get();
+        }
+        $detachment = Detachments::where('DCode', 'LIKE', $id)->firstOrFail();
+        $payrollcode = PayrollCode::where('PayCode', 'LIKE', $paycode)->firstOrFail();
+        $data = compact('attendance', 'search', 'payrollcode', 'detachment');
+        return view('HumanResources.Attendance.show')->with($data);
     }
 
     public function index(Request $request)
@@ -43,8 +61,8 @@ class HumanResourcesAttendanceController extends Controller
         return view('HumanResources.Attendance.index')->with($data);
     }
 
-    public function create()
-    {
+    public function create(Request $request)
+    { 
         //
     }
 
@@ -53,34 +71,34 @@ class HumanResourcesAttendanceController extends Controller
         //
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $payrollcode = PayrollCode::where('PayCode', $id)->firstOrFail();
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $attendance = Attendance::orderBy('Detachment', 'ASC')
-            ->orderBy('Location', 'ASC')
+            $attendance = Attendance::join('detachments', 'attendance.DCode', '=', 'detachments.DCode')
+            ->select('attendance.*', 'detachments.*')
+            ->orderBy('Detachment', 'ASC')
+            ->where('Name', 'LIKE', "%$search%")
             ->orwhere('Detachment', 'LIKE', "%$search%")
-            ->orwhere('Location', 'LIKE', "%$search%")
-            ->where('Start', $payrollcode->Start)
-            ->where('End', $payrollcode->End)
+            ->groupby('attendance.DCode')
             ->get();
         }
         else{
-            $attendance = Attendance::orderBy('Detachment', 'ASC')
-            ->orderBy('Location', 'ASC')
-            ->where('Start', $payrollcode->Start)
-            ->where('End', $payrollcode->End)
+            $attendance = Attendance::join('detachments', 'attendance.DCode', '=', 'detachments.DCode')
+            ->select('attendance.*', 'detachments.*')
+            ->where('attendance.PayCode', 'LIKE', $id)
+            ->groupby('attendance.DCode')
             ->get();
         }
-        $data = compact('attendance', 'search', 'payrollcode');
+        $detachment = Detachments::all();
+        $payrollcode = PayrollCode::where('PayCode', 'LIKE', $id)->firstOrFail();
+        $data = compact('attendance', 'search', 'payrollcode', 'detachment');
         return view('HumanResources.Attendance.list')->with($data);
     }
 
     public function edit($id)
     {
-        $attendance = Attendance::where('userno', $id)->firstOrFail();
-        return view('HumanResources.Attendance.edit')->with('attendance', $attendance);
+        //
     }
 
     public function update(Request $request, $id)

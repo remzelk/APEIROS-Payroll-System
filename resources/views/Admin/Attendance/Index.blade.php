@@ -27,7 +27,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -103,15 +103,21 @@ document.addEventListener("DOMContentLoaded", function(){
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="align-middle">Dates</th>
+						<th class="align-middle">Payroll Code</th>
+						<th class="align-middle">Start</th>
+						<th class="align-middle">End</th>
+						<th class="align-middle"></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 				@forelse($payrollcode as $key => $payrollcode)
 				<tr>
-          <td class="text-left"><a class="profile-name" href="/Admin/Attendance/{{ $payrollcode['PayCode'] }}">Start: {{ $payrollcode['Start'] }},  End: {{ $payrollcode['End'] }}</a></td>
-        </tr>
-        @empty
+					<td class="text-left">{{ $payrollcode['PayCode'] }}</td>
+					<td class="text-left">{{ $payrollcode['Start'] }}</td>
+					<td class="text-left">{{ $payrollcode['End'] }}</td>
+          			<td class="text-left"><a class="profile-name" target="__blank" href="/Admin/Attendance/{{ $payrollcode['PayCode'] }}">View</a></td>
+        		</tr>
+        		@empty
           <tr>
     		    <td colspan="4">
               <h1>No Data!</h1>

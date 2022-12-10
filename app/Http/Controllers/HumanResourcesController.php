@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class HumanResourcesController extends Controller
 {
-    public function accountsettings()
+    public function index()
     {
         return view('HumanResources.accountsettings');
     }

@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
   <li class="nav-item"><a href="/Chief">Home</a></li>
-    <li class="nav-item"><a href="/Chief/Application/{{ Auth::user()->userno }}">Application</a></li>
+    <li class="nav-item"><a href="/Chief/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Chief/Attendance" class="active">Attendance</a></li>
     <li class="nav-item"><a href="/Chief/Payslips">Payslips</a></li>
     <li class="nav-item"><a href="/Chief/LeaveRequests">Leave Request</a></li>
@@ -70,47 +70,48 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div id="main">
-    <div class="container-fluid h-100">
-        <div class="row justify-content-center align-items-center h-100">
-            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-                <div class="card-body p-4 p-md-5">
-                @if($errors->any())
-                  {!! implode('', $errors->all('<div class="alert alert-danger">:message</div>')) !!}
-                @endif
-                @if(Session::has('error'))
-                  <div class="alert alert-danger">{{ Session::get('error') }}</div>
-                @endif
-                @if(Session::has('success'))
-                  <div class="alert alert-success">{{ Session::get('success') }}</div>
-                @endif
-                  <h1 class="mb-3">Attendance Sheet:</h1>
-                    <form action="/Chief/Attendance" method="POST" enctype="multipart/form-data">
-                      @csrf
-                      <div class="row">
-                        <div class="col-md-6">
-                          <label>Duration</label>
-                            <select id="duration" name="duration" class="form-control mb-4" required>
-                              @foreach ($payrollcode as $payrollcode)
-                                <option value="{{ $payrollcode['PayCode'] }}">{{ $payrollcode['Start'] }} - {{ $payrollcode['End'] }}</option>
-                              @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                          <label>Detachment</label><br>
-                                {{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}   
-                        </div>
-                      <label>Digital version of the attendance sheet (PDF format)</label>
-                      <input type="file" id="attendancesheet" name="attendancesheet" class="form-control mb-4" value="{{ old('attendancesheet') }}" required>
-                      <input type="hidden" id="Submitted" name="Submitted" value="1">
-                      </div>
-                      <div class="mt-4 pt-2">
-                        <input class="btn btn-primary btn-lg bton" type="submit" value="Submit" id="submit" onclick="return confirm('Are you sure these data are correct?')">
-                      </div>
-                    </form>
-                  </div>
-              </div>
+<div  id="main">
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+			<h1>Attendance List</h1><br>
+      <form action="" method="get">
+        <div class="form-inline my-2 my-lg-0 right"> 
+            <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
+            <button class="btn btn-outline-success mb-4" type="submit">Search</button>
+        </div>
+      </form>
+		<div class="scroll">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="align-middle">Payroll Code</th>
+						<th class="align-middle">Start</th>
+						<th class="align-middle">End</th>
+						<th class="align-middle"></th>
+					</tr>
+				</thead>
+			<div class="scroll">
+				@forelse($payrollcode as $key => $payrollcode)
+				<tr>
+					<td class="text-left">{{ $payrollcode['PayCode'] }}</td>
+					<td class="text-left">{{ $payrollcode['Start'] }}</td>
+					<td class="text-left">{{ $payrollcode['End'] }}</td>
+          			<td class="text-left"><a class="profile-name" target="__blank" href="/Chief/Attendance/{{ $payrollcode['PayCode'] }}">View</a></td>
+        		</tr>
+        		@empty
+          <tr>
+    		    <td colspan="4">
+              <h1>No Data!</h1>
+            </td>
+          </tr>
+			    @endforelse
+			</div>
+			</table>
+			</div>
         </div>
     </div>
+  </div>
 <div>
 @endsection

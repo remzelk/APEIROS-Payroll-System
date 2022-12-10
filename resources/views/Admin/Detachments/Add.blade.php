@@ -26,7 +26,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments" class="active">Detachments</a></li>
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 </div>
                 <div class="col-md-6">
                     <label>Email</label>
-                    <input type="email" id="Email" name="Email" class="form-control mb-4" placeholder="Enter Email"> 
+                    <input type="email" id="Email" name="Email" class="form-control mb-4" placeholder="Enter Email" required> 
                 </div>
                 <div class="col-md-6">
                     <label>Address</label>

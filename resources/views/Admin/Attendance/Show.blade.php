@@ -27,7 +27,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -88,16 +88,67 @@ document.addEventListener("DOMContentLoaded", function(){
 </nav>
 
 <div  id="main">
-    <div class="container-fluid h-100">
-        <div class="row justify-content-center align-items-center h-100">
-            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-            <div class="card-body p-4 p-md-5" style="width: 50rem;">
-			    <h1>Attendance View</h1><br>
-                    <iframe src="{{ asset('attendance/' . $attendance['AttendanceSheet']) }}" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-                        Your browser does not support iFrame.
-                    </iframe>		
-            </div>
+  <div class="container-fluid h-100">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+			<h1 class="mb-3">Attendance</h1>
+			<h3 class="mb-3">Detachment: {{ $detachment['Detachment'] }}: {{ $detachment['Location'] }}</h3>
+			<h3 class="mb-3">Start: {{ $payrollcode['Start'] }} &emsp; End: {{ $payrollcode['End'] }}</h3>
+			<div class="form-inline my-2 my-lg-0 right"> 
+				<form action="" method="get">
+					<input class="form-control mb-4 search" type="search" name="search" value="{{ $search }}" placeholder="Search">
+					<button class="btn btn-outline-success mb-4" type="submit">Search</button>
+				</form>
+			</div>
+
+			<div class="scroll">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="align-middle">User No.</th>
+						<th class="align-middle">Employee Name</th>
+						<th class="align-middle">No. of Days</th>
+						<th class="align-middle">Night Shift Differential</th>
+						<th class="align-middle">S.H. Days</th>
+						<th class="align-middle">L.H. Days</th>
+					</tr>
+				</thead>
+			<div class="scroll">
+				@forelse($attendance as $key => $attendance)
+				<tr>
+					<td>
+						{{ $attendance['UserNo'] }}
+					</td>
+					<td>
+						{{ $attendance['Name'] }}
+					</td>
+					<td>
+						{{ $attendance['DaysWorked'] }}
+					</td>
+					<td>
+						{{ $attendance['NSDifferential'] }}
+					</td>
+					<td>
+						{{ $attendance['SHDays'] }}
+					</td>
+					<td>
+						{{ $attendance['LHDays'] }}
+					</td>
+				</tr>
+				@empty
+				<tr>
+					<td colspan="29">
+						<h1>No Data!</h1>
+					</td>
+    			
+				</tr>
+				@endforelse
+			</div>
+			</table>
+			</div>
         </div>
     </div>
-</div>
+  </div>
+<div>
 @endsection

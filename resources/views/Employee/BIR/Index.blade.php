@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/Employee">Home</a></li>
-    <li class="nav-item"><a href="/Employee/Application/{{ Auth::user()->userno }}">Application</a></li>
+    <li class="nav-item"><a href="/Employee/Profile">Profile</a></li>
     <li class="nav-item"><a href="/Employee/Payslips">Payslips</a></li>
     <li class="nav-item"><a href="/Employee/LeaveRequests">Leave Requests</a></li>
     <li class="nav-item"><a href="/Employee/BIRForm2316" class="active">BIR Form 2316</a></li>

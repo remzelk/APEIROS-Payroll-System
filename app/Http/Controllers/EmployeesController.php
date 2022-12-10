@@ -7,6 +7,11 @@ use App\Models\Announcement;
 
 class EmployeesController extends Controller
 {
+    public function settings(Request $request)
+    {
+        return view('Employee.accountsettings');
+    }
+
     public function index()
     {
         $announcement = Announcement::all();

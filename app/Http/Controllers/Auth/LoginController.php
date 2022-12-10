@@ -4,17 +4,28 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
 
     use AuthenticatesUsers;
-    protected $maxAttempts = 3;
-    protected $decayMinutes = 2;
+    protected $maxAttempts = 2;
+    protected $decayMinutes = 3;
 
     protected $redirectTo;
+
+    function authenticated(Request $request, $user)
+    {
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
+        ]);
+    }
 
     public function redirectTo() 
     {

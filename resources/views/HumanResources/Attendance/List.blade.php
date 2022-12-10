@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/HumanResources/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
@@ -92,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">Detachment</th>
 						<th class="align-middle">Location</th>
 						<th class="align-middle"></th>
-						<th class="align-middle"></th>
 					</tr>
 				</thead>
 			<div class="scroll">
@@ -100,8 +99,7 @@ document.addEventListener("DOMContentLoaded", function(){
 				<tr>
                     <td class="text-left">{{ $attendance['Detachment'] }}</td>
                     <td class="text-left">{{ $attendance['Location'] }}</td>
-                    <td class="text-left"><a class="profile-name" target="_blank" href="/HumanResources/Attendance/view/{{ $attendance['AttendanceSheet'] }}">View</a></td>
-                    <td class="text-left"><a class="profile-name" href="{{ route('hrdownloadattendance', $attendance['id']) }}">Download</a></td>
+                    <td class="text-left"><a class="profile-name" target="_blank" href="/HumanResources/Attendance/{{$attendance['PayCode']}}/{{$attendance['DCode']}}">View</a></td>
                 </tr>
                 @empty
                 <tr>

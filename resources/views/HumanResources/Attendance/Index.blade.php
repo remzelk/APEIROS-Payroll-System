@@ -15,7 +15,7 @@
   </div>
   <ul class="nav flex-column" id="nav_accordion">
     <li class="nav-item"><a href="/HumanResources">Home</a></li>
-    <li class="nav-item"><a href="/HumanResources/ApplicationList">Application List</a></li>
+    <li class="nav-item"><a href="/HumanResources/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/HumanResources/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/HumanResources/Detachments">Detachments</a></li>
     <li class="nav-item"><a href="/HumanResources/AssignDetachments">Assign Detachments</a></li>
@@ -88,15 +88,21 @@ document.addEventListener("DOMContentLoaded", function(){
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th class="align-middle">Dates</th>
+						<th class="align-middle">Payroll Code</th>
+						<th class="align-middle">Start</th>
+						<th class="align-middle">End</th>
+						<th class="align-middle"></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 				@forelse($payrollcode as $key => $payrollcode)
 				<tr>
-          <td class="text-left"><a class="profile-name" href="/HumanResources/Attendance/{{ $payrollcode['PayCode'] }}">Start: {{ $payrollcode['Start'] }},  End: {{ $payrollcode['End'] }}</a></td>
-        </tr>
-        @empty
+					<td class="text-left">{{ $payrollcode['PayCode'] }}</td>
+					<td class="text-left">{{ $payrollcode['Start'] }}</td>
+					<td class="text-left">{{ $payrollcode['End'] }}</td>
+          			<td class="text-left"><a class="profile-name" target="__blank" href="/HumanResources/Attendance/{{ $payrollcode['PayCode'] }}">View</a></td>
+        		</tr>
+        		@empty
           <tr>
     		    <td colspan="4">
               <h1>No Data!</h1>

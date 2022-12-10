@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Application;
+use App\Models\Profile;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -18,12 +18,20 @@ class AdminSocialBenefitsController extends Controller
     {
         $search = $request['search'] ?? "";
         if ($search != ""){
-            $user = Application::orderBy('Name', 'ASC')
-            ->where('Name', 'LIKE', "%$search%")
+            $user = Profile::join('users', 'profile.UserNo', '=', 'users.userno')
+            ->select('profile.*', 'users.*')
+            ->orderBy('profile.LastName', 'ASC')
+            ->where('profile.LastName', 'LIKE', "%$search%")
+            ->orwhere('users.position', 'LIKE', '4')
+            ->orwhere('users.position', 'LIKE', '5')
             ->get();
         }
         else{
-            $user = Application::orderBy('Name', 'ASC')
+            $user = Profile::join('users', 'profile.UserNo', '=', 'users.userno')
+            ->select('profile.*', 'users.*')
+            ->orderBy('profile.LastName', 'ASC')
+            ->where('users.position', 'LIKE', '4')
+            ->orwhere('users.position', 'LIKE', '5')
             ->get();
         }
         $data = compact('user', 'search');

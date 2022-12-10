@@ -27,7 +27,7 @@
           <li><a class="nav-item" href="/Admin/Credentials/Register">Register</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a href="/Admin/Application">Application List</a></li>
+    <li class="nav-item"><a href="/Admin/ProfileList">Profile List</a></li>
     <li class="nav-item"><a href="/Admin/SocialBenefits" class="active">Social Benefits</a></li>
     <li class="nav-item"><a href="/Admin/BIRForm2316">BIR Form 2316</a></li>
     <li class="nav-item"><a href="/Admin/Detachments">Detachments</a></li>
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			<div class="scroll">
 				@forelse($user as $key => $user)
 				        <tr>
-					        <td class="text-left">{{ $user['Name'] }}</td>
+					        <td class="text-left">{{ $user['name'] }}</td>
                   <td class="text-left">{{ $user['SSS'] }}</td>
                   <td class="text-left">{{ $user['PagIbig'] }}</td>
                   <td class="text-left">{{ $user['Philhealth'] }}</td>
