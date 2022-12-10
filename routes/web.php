@@ -10,8 +10,8 @@ Route::get('/Admin/AccountSettings/ChangePassword', 'AdminChangePasswordControll
 Route::post('/Admin/AccountSettings/ChangePassword', 'AdminChangePasswordController@changePassword')->name('change.password')->middleware('IsAdmin');
 Route::resource('/Admin/AccountSettings/ChangeName', AdminChangeNameController::class)->middleware('IsAdmin');
 Route::get('/Admin/AccountSettings', 'AdminController@index')->middleware('IsAdmin');
-Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
 Route::resource('/Admin/Payroll/SSS', AdminSSSController::class)->middleware('IsAdmin');
+Route::resource('/Admin/Payroll', AdminEmployeePayrollController::class)->middleware('IsAdmin');
 Route::get('/Admin/Credentials/Register', 'RegisterController@create')->middleware('IsAdmin');
 Route::post('/Admin/Credentials/Register', 'RegisterController@store')->middleware('IsAdmin');
 Route::get('/Admin/Payroll/{paycode}/{id}', 'AdminEmployeePayrollController@editpayroll')->middleware('IsAdmin');
@@ -61,6 +61,7 @@ Route::get('/Accounting/AccountSettings', 'AccountingController@settings')->midd
 Route::get('/Accounting', 'AccountingController@index')->name('Accounting.index')->middleware('IsAccounting');
 Route::get('/Accounting/Payroll/{paycode}/{id}', 'AccountingEmployeePayrollController@editpayroll')->middleware('IsAccounting');
 Route::resource('/Accounting/SocialBenefits', AccountingSocialBenefitsController::class)->middleware('IsAccounting');
+Route::resource('/Accounting/Payroll/SSS', AccountingSSSController::class)->middleware('IsAccounting');
 Route::resource('/Accounting/Payroll', AccountingEmployeePayrollController::class)->middleware('IsAccounting');
 Route::resource('/Accounting/PayrollCode', AccountingPayrollCodeController::class)->middleware('IsAccounting');
 
