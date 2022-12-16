@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {{ session()->get('success') }}
           </div>
           @endif
-            <h3 class="mb-3"><i>Change Password:</i></h3>
+            <h3 class="mb-3"><i>Change Name:</i></h3>
             <form method="POST" action="/Accounting/AccountSettings/ChangeName/{{ Auth::user()->userno }}">
             @csrf
             @method('Put')
