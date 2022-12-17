@@ -77,17 +77,164 @@ document.addEventListener("DOMContentLoaded", function(){
 <a class="navbar-brand form-inline my-2 my-lg-0 right">Welcome, {{ Auth::user()->name }}!</a>
 </nav>
 
-<div  id="main">
-    <div class="container-fluid h-100">
-        <div class="row justify-content-center align-items-center h-100">
-            <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-            <div class="card-body p-4 p-md-5" style="width: 50rem;">
-			    <h1>Application List</h1><br>
-                    <iframe src="{{ asset('application/' . $application['ApplicationForm']) }}" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;">
-                        Your browser does not support iFrame.
-                    </iframe>		
+<div id="main">
+  <div class="container">
+    <div class="main-body">          
+      <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                @if($profile['Image'] == NULL)
+                <img src="https://th.bing.com/th/id/R.3e77a1db6bb25f0feb27c95e05a7bc57?rik=DswMYVRRQEHbjQ&riu=http%3a%2f%2fwww.coalitionrc.com%2fwp-content%2fuploads%2f2017%2f01%2fplaceholder.jpg&ehk=AbGRPPcgHhziWn1sygs8UIL6XIb1HLfHjgPyljdQrDY%3d&risl=&pid=ImgRaw&r=0" alt="Chief" class="rounded-circle" width="150" height="150">
+                @else
+                <img src="{{ asset('images/' . $profile['Image'] )}}" alt="Chief" class="rounded-circle" width="150" height="150">
+                @endif
+                <div class="mt-3">
+                  <h4>{{ $user['name'] }}</h4>
+                  <h5>{{ $user['userno'] }}</h5>
+                  <h6 class="text-secondary mb-1">{{ $profile['ContactNumber'] }}<h6>
+                  <a href="/HumanResources/ProfileList/{{ $user['userno'] }}/edit" class="btn btn-info" onclick="return confirm('Edit Profile?')">Edit</a>
+                </div>
+              </div>
             </div>
-        </div> 
+          </div>
+          <div class="card mt-3">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">Last Name</h6>
+                <span class="text-secondary">{{ $profile['LastName'] }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">First Name</h6>
+                <span class="text-secondary">{{ $profile['FirstName'] }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">Middle Name</h6>
+                <span class="text-secondary">{{ $profile['MiddleName'] }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">Extension</h6>
+                <span class="text-secondary">{{ $profile['Extension'] }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">Maternal/Paternal</h6>
+                <span class="text-secondary">{{ $profile['MP'] }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">Nickname</h6>
+                <span class="text-secondary">{{ $profile['NickName'] }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <h6 class="mb-0">Personal Email</h6>
+                <span class="text-secondary">{{ $profile['Email'] }}</span>
+              </li>
+            </ul>
+          </div>              
+        </div>
+        <div class="col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="mb-3">Personal Data</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Date of Birth</h6>
+                    <span class="text-secondary">{{ $profile['DateOfBirth'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Place of Birth</h6>
+                    <span class="text-secondary">{{ $profile['PlaceOfBirth'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Sex</h6>
+                    <span class="text-secondary">{{ $profile['Sex'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Nationality</h6>
+                    <span class="text-secondary">{{ $profile['Nationality'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Marital Status</h6>
+                    <span class="text-secondary">{{ $profile['MaritalStatus'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Religion</h6>
+                    <span class="text-secondary">{{ $profile['Religion'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Nationality</h6>
+                    <span class="text-secondary">{{ $profile['Nationality'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Current Address</h6>
+                    <span class="text-secondary">{{ $profile['CurrentAddress'] }}</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Permanent Address</h6>
+                    <span class="text-secondary">{{ $profile['PermanentAddress'] }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+	    				<div class="col-sm-12">
+			    			<div class="card mb-3">
+					    		<div class="card-body">
+                    <h5 class="mb-3">Contact Person in Case of Emergency</h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">Name</h6>
+                          <span class="text-secondary">{{ $profile['CPName'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">Relationship</h6>
+                          <span class="text-secondary">{{ $profile['CPRelationship'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">Address</h6>
+                          <span class="text-secondary">{{ $profile['CPAddress'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">                                        
+                          <h6 class="mb-0">Contact Number:</h6>
+                          <span class="text-secondary">{{ $profile['CPContactNumber'] }}</span>
+                        </li>
+                      </ul>
+							      </div>
+						      </div>
+					      </div>
+              </div>
+              <div class="row">
+					      <div class="col-sm-12">
+						      <div class="card mb-3">
+							      <div class="card-body">
+                      <h5 class="mb-3">Social Benefits</h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap border-0">
+                          <h6 class="mb-0">SSS</h6>
+                          <span class="text-secondary">{{ $profile['SSS'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">Pag-Ibig</h6>
+                          <span class="text-secondary">{{ $profile['PagIbig'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">Philhealth</h6>
+                          <span class="text-secondary">{{ $profile['Philhealth'] }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                          <h6 class="mb-0">TIN</h6>
+                          <span class="text-secondary">{{ $profile['TIN'] }}</span>
+                        </li>
+                      </ul>
+							      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 @endsection

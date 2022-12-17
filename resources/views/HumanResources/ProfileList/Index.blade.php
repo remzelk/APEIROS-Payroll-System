@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="row justify-content-center align-items-center h-100">
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
-			<h1>Application List</h1><br>
+			<h1>Profile List</h1><br>
       <form action="" method="get">
         <div class="form-inline my-2 my-lg-0 right"> 
             <input class="form-control mb-4 search" type="search"  name="search" id="search" value="{{$search}}" placeholder="Search">
@@ -91,16 +91,14 @@ document.addEventListener("DOMContentLoaded", function(){
 						<th class="align-middle">User No.</th>
 						<th class="align-middle">Name</th>
             <th></th>
-            <th></th>
 					</tr>
 				</thead>
 			<div class="scroll">
 				@forelse($user as $key => $user)
 				<tr>
-					<td class="text-left">{{ $user['UserNo'] }}</td>
-					<td class="text-left">{{ $user['Name'] }}</td>
-          <td class="text-left"><a class="profile-name" target="_blank" href="/HumanResources/ApplicationList/{{ $user['ApplicationForm'] }}">View</a></td>
-          <td class="text-left"><a class="profile-name" href="{{ route('hrdownloadapplication', $user['UserNo'])}}">Download</a></td>
+					<td class="text-left">{{ $user['userno'] }}</td>
+					<td class="text-left">{{ $user['name'] }}</td>
+          <td class="text-left"><a class="profile-name" target="_blank" href="/HumanResources/ProfileList/{{ $user['userno'] }}">View</a></td>
         </tr>
         @empty
           <tr>
